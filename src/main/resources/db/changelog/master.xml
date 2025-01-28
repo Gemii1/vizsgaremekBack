@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0" author="admin">
+
+    </changeSet>
+
+    <include file="create_table_gender.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_gender.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_login.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_login.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_qualification.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_qualification.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_trainer.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_trainer.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_client.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_client.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_rating.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_rating.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>

@@ -1,0 +1,62 @@
+package hu.fitness.controller;
+
+import hu.fitness.dto.ClientList;
+import hu.fitness.dto.ClientRead;
+import hu.fitness.dto.ClientSave;
+import hu.fitness.service.ClientService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/client")
+@Tag(name = "Client Test Functions", description = "Manage Clients")
+public class ClientController {
+
+
+    @Autowired
+    private ClientService clientService;
+
+    @CrossOrigin
+    @GetMapping("")
+    @Operation(summary = "List all Clients")
+    public List<ClientList> readClientList() {
+        return clientService.listClients();
+    }
+
+    @CrossOrigin
+    @GetMapping("/{id}")
+    @Operation(summary = "Get Client by id")
+    public ClientRead readClient(@PathVariable int id) {
+        return clientService.readClient(id);
+    }
+
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/")
+    @Operation(summary = "Create Client")
+    public ClientRead createClient(@Valid @RequestBody ClientSave clientSave) {
+        return clientService.createClient(clientSave);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete Client by id")
+    public ClientRead deleteClient(@PathVariable int id) {
+        return clientService.deleteClient(id);
+    }
+
+    @CrossOrigin
+    @PutMapping("/{id}")
+    @Operation(summary = "Update Client by id")
+    public ClientRead updateClient(@PathVariable int id, @Valid @RequestBody ClientSave client) {
+        return clientService.updateClient(id, client);
+    }
+
+
+}

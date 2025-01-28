@@ -1,0 +1,77 @@
+package hu.fitness.converter;
+
+import hu.fitness.domain.Login;
+import hu.fitness.domain.Trainer;
+import hu.fitness.dto.TrainerList;
+import hu.fitness.dto.TrainerRead;
+import hu.fitness.dto.TrainerSave;
+import jakarta.validation.Valid;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TrainerConverter {
+    public static List<TrainerList> convertModelsToLists(List<Trainer> trainers) {
+        List<TrainerList> trainerLists = new ArrayList<>();
+        for (Trainer trainer : trainers) {
+            trainerLists.add(convertModelToList(trainer));
+        }
+        return trainerLists;
+    }
+
+    private static TrainerList convertModelToList(Trainer trainer) {
+        TrainerList trainerList = new TrainerList();
+        trainerList.setId(trainer.getId());
+        trainerList.setName(trainer.getName());
+        trainerList.setBirthDate(trainer.getBirthDate());
+        trainerList.setGender(trainer.getGender());
+        trainerList.setPicture(trainer.getPicture());
+        trainerList.setQualification(trainer.getQualification());
+        trainerList.setPhoneNumber(trainer.getPhoneNumber());
+        trainerList.setRating(trainer.getRating());
+        trainerList.setLogin(trainer.getLogin());
+        return trainerList;
+    }
+
+    public static Trainer convertSaveToModel(TrainerSave trainerSave, Login login) {
+        Trainer trainer = new Trainer();
+        trainer.setName(trainerSave.getName());
+        trainer.setBirthDate(trainerSave.getBirthDate());
+        trainer.setGender(trainerSave.getGender());
+        trainer.setPicture(trainerSave.getPicture());
+        trainer.setQualification(trainerSave.getQualification());
+        trainer.setPhoneNumber(trainerSave.getPhoneNumber());
+        trainer.setRating(trainerSave.getRating());
+        trainer.setLogin(login);
+        return trainer;
+
+    }
+
+    public static TrainerRead convertModelToRead(Trainer trainer) {
+        TrainerRead trainerRead = new TrainerRead();
+        trainerRead.setId(trainer.getId());
+        trainerRead.setName(trainer.getName());
+        trainerRead.setBirthDate(trainer.getBirthDate());
+        trainerRead.setGender(trainer.getGender());
+        trainerRead.setPicture(trainer.getPicture());
+        trainerRead.setQualification(trainer.getQualification());
+        trainerRead.setPhoneNumber(trainer.getPhoneNumber());
+        trainerRead.setRating(trainer.getRating());
+        trainerRead.setLogin(LoginConverter.convertModelToRead(trainer.getLogin()));
+        return trainerRead;
+    }
+
+    public static Trainer convertSaveToModel(int id, @Valid TrainerSave trainerSave, Login login) {
+        Trainer trainer = new Trainer();
+        trainer.setId(id);
+        trainer.setName(trainerSave.getName());
+        trainer.setBirthDate(trainerSave.getBirthDate());
+        trainer.setGender(trainerSave.getGender());
+        trainer.setPicture(trainerSave.getPicture());
+        trainer.setQualification(trainerSave.getQualification());
+        trainer.setPhoneNumber(trainerSave.getPhoneNumber());
+        trainer.setRating(trainerSave.getRating());
+        trainer.setLogin(login);
+        return trainer;
+    }
+}
