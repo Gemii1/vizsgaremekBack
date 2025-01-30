@@ -2,13 +2,14 @@ create table trainer (
     id                  int             not null        primary key         auto_increment,
     name                varchar(30)     not null,
     birth_date          date            not null,
-    gender_id           varchar(30)     not null,
+    gender              varchar(30)     not null,
     picture             varchar(255)    not null,
-    qualification_id    varchar(30)     not null,
+    qualification       varchar(30)     not null,
     phone_number        varchar(30)     not null,
+    rating              decimal         not null,
     login_id            int             not null,
 
-    foreign key (gender_id) references gender (id),
-    foreign key (qualification_id) references qualification (id),
+    foreign key (gender) references gender (id),
+    foreign key (qualification) references qualification (id),
     foreign key (login_id) references login (id)
 );
