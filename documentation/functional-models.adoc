@@ -1,0 +1,9 @@
+= Funkcionális modellek
+
+link:functional-models/manage-trainers-functional-model.adoc[Edzők kezelése]
+
+Kliensek kezelése
+
+Értékelések
+
+link:system-plan.adoc[Vissza]

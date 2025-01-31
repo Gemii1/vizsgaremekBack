@@ -1,11 +1,9 @@
 package hu.fitness.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice
 public class ApplicactonExceptionHandler {
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "TRAINER_NOT_FOUND")
