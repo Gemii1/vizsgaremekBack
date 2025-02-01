@@ -1,9 +1,11 @@
 package hu.fitness.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ControllerAdvice
 public class ApplicactonExceptionHandler {
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "TRAINER_NOT_FOUND")
@@ -25,4 +27,8 @@ public class ApplicactonExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "Must be number (1-5)")
     @ExceptionHandler(InvalidRatingInputException.class)
     public void invalidRatingInputException(InvalidRatingInputException ex) {}
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "PROGRAM_NOT_FOUND")
+    @ExceptionHandler(ProgramNotFoundException.class)
+    public void programNotFound(ProgramNotFoundException ex) {}
 }
