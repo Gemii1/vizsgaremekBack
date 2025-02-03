@@ -3,6 +3,7 @@ package hu.fitness.converter;
 import hu.fitness.domain.Login;
 import hu.fitness.domain.Trainer;
 import hu.fitness.dto.TrainerList;
+import hu.fitness.dto.TrainerMinimal;
 import hu.fitness.dto.TrainerRead;
 import hu.fitness.dto.TrainerSave;
 import jakarta.validation.Valid;
@@ -73,5 +74,12 @@ public class TrainerConverter {
         trainer.setRating(trainerSave.getRating());
         trainer.setLogin(login);
         return trainer;
+    }
+
+    public static TrainerMinimal convetModelToMinimal(Trainer trainer) {
+        TrainerMinimal trainerMinimal = new TrainerMinimal();
+        trainerMinimal.setId(trainer.getId());
+        trainerMinimal.setName(trainer.getName());
+        return trainerMinimal;
     }
 }
