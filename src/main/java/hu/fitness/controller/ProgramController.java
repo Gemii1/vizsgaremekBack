@@ -48,4 +48,11 @@ public class ProgramController {
         return programService.deleteProgram(id);
     }
 
+    @CrossOrigin
+    @PutMapping("/{id}")
+    @Operation(summary = "Update Program by id")
+    public ProgramRead updateProgram(@PathVariable int id, @RequestBody final ProgramSave programSave){
+        return programService.updateProgram(id,programSave);
+    }
+
 }

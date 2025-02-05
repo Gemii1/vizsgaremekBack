@@ -55,4 +55,17 @@ public class ProgramService {
         programRepository.deleteById(id);
         return programRead;
     }
+
+    public ProgramRead updateProgram(int id, ProgramSave programSave) {
+        if (!programRepository.existsById(id)) {
+            throw new ProgramNotFoundException();
+        }
+        if (!trainerRepository.existsById(programSave.getTrainerId())) {
+            throw new TrainerNotFoundException();
+        }
+        Trainer trainer = trainerRepository.getReferenceById(programSave.getTrainerId());
+        Program program = ProgramConverter.convertSaveToModel(id, programSave, trainer);
+        Program savedProgram = programRepository.save(program);
+        return ProgramConverter.convertModelToRead(savedProgram);
+    }
 }
