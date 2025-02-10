@@ -31,4 +31,8 @@ public class ApplicactonExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "PROGRAM_NOT_FOUND")
     @ExceptionHandler(ProgramNotFoundException.class)
     public void programNotFound(ProgramNotFoundException ex) {}
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "BLOG_NOT_FOUND")
+    @ExceptionHandler(BlogNotFoundException.class)
+    public void blogNotFound(BlogNotFoundException ex) {}
 }
