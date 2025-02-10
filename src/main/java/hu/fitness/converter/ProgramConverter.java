@@ -47,7 +47,27 @@ public class ProgramConverter {
         } else if (time.isAfter( programSave.getEndTime() )) {
             program.setStatus(ProgramStatus.COMPLETED);
         } else {
-            program.setStatus( ProgramStatus.IN_PROGRESS );
+            program.setStatus(ProgramStatus.ONGOING);
+        }
+        return program;
+    }
+
+    public static Program convertSaveToModel(int id, ProgramSave programSave, Trainer trainer) {
+        Program program = new Program();
+        program.setId( id );
+        program.setTrainer( trainer );
+        program.setStartTime( programSave.getStartTime() );
+        program.setEndTime( programSave.getEndTime() );
+        program.setPrice( programSave.getPrice() );
+        program.setCapacity( programSave.getCapacity() );
+        program.setProgramType( programSave.getProgramType() );
+        LocalDateTime time = LocalDateTime.now();
+        if (time.isBefore( programSave.getStartTime() )) {
+            program.setStatus(ProgramStatus.UPCOMING);
+        } else if (time.isAfter( programSave.getEndTime() )) {
+            program.setStatus(ProgramStatus.COMPLETED);
+        } else {
+            program.setStatus(ProgramStatus.ONGOING);
         }
         return program;
     }
