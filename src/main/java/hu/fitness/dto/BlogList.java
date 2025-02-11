@@ -13,6 +13,7 @@ import lombok.Setter;
 public class BlogList {
     private Integer id;
     private String title;
+    private String text;
     private BlogType blogType;
-    private Integer trainerId;
+    private TrainerMinimal trainer;
 }

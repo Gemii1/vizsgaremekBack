@@ -18,7 +18,7 @@ public class BlogConverter {
         blogRead.setTitle(blog.getTitle());
         blogRead.setText(blog.getText());
         blogRead.setImage(blog.getImage());
-        blogRead.setTrainerId(blog.getTrainer().getId());
+        blogRead.setTrainer(TrainerConverter.convetModelToMinimal(blog.getTrainer()));
         return blogRead;
     }
 
@@ -35,7 +35,7 @@ public class BlogConverter {
     public static List<BlogList> convertModelsToList(List<Blog> blogs){
         List<BlogList> blogLists = new ArrayList<>();
         for (Blog blog : blogs){
-            blogLists.add(new BlogList(blog.getId(),blog.getTitle(),blog.getBlogType(),blog.getTrainer().getId()));
+            blogLists.add(new BlogList(blog.getId(),blog.getTitle(),blog.getText(),blog.getBlogType(),TrainerConverter.convetModelToMinimal(blog.getTrainer())));
         }
         return blogLists;
     }

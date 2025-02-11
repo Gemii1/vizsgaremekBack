@@ -16,5 +16,5 @@ public class BlogRead {
     private String title;
     private String text;
     private String image;
-    private Integer trainerId;
+    private TrainerMinimal trainer;
 }
