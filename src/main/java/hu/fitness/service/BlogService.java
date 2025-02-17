@@ -6,6 +6,7 @@ import hu.fitness.domain.Trainer;
 import hu.fitness.dto.BlogList;
 import hu.fitness.dto.BlogRead;
 import hu.fitness.dto.BlogSave;
+import hu.fitness.dto.BlogUpdate;
 import hu.fitness.exception.BlogNotFoundException;
 import hu.fitness.exception.TrainerNotFoundException;
 import hu.fitness.repository.BlogRepository;
@@ -60,16 +61,18 @@ public class BlogService {
         return blogRead;
     }
 
-    public BlogRead updateBlog(int id, BlogSave blogSave){
+    public BlogRead updateBlog(int id, BlogUpdate blogUpdate){
         if (!blogRepository.existsById(id)) {
             throw new BlogNotFoundException();
         }
-        if (!trainerRepository.existsById(blogSave.getTrainerId())) {
-            throw new TrainerNotFoundException();
-        }
-        Trainer trainer = trainerRepository.getReferenceById(blogSave.getTrainerId());
-        Blog blog = BlogConverter.convertSaveToModel(blogSave,trainer);
-        blog.setId(id);
+
+        Blog blog = blogRepository.getReferenceById(id);
+        Trainer trainer = blog.getTrainer();
+        blog.setBlogType(blogUpdate.getBlogType());
+        blog.setTitle(blogUpdate.getTitle());
+        blog.setText(blogUpdate.getText());
+        blog.setImage(blogUpdate.getImage());
+        blog.setTrainer(trainer);
         blogRepository.save(blog);
         return BlogConverter.convertModelToRead(blog);
     }

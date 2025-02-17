@@ -35,7 +35,7 @@ public class BlogConverter {
     public static List<BlogList> convertModelsToList(List<Blog> blogs){
         List<BlogList> blogLists = new ArrayList<>();
         for (Blog blog : blogs){
-            blogLists.add(new BlogList(blog.getId(),blog.getTitle(),blog.getText(),blog.getBlogType(),TrainerConverter.convetModelToMinimal(blog.getTrainer())));
+            blogLists.add(new BlogList(blog.getId(),blog.getTitle(),blog.getText(),blog.getBlogType(),blog.getImage(),TrainerConverter.convetModelToMinimal(blog.getTrainer())));
         }
         return blogLists;
     }

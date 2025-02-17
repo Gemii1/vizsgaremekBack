@@ -10,11 +10,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlogList {
-    private Integer id;
+public class BlogUpdate {
+
+    private BlogType blogType;
     private String title;
     private String text;
-    private BlogType blogType;
     private String image;
-    private TrainerMinimal trainer;
 }

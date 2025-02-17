@@ -3,6 +3,7 @@ package hu.fitness.controller;
 import hu.fitness.dto.BlogList;
 import hu.fitness.dto.BlogRead;
 import hu.fitness.dto.BlogSave;
+import hu.fitness.dto.BlogUpdate;
 import hu.fitness.service.BlogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -53,7 +54,7 @@ public class BlogController {
     @CrossOrigin
     @PutMapping("{id}")
     @Operation(summary = "Update Blog by id")
-    public BlogRead updateBlog(@PathVariable int id, @Valid @RequestBody BlogSave blogSave){
-        return blogService.updateBlog(id, blogSave);
+    public BlogRead updateBlog(@PathVariable int id, @Valid @RequestBody BlogUpdate blogUpdate){
+        return blogService.updateBlog(id, blogUpdate);
     }
 }
