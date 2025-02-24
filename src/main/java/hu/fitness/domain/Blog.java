@@ -22,7 +22,8 @@ public class Blog {
     @Enumerated(EnumType.STRING)
     private BlogType blogType;
     private String title;
-    private String text;
+    private String headerText;
+    private String mainText;
     private String image;
 
     @ManyToOne

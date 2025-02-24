@@ -70,7 +70,8 @@ public class BlogService {
         Trainer trainer = blog.getTrainer();
         blog.setBlogType(blogUpdate.getBlogType());
         blog.setTitle(blogUpdate.getTitle());
-        blog.setText(blogUpdate.getText());
+        blog.setHeaderText(blogUpdate.getHeaderText());
+        blog.setMainText(blogUpdate.getMainText());
         blog.setImage(blogUpdate.getImage());
         blog.setTrainer(trainer);
         blogRepository.save(blog);
