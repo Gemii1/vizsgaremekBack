@@ -1,0 +1,394 @@
+= Edzők kezelése - Technikai modell
+
+== Használati eset realizációk
+
+=== Edzők listázása
+Használati eset azonosító: UC_T_List
+
+A felhasználó a
+
+ - fő menüsorban
+ - az "Edzőinkről" gombra kattintva
+
+vagy
+
+ - Az edzők listázása felületen
+ - a keresés gombra kattintva
+
+Az edzők listázása felületre jut, és az oldal betöltődés részeként meghívja a
+
+ - GET /trainer/ azonosítójú Edzők listázása elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|TrainerList.name
+|Edző neve mező tartalma
+
+|TrainerList.birthDate
+|Edző születési dátuma mező tartalma
+
+|TrainerList.gender
+|Edző neme mező tartalma
+
+|TrainerList.picture
+|Edző képe mező tartalma
+
+|TrainerList.qualification
+|Edző képesítése mező tartalma
+
+|TrainerList.phoneNumber
+|Edző telefonszáma mező tartalma
+
+|TrainerList.rating
+|Edző átlag értékelése mező tartalma
+
+|===
+
+A response visszatér az edzők listájával. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|TrainerListItem[].id
+| Nem jelenik meg. A frontend az Edző megtekintése funkcióhoz használja
+
+|TrainerListItem[].name
+|Edző neve oszlop
+
+|TrainerListItem[].picture
+|Edző képe oszlop
+
+|TrainerListItem[].qualification
+|Edző képesítése oszlop
+
+|TrainerListItem[].phoneNumber
+|Edző telefonszáma oszlop
+
+|TrainerListItem[].rating
+|Edző átlag értékelése oszlop
+
+
+|===
+
+
+=== Edző rögzítése
+Használati eset azonosító: UC_T_Create
+
+A felhasználó a
+
+- Bejelentkezés felületen
+- a Mentés gombra kattintva
+
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+
+- POST /trainer/ azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|name
+|Edző neve mező tartalma
+
+|birthDate
+|Edző születési dátuma mező tartalma
+
+|gender
+|Edző neme mező tartalma
+
+|picture
+|Edző képe mező tartalma
+
+|qualification
+|Edző képesítése mező tartalma
+
+|phoneNumber
+|Edző telefonszáma mező tartalma
+
+|rating
+|Edző átlag értékelése mező tartalma
+|===
+
+A response visszatér az edző metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Edző neve címke
+
+|birthDate
+|Edző születési dátuma címke
+
+|gender
+|Edző neme címke
+
+|picture
+|Edző képe címke
+
+|qualification
+|Edző képesítése címke
+
+|phoneNumber
+|Edző telefonszáma címke
+
+|rating
+|Edző átlag értékelése címke
+
+|===
+
+=== Edző megtekintése
+Használati eset azonosító: UC_T_Read
+
+A felhasználó az
+
+- "Edzőinkről" felületen
+- a Megtekintés gombra kattintva
+
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+
+- GET /trainer/{id} azonosítójú Edző lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+|A frontend rendelkezésére álló azonosító
+|===
+
+A response visszatér az edző metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Edző neve címke
+
+|birthDate
+|Edző születési dátuma címke
+
+|gender
+|Edző neme címke
+
+|picture
+|Edző képe címke
+
+|qualification
+|Edző képesítése címke
+
+|phoneNumber
+|Edző telefonszáma címke
+
+|rating
+|Edző átlag értékelése címke
+
+|===
+
+=== Edző módosítása
+Használati eset azonosító: UC_T_Update
+
+A felhasználó az
+
+- "Profilom" felületen
+- a Mentés gombra kattintva
+
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+
+- PUT /trainer/{id} azonosítójú Edző módosítása elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+| A frontend rendelkezésére álló azonosító
+
+|name
+|Edző neve mező tartalma
+
+|birthDate
+|Edző születési dátuma mező tartalma
+
+|gender
+|Edző neme mező tartalma
+
+|picture
+|Edző képe mező tartalma
+
+|qualification
+|Edző képesítése mező tartalma
+
+|phoneNumber
+|Edző telefonszáma mező tartalma
+
+|rating
+|Edző átlag értékelése mező tartalma
+|===
+
+A response visszatér az edző metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Edző neve címke
+
+|birthDate
+|Edző születési dátuma címke
+
+|gender
+|Edző neme címke
+
+|picture
+|Edző képe címke
+
+|qualification
+|Edző képesítése címke
+
+|phoneNumber
+|Edző telefonszáma címke
+
+|rating
+|Edző átlag értékelése címke
+
+|===
+
+=== Edző törlése
+Használati eset azonosító: UC_T_Delete
+
+A felhasználó az
+
+- "Profilom" felületen
+- a Törlés gombra kattintva
+
+A Bejelentkezés oldalra jut, és az oldal betöltődés részeként meghívja a
+
+- DELETE /trainer/{id} azonosítójú Edző törlése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+|A frontend rendelkezésére álló azonosító
+|===
+
+A response visszatér a törölt edző metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg
+
+|name
+|Megjelenik a sikeres törlés felbukkanó ablakában az edző neve címkében
+
+|birthDate
+|Nem jelenik meg
+
+|gender
+|Nem jelenik meg
+
+|picture
+|Nem jelenik meg
+
+|qualification
+|Nem jelenik meg
+
+|phoneNumber
+|Nem jelenik meg
+
+|rating
+|Nem jelenik meg
+
+|===
+
+=== Edző átlag értékelésének változása
+Használati eset azonosító: UC_T_Post
+
+A felhasználó az
+
+- Értékelés felületen
+- az Értékel gombra kattintva
+
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+
+- POST /trainer/{id}/rating azonosítójú Edző értékelése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+| A frontend rendelkezésére álló azonosító
+
+|rating
+|Edző értékelése mező tartalma
+|===
+
+A response visszatér az edző metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Edző neve címke
+
+|birthDate
+|Edző születési dátuma címke
+
+|gender
+|Edző neme címke
+
+|picture
+|Edző képe címke
+
+|qualification
+|Edző képesítése címke
+
+|phoneNumber
+|Edző telefonszáma címke
+
+|rating
+|Edző átlag értékelése címke
+
+|===
+
+=== Érintett komponensek
+Frontend: vizsgaremekFront <- -> Backend: fitness
+
+link:../technical-models.adoc[Vissza]

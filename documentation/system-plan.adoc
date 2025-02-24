@@ -2,7 +2,7 @@
 
 * link:functional-models.adoc[Funkcionális modellek]
 
-* Technikai modellek
+* link:technical-models.adoc[Technikai modellek]
 
 * Interfész leírások
 

@@ -241,11 +241,11 @@ image::image-2025-01-24-17-00-07-109.png[]
 |===
 |Név |Típus |Kötelező?| Szerkeszthető?| Megjelenés
 
-|Edző neve |Címke| -| -| Találati lista ablakrész
-|Edző képe |Címke| -| -| Találati lista ablakrész
-|Edző képesítése |Címke| -| -| Találati lista ablakrész
-|Edző telefonszáma |Címke| -| -| Találati lista ablakrész
-|Edző átlag értékelése |Címke| -| -| Találati lista ablakrész
+|Edző neve |Header oszlopcím| I| I| Találati lista ablakrész
+|Edző képe | Header oszlopcím| N| I| Találati lista ablakrész
+|Edző képesítése | Header oszlopcím| I| I| Találati lista ablakrész
+|Edző telefonszáma | Header oszlopcím| I| I| Találati lista ablakrész
+|Edző átlag értékelése | Header oszlopcím| I| I| Találati lista ablakrész
 
 |===
 
