@@ -1,0 +1,279 @@
+= Kliensek kezelése - Technikai modell
+
+== Használati eset realizációk
+
+=== Kliensek listázása
+Használati eset azonosító: UC_C_List
+
+A felhasználó a
+
+ - fő menüsorban
+ - az "Kliensek" gombra kattintva
+
+A kliensek listázása felületre jut, és az oldal betöltődés részeként meghívja a
+
+ - GET /client/ azonosítójú Kliensek listázása elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|-
+|-
+
+|===
+
+A response visszatér a kliensek listájával. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|ClientListItem[].id
+| Nem jelenik meg. A frontend a Kliens megtekintése funkcióhoz használja
+
+|ClientListItem[].name
+|Kliens neve oszlop
+
+|ClientList[].birthDate
+|Kliens születési dátuma mező tartalma
+
+|ClientList[].gender
+|Kliens neme mező tartalma
+
+A visszakapott érték alapján:
+MALE -> Male
+FEMALE -> Female
+OTHER -> Other
+
+|ClientListItem[].phoneNumber
+|Kliens telefonszáma oszlop
+
+
+|===
+
+
+=== Kliens rögzítése
+Használati eset azonosító: UC_C_Create
+
+A felhasználó a
+
+- Bejelentkezés felületen
+- a Mentés gombra kattintva
+
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+
+- POST /client/ azonosítójú Kliens rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|name
+|Kliens neve mező tartalma
+
+|birthDate
+|Kliens születési dátuma mező tartalma
+
+|gender
+|Kliens neme mező tartalma
+
+|phoneNumber
+|Kliens telefonszáma mező tartalma
+
+|===
+
+A response visszatér az kliens metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Kliens neve címke
+
+|birthDate
+|Kliens születési dátuma címke
+
+|gender
+|Kliens neme címke
+
+A visszakapott érték alapján:
+MALE -> Male
+FEMALE -> Female
+OTHER -> Other
+
+|phoneNumber
+|Kliens neme címke
+
+|===
+
+=== Kliens megtekintése
+Használati eset azonosító: UC_C_Read
+
+A felhasználó a
+
+- főoldal felületen
+- a Profilom gombra kattintva
+
+A Profil oldalra jut, és az oldal betöltődés részeként meghívja a
+
+- link:../interfaces/kliens-lekerdezese.adoc[GET /client/{id}] azonosítójú Kliens lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+|A frontend rendelkezésére álló azonosító
+|===
+
+A response visszatér az edző metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Kliens neve címke
+
+|birthDate
+|Kliens születési dátuma címke
+
+|gender
+|Kliens neme címke
+
+A visszakapott érték alapján:
+MALE -> Male
+FEMALE -> Female
+OTHER -> Other
+
+|phoneNumber
+|Kliens telefonszáma címke
+
+|===
+
+=== Kliens módosítása
+Használati eset azonosító: UC_C_Update
+
+A felhasználó az
+
+- "Profilom" felületen
+- a Mentés gombra kattintva
+
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+
+- PUT /client/{id} azonosítójú Kliens módosítása elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+| A frontend rendelkezésére álló azonosító
+
+|name
+|Kliens neve mező tartalma
+
+|birthDate
+|Kliens születési dátuma mező tartalma
+
+|gender
+|Kliens neme mező tartalma
+
+|phoneNumber
+|Kliens telefonszáma mező tartalma
+
+|===
+
+A response visszatér a kliens metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+
+|name
+|Kliens neve címke
+
+|birthDate
+|Kliens születési dátuma címke
+
+|gender
+|Kliens neme címke
+
+A visszakapott érték alapján:
+MALE -> Male
+FEMALE -> Female
+OTHER -> Other
+
+|phoneNumber
+|Kliens telefonszáma címke
+
+|===
+
+=== Kliens törlése
+Használati eset azonosító: UC_C_Delete
+
+A felhasználó az
+
+- "Profilom" felületen
+- a Törlés gombra kattintva
+
+A Bejelentkezés oldalra jut, és az oldal betöltődés részeként meghívja a
+
+- DELETE /client/{id} azonosítójú Kliens törlése elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|id
+|A frontend rendelkezésére álló azonosító
+|===
+
+A response visszatér a törölt kliens metaadataival. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|id
+|Nem jelenik meg
+
+|name
+|Megjelenik a sikeres törlés felbukkanó ablakában a kliens neve címkében
+
+|birthDate
+|Nem jelenik meg
+
+|gender
+|Nem jelenik meg
+
+|phoneNumber
+|Nem jelenik meg
+
+|===
+
+=== Érintett komponensek
+Frontend: vizsgaremekFront <- -> Backend: fitness
+
+link:../technical-models.adoc[Vissza]

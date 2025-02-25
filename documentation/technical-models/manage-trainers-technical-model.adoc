@@ -25,26 +25,8 @@ Az edzők listázása felületre jut, és az oldal betöltődés részeként meg
 
 | Interfész input paraméter |érték
 
-|TrainerList.name
-|Edző neve mező tartalma
-
-|TrainerList.birthDate
-|Edző születési dátuma mező tartalma
-
-|TrainerList.gender
-|Edző neme mező tartalma
-
-|TrainerList.picture
-|Edző képe mező tartalma
-
-|TrainerList.qualification
-|Edző képesítése mező tartalma
-
-|TrainerList.phoneNumber
-|Edző telefonszáma mező tartalma
-
-|TrainerList.rating
-|Edző átlag értékelése mező tartalma
+|-
+|-
 
 |===
 
@@ -439,48 +421,28 @@ A response visszatér az edző metaadataival. Mapping:
 |Interfész output paraméter| felhasználás
 
 |id
-|Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
+|Nem jelenik meg.
 
 |name
-|Edző neve címke
+|Nem jelenik meg.
 
 |birthDate
-|Edző születési dátuma címke
+|Nem jelenik meg.
 
 |gender
-|Edző neme címke
-
-A visszakapott érték alapján:
-MALE -> Male
-FEMALE -> Female
-OTHER -> Other
+|Nem jelenik meg.
 
 |picture
-|Edző képe címke
+|Nem jelenik meg.
 
 |qualification
-|Edző képesítése címke
-
-A visszakapott érték alapján:
-PERSONAL_TRAINER -> Personal Trainer
-
-FITNESS_INSTRUCTOR -> Fitness Instructor
-
-PILATES_INSTRUCTOR -> Pilates Instructor
-
-CROSSFIT_COACH -> Crossfit Coach
-
-TRX_TRAINER -> TRX Trainer
-
-POUND_TRAINER -> Pound Trainer
-
-OTHER -> Other
+|Nem jelenik meg.
 
 |phoneNumber
-|Edző telefonszáma címke
+|Nem jelenik meg.
 
 |rating
-|Edző átlag értékelése címke
+|Nem jelenik meg.
 
 |===
 

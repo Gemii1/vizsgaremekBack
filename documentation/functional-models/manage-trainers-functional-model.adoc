@@ -26,7 +26,7 @@
 |
 1. A felhasználó az Edzők listázása menüpontra kattint.
 
-2. A rendszerben kiválogatásra kerülnek az edzők
+2. A rendszerben kiválogatásra kerülnek az edzők.
 
 | Kivételek és alternatívák
 | -
@@ -271,7 +271,7 @@ image::image-2025-01-24-17-22-37-426.png[]
 |Név |Típus |Kötelező?| Szerkeszthető?| Validáció
 
 |Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
-|Születési dátum |Dátum input mező| I| I|
+|Születési dátum |Dátum input mező| I| N|
 |Nem |Lenyíló lista| I| N| Felvehető értékek: ["Male","Female","Other"]
 |Kép |Szöveges input mező| N| I|
 |Képesítés | "Qualification" input mező| I| I|

@@ -1,0 +1,308 @@
+= Kliensek kezelése - Funkcionális modell
+
+== Leírás
+
+
+
+== Használati esetek
+
+=== Használati eset diagram
+
+=== Használati esetek rövid leírása
+==== Kliensek listázása
+[cols="1h,3"]
+|===
+
+| Azonosító
+| UC_C_List
+
+| Kiváltó esemény
+| A felhasználó listázni kívánja a klienseket.
+
+| Felhasználók
+| Kliens, Edző
+
+| Elsődleges lefutás
+|
+1. A felhasználó a Kliensek listázása menüpontra kattint.
+
+2. A rendszerben kiválogatásra kerülnek a kliensek.
+
+| Kivételek és alternatívák
+| -
+
+|Utófeltétel
+|A rendszerben a kliensek listája előállt.
+
+| Eredmény
+| A felhasználó látja a kliensek listáját.
+
+| Használati eset realizáció
+| Technikai modell
+
+|===
+
+==== Kliens rögzítése
+[cols="1h,3"]
+|===
+
+| Azonosító
+| UC_C_Create
+
+| Kiváltó esemény
+| A felhasználó új klienset kíván rögzíteni.
+
+| Felhasználók
+| Kliens
+
+| Elsődleges lefutás
+|
+1. A felhasználó megadja a kliens létrehozásához szükséges adatokat.
+
+2. A felhasználó elindítja a rögzítés folyamatát.
+
+3. A rendszerben rögzítésre kerül az új kliens.
+
+| Kivételek és alternatívák
+| -
+
+|Utófeltétel
+|A rendszerben a kliens rögzítésre került.
+
+| Eredmény
+| A felhasználó számára az imént rögzített kliens elérhető a rendszerben.
+
+| Használati eset realizáció
+| Technikai modell
+
+|===
+
+==== Kliens megtekintése
+[cols="1h,3"]
+|===
+
+| Azonosító
+| UC_C_Read
+
+| Kiváltó esemény
+| A felhasználó megkívánja tekinteni a kiválasztott kliens adatait.
+
+| Felhasználók
+| Kliens
+
+| Elsődleges lefutás
+|
+1. A felhasználó kiválasztja a klienst.
+
+2. A rendszerben lekérdezésre kerül a kiválasztott kliens.
+
+| Kivételek és alternatívák
+| -
+
+|Utófeltétel
+|A rendszerben a kliens lekérdezésre került.
+
+| Eredmény
+| A felhasználó látja a kiválasztott kliens metaadatait.
+
+| Használati eset realizáció
+| Technikai modell
+
+|===
+
+==== Kliens módosítása
+[cols="1h,3"]
+|===
+
+| Azonosító
+| UC_C_Update
+
+| Kiváltó esemény
+| A felhasználó módosítani kívánja a kiválasztott kliens metaadatait.
+
+| Felhasználók
+| Kliens
+
+| Elsődleges lefutás
+|
+1. A felhasználó megadja a módosítani kívánt adatokat.
+
+2. A felhasználó elindítja a módosítás folyamatát.
+
+3. A rendszerben módosításra kerül a kliens.
+
+| Kivételek és alternatívák
+| -
+
+|Utófeltétel
+|A rendszerben a kliens módosításra került.
+
+| Eredmény
+| A felhasználó látja a kliens módosított metaadatait.
+
+| Használati eset realizáció
+| Technikai modell
+
+|===
+
+==== Kliens törlése
+[cols="1h,3"]
+|===
+
+| Azonosító
+| UC_C_Delete
+
+| Kiváltó esemény
+| A felhasználó törölni kívánja a kiválasztott klienst a rendszerből.
+
+| Felhasználók
+| Kliens
+
+| Elsődleges lefutás
+|
+1. A felhasználó elindítja a törlés folyamatát.
+
+2. A rendszerben törlésre kerül a kliens.
+
+| Kivételek és alternatívák
+| -
+
+|Utófeltétel
+|A rendszerben a kliens törlésre került.
+
+| Eredmény
+| A felhasználó a továbbiakban nem látja a törölt kliens metaadatait.
+
+| Használati eset realizáció
+| Technikai modell
+
+|===
+
+== Jogosultságok
+
+[cols="1,1,1"]
+|===
+|Használati eset| Jogosultság| Szerepkörök
+
+| Kliens listázása| CLIENT_LIST| Kliens, Edző
+| Kliens rögzítése| CLIENT_CREATE| Kliens
+| Kliens megtekintése| CLIENT_READ| Kliens
+| Kliens módosítása| CLIENT_UPDATE| Kliens
+| Kliens törlése| CLIENT_DELETE| Kliens
+|===
+
+== Felületi terv
+
+=== Kliensek listázása felület
+
+==== Arculat
+
+
+==== A felületen lévő mezők
+
+[cols="1,1,1,1,1"]
+|===
+|Név |Típus |Kötelező?| Szerkeszthető?| Megjelenés
+
+|Kliens neve |Header oszlopcím| I| I| Találati lista ablakrész
+|Kliens születési éve | Header oszlopcím| I| I| Találati lista ablakrész
+|Kliens neme | Header oszlopcím| I| I| Találati lista ablakrész
+|Kliens telefonszáma | Header oszlopcím| I| I| Találati lista ablakrész
+
+|===
+
+==== A felületről elérhető műveletek
+
+[cols="1,1,1"]
+|===
+|Esemény |Leírás | Jogosultság
+
+|A "Kliensek" gombra kattintás |Végrehajtásra kerül a Kliensek listázása használati eset. A találati listában megjelennek a kliensek.| CLIENT_LIST
+
+|===
+
+=== Kliens rögzítése vagy szerkesztése felület
+==== Arculat
+
+
+==== A felületen lévő mezők
+
+[cols="1,1,1,1,1"]
+|===
+|Név |Típus |Kötelező?| Szerkeszthető?| Validáció
+
+|Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
+|Születési dátum |Dátum input mező| I| N|
+|Nem |Lenyíló lista| I| N| Felvehető értékek: ["Male","Female","Other"]
+|Telefonszám | Szöveges input mező| I| I|
+
+|===
+
+==== A felületről elérhető műveletek
+
+[cols="1,1,1,1"]
+|===
+|Esemény |Leírás | Felület|Jogosultság
+
+|A "Mentés" gombra kattintás
+|Végrehajtásra kerül a Kliens rögzítése használati eset. A felhasználó a kliens megtekintése felületre jut.
+
+A gomb mindaddig DISABLED amíg az űrlap nem valid.
+| Kliens létrehozása felület
+| CLIENT_CREATE
+
+|A "Mentés" gombra kattintás|
+Végrehajtásra kerül a Kliens módosítása használati eset. A felhasználó a kliens megtekintése felületre jut.
+
+A gomb mindaddig DISABLED amíg az űrlap nem valid.
+| Kliens módosítása felület
+| CLIENT_UPDATE
+
+|===
+
+
+
+==== A felületen lévő mezők
+
+[cols="1,1"]
+|===
+|Megnevezés| Típus
+
+|Név |Szöveges címke
+|Születési dátum| Dátum címke
+|Nem |Szöveges címke
+|Telefonszám |Szöveges címke
+
+|===
+
+==== A felületről elérhető műveletek
+
+[cols="1,1,1"]
+|===
+|Esemény |Leírás | Jogosultság
+
+|A "Szerkesztés" gombra kattintás
+|A felhasználó a kliens szerkesztése felületre jut.
+| -
+
+|A "Törlés" gombra kattintás|
+Megjelenik egy párbeszéd ablak.
+
+Cím: Törlés
+
+Üzenet: Biztosan törli a profilt?
+
+A Nem gombra kattintásra eltűnik a párbeszédablak.
+
+Az Igen gombra kattintásra végrehajtásra kerül a Kliens törlése használati eset.
+A felhasználó a kliensek listázása felületre jut.
+
+Ha a törlés nem sikerül, akkor az alábbi hibaüzenetek érkezhetnek:
+
+
+
+| CLIENT_DELETE
+
+|===
+
+link:../functional-models.adoc[Vissza]

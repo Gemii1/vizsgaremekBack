@@ -2,7 +2,11 @@
 
 link:functional-models/manage-trainers-functional-model.adoc[Edzők kezelése]
 
-Kliensek kezelése
+link:functional-models/manage-clients-functional-model.adoc[Kliensek kezelése]
+
+Programok kezelése
+
+Blogok kezelése
 
 Értékelések
 
