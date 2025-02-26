@@ -3,6 +3,7 @@ package hu.fitness.controller;
 import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
 import hu.fitness.dto.ClientSave;
+import hu.fitness.dto.ClientUpdate;
 import hu.fitness.dto.ProgramRead;
 import hu.fitness.service.ClientService;
 import hu.fitness.service.ProgramService;
@@ -60,8 +61,8 @@ public class ClientController {
     @CrossOrigin
     @PutMapping("/{id}")
     @Operation(summary = "Update Client by id")
-    public ClientRead updateClient(@PathVariable int id, @Valid @RequestBody ClientSave client) {
-        return clientService.updateClient(id, client);
+    public ClientRead updateClient(@PathVariable int id, @Valid @RequestBody ClientUpdate clientUpdate) {
+        return clientService.updateClientSelected(id, clientUpdate);
     }
 
     @CrossOrigin
