@@ -6,7 +6,10 @@ import hu.fitness.domain.Login;
 import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
 import hu.fitness.dto.ClientSave;
+import hu.fitness.dto.ClientUpdate;
+import hu.fitness.enumeration.Qualification;
 import hu.fitness.exception.ClientNotFoundException;
+import hu.fitness.exception.InvalidInputException;
 import hu.fitness.exception.LoginNotFoundException;
 import hu.fitness.repository.ClientRepository;
 import hu.fitness.repository.LoginRepository;
@@ -14,6 +17,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,15 +63,24 @@ public class ClientService {
         return clientRead;
     }
 
-    public ClientRead updateClient(int id, @Valid ClientSave clientSave) {
+    public ClientRead updateClientSelected(int id, ClientUpdate clientUpdate) {
         if (!clientRepository.existsById(id)) {
             throw new ClientNotFoundException();
         }
-        if (!loginRepository.existsById(clientSave.getLoginId())) {
-            throw new LoginNotFoundException();
+        Client client = clientRepository.getReferenceById(id);
+        switch(clientUpdate.getSelected()){
+            case NAME:
+                client.setName((String) clientUpdate.getValue());
+                break;
+            case BIRTH_DATE:
+                client.setBirthDate(LocalDate.parse((String) clientUpdate.getValue()));
+                break;
+            case PHONE_NUMBER:
+                client.setPhoneNumber((String) clientUpdate.getValue());
+                break;
+            default:
+                throw new InvalidInputException();
         }
-        Login login = loginRepository.getReferenceById(clientSave.getLoginId());
-        Client client = ClientConverter.convertSaveToModel(id, clientSave, login);
         clientRepository.save(client);
         return ClientConverter.convertModelToRead(client);
     }
