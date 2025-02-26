@@ -6,15 +6,21 @@ import hu.fitness.domain.Trainer;
 import hu.fitness.dto.TrainerList;
 import hu.fitness.dto.TrainerRead;
 import hu.fitness.dto.TrainerSave;
+import hu.fitness.dto.TrainerUpdate;
+import hu.fitness.enumeration.Gender;
+import hu.fitness.enumeration.Qualification;
+import hu.fitness.exception.InvalidInputException;
 import hu.fitness.exception.LoginNotFoundException;
 import hu.fitness.exception.TrainerNotFoundException;
 import hu.fitness.repository.LoginRepository;
 import hu.fitness.repository.RatingRepository;
 import hu.fitness.repository.TrainerRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +88,32 @@ public class TrainerService {
             throw new TrainerNotFoundException();
         }
         return ratingRepository.getAverageRatingByTrainer(trainerId);
+    }
+
+    @Transactional
+    public TrainerRead updateTrainerSelected(int id, TrainerUpdate trainerUpdate){
+        if(!trainerRepository.existsById(id)){
+            throw new TrainerNotFoundException();
+        }
+        Trainer trainer = trainerRepository.getReferenceById(id);
+        switch(trainerUpdate.getSelected()){
+            case NAME:
+                trainer.setName((String) trainerUpdate.getValue());
+                break;
+            case BIRTH_DATE:
+                trainer.setBirthDate(LocalDate.parse((String) trainerUpdate.getValue()));
+                break;
+            case QUALIFICATION:
+                trainer.setQualification(Qualification.valueOf((String) trainerUpdate.getValue()));
+                break;
+            case PHONE_NUMBER:
+                trainer.setPhoneNumber((String) trainerUpdate.getValue());
+                break;
+            default:
+                throw new InvalidInputException();
+        }
+        trainerRepository.save(trainer);
+        return TrainerConverter.convertModelToRead(trainer);
     }
 
     private void throwExceptionIfTrainerNotFound(int id) {

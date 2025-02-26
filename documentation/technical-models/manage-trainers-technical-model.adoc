@@ -257,6 +257,9 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |id
 | A frontend rendelkezésére álló azonosító
 
+|name
+|Edző neve mező tartalma
+
 |birthDate
 |Edző születési dátuma mező tartalma
 

@@ -1,9 +1,6 @@
 package hu.fitness.controller;
 
-import hu.fitness.dto.RatingSave;
-import hu.fitness.dto.TrainerList;
-import hu.fitness.dto.TrainerRead;
-import hu.fitness.dto.TrainerSave;
+import hu.fitness.dto.*;
 import hu.fitness.service.RatingService;
 import hu.fitness.service.TrainerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -57,10 +54,10 @@ public class TrainerController {
     }
 
     @CrossOrigin
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @Operation(summary = "Update Trainer by id")
-    public TrainerRead updateTrainer(@PathVariable int id, @Valid @RequestBody TrainerSave trainer) {
-        return trainerService.updateTrainer(id, trainer);
+    public TrainerRead updateTrainer(@PathVariable int id, @Valid @RequestBody TrainerUpdate trainerUpdate) {
+        return trainerService.updateTrainerSelected(id, trainerUpdate);
     }
 
     @CrossOrigin

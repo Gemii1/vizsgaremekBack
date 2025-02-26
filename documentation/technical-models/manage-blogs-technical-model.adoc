@@ -197,14 +197,20 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |id
 | A frontend rendelkezésére álló azonosító
 
-|birthDate
-|Edző születési dátuma mező tartalma
+|blogType
+|Blog blogtípus mező tartalma
 
-|qualification
-|Edző képesítése mező tartalma
+|title
+|Blog cím mező tartalma
 
-|phoneNumber
-|Edző telefonszáma mező tartalma
+|headerText
+|Blog fejléc mező tartalma
+
+|mainText
+|Blog főszöveg mező tartalma
+
+|trainer
+|A felhasználó adatai mező tartalma
 
 |===
 
@@ -217,57 +223,37 @@ A response visszatér az edző metaadataival. Mapping:
 |id
 |Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
 
-|name
-|Edző neve címke
+|blogType
+|Blog típus címke
 
-|birthDate
-|Edző születési dátuma címke
+|title
+|Blog címe címke
 
-|gender
-|Edző neme címke
+|headerText
+|Blog fejléc címke
 
-A visszakapott érték alapján:
-MALE -> Male
-FEMALE -> Female
-OTHER -> Other
+|mainText
+|Blog főszöveg címke
 
-|picture
-|Edző képe címke
+|image
+|Blog képe címke
 
-|qualification
-|Edző képesítése címke
-
-A visszakapott érték alapján:
-PERSONAL_TRAINER -> Personal Trainer
-
-FITNESS_INSTRUCTOR -> Fitness Instructor
-
-PILATES_INSTRUCTOR -> Pilates Instructor
-
-CROSSFIT_COACH -> Crossfit Coach
-
-TRX_TRAINER -> TRX Trainer
-
-POUND_TRAINER -> Pound Trainer
-
-OTHER -> Other
-
-|phoneNumber
-|Edző telefonszáma címke
+|trainer
+|A felhasználó adatai címke
 
 |===
 
-=== Edző törlése
-Használati eset azonosító: UC_T_Delete
+=== Blog törlése
+Használati eset azonosító: UC_B_Delete
 
-A felhasználó az
+A felhasználó a
 
-- "Profilom" felületen
+- Blog felületén
 - a Törlés gombra kattintva
 
-A Bejelentkezés oldalra jut, és az oldal betöltődés részeként meghívja a
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 
-- DELETE /trainer/{id} azonosítójú Edző törlése elnevezésű interfészt az alábbi mapping megvalósításával
+- DELETE /blog/{id} azonosítójú Blog törlése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -279,67 +265,7 @@ A Bejelentkezés oldalra jut, és az oldal betöltődés részeként meghívja a
 |A frontend rendelkezésére álló azonosító
 |===
 
-A response visszatér a törölt edző metaadataival. Mapping:
-[cols="1,1"]
-|===
-
-|Interfész output paraméter| felhasználás
-
-|id
-|Nem jelenik meg
-
-|name
-|Nem jelenik meg
-
-|birthDate
-|Nem jelenik meg
-
-|gender
-|Nem jelenik meg
-
-|picture
-|Nem jelenik meg
-
-|qualification
-|Nem jelenik meg
-
-|phoneNumber
-|Nem jelenik meg
-
-|rating
-|Nem jelenik meg
-
-|loginId
-|Nem jelenik meg
-
-|===
-
-=== Edző átlag értékelésének változása
-Használati eset azonosító: UC_T_Post
-
-A felhasználó az
-
-- Értékelés felületen
-- az Értékel gombra kattintva
-
-A Főoldalra jut, és az oldal betöltődés részeként meghívja a
-
-- POST /trainer/{id}/rating azonosítójú Edző értékelése elnevezésű interfészt az alábbi mapping megvalósításával
-
-
-[cols="1,1"]
-|===
-
-| Interfész input paraméter |érték
-
-|id
-| A frontend rendelkezésére álló azonosító
-
-|rating
-|Edző értékelése mező tartalma
-|===
-
-A response visszatér az edző metaadataival. Mapping:
+A response visszatér a törölt blog metaadataival. Mapping:
 [cols="1,1"]
 |===
 
@@ -348,26 +274,23 @@ A response visszatér az edző metaadataival. Mapping:
 |id
 |Nem jelenik meg.
 
-|name
-|Nem jelenik meg.
+|blogType
+|Blog típus címke
 
-|birthDate
-|Nem jelenik meg.
+|title
+|Blog címe címke
 
-|gender
-|Nem jelenik meg.
+|headerText
+|Blog fejléc címke
 
-|picture
-|Nem jelenik meg.
+|mainText
+|Blog főszöveg címke
 
-|qualification
-|Nem jelenik meg.
+|image
+|Blog képe címke
 
-|phoneNumber
-|Nem jelenik meg.
-
-|rating
-|Nem jelenik meg.
+|trainer
+|A felhasználó adatai címke
 
 |===
 

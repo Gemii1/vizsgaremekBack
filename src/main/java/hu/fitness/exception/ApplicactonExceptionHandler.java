@@ -35,4 +35,8 @@ public class ApplicactonExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "BLOG_NOT_FOUND")
     @ExceptionHandler(BlogNotFoundException.class)
     public void blogNotFound(BlogNotFoundException ex) {}
+
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "Invalid input")
+    @ExceptionHandler(InvalidInputException.class)
+    public void invalidInputException(BlogNotFoundException ex) {}
 }
