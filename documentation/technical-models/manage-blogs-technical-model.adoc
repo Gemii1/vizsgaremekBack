@@ -1,23 +1,18 @@
-= Edzők kezelése - Technikai modell
+= Blogok kezelése - Technikai modell
 
 == Használati eset realizációk
 
-=== Edzők listázása
-Használati eset azonosító: UC_T_List
+=== Blogok listázása
+Használati eset azonosító: UC_B_List
 
 A felhasználó a
 
  - fő menüsorban
- - az "Edzőinkről" gombra kattintva
+ - a "Blogok" gombra kattintva
 
-vagy
+A Blogok listázása felületre jut, és az oldal betöltődés részeként meghívja a
 
- - Az edzők listázása felületen
- - a keresés gombra kattintva
-
-Az edzők listázása felületre jut, és az oldal betöltődés részeként meghívja a
-
- - GET /trainer/ azonosítójú Edzők listázása elnevezésű interfészt az alábbi mapping megvalósításával
+ - GET /blog/ azonosítójú Blogok listázása elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -30,61 +25,51 @@ Az edzők listázása felületre jut, és az oldal betöltődés részeként meg
 
 |===
 
-A response visszatér az edzők listájával. Mapping:
+A response visszatér a blogok listájával. Mapping:
 [cols="1,1"]
 |===
 
 |Interfész output paraméter| felhasználás
 
-|TrainerListItem[].id
-| Nem jelenik meg. A frontend az Edző megtekintése funkcióhoz használja
+|BlogListItem[].id
+| Nem jelenik meg. A frontend a Blog megtekintése funkcióhoz használja
 
-|TrainerListItem[].name
-|Edző neve oszlop
+|BlogListItem[].blogType
+|Blog típusa oszlop
 
-|TrainerListItem[].picture
-|Edző képe oszlop
+|BlogListItem[].title
+|Blog címe oszlop
 
-|TrainerListItem[].qualification
-|Edző képesítése oszlop
+|BlogListItem[].headerText
+|Blog fejléc szöveg oszlop
 
-A visszakapott érték alapján:
-PERSONAL_TRAINER -> Personal Trainer
+|BlogListItem[].mainText
+|Blog főszöveg oszlop
 
-FITNESS_INSTRUCTOR -> Fitness Instructor
+|BlogListItem[].mainText
+|Blog főszöveg oszlop
 
-PILATES_INSTRUCTOR -> Pilates Instructor
+|BlogListItem[].mainText
+|Blog képe oszlop
 
-CROSSFIT_COACH -> Crossfit Coach
-
-TRX_TRAINER -> TRX Trainer
-
-POUND_TRAINER -> Pound Trainer
-
-OTHER -> Other
-
-
-|TrainerListItem[].phoneNumber
-|Edző telefonszáma oszlop
-
-|TrainerListItem[].rating
-|Edző átlag értékelése oszlop
+|BlogListItem[].trainer
+|Bloghoz tartozó Edző adatai
 
 
 |===
 
 
-=== Edző rögzítése
-Használati eset azonosító: UC_T_Create
+=== Blog rögzítése
+Használati eset azonosító: UC_B_Create
 
 A felhasználó a
 
-- Regisztrációs felületen
+- "Blog létrehozása" felületen
 - a Mentés gombra kattintva
 
-A Login oldara jut, és az oldal betöltődés részeként meghívja a
+A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 
-- POST /trainer/ azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
+- POST /blog/ azonosítójú Blog rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -92,33 +77,27 @@ A Login oldara jut, és az oldal betöltődés részeként meghívja a
 
 | Interfész input paraméter |érték
 
-|name
-|Edző neve mező tartalma
+|blogType
+|Blog típus mező tartalma
 
-|birthDate
-|Edző születési dátuma mező tartalma
+|title
+|Blog cím mező tartalma
 
-|gender
-|Edző neme mező tartalma
+|headerText
+|Blog fejléc szövege mező tartalma
 
-|picture
-|Edző képe mező tartalma
+|mainText
+|Blog főszöveg mező tartalma
 
-|qualification
-|Edző képesítése mező tartalma
+|image
+|Blog képe mező tartalma
 
-|phoneNumber
-|Edző telefonszáma mező tartalma
-
-|rating
-|Edző átlag értékelése mező tartalma
-
-|loginId
-|Edző emailje és jelszava mező tartalma
+|trainer
+|A felhasználó adatai
 
 |===
 
-A response visszatér az edző metaadataival. Mapping:
+A response visszatér a blog metaadataival. Mapping:
 [cols="1,1"]
 |===
 
@@ -127,63 +106,36 @@ A response visszatér az edző metaadataival. Mapping:
 |id
 |Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
 
-|name
-|Edző neve címke
+|blogType
+|Blog típus mező tartalma
 
-|birthDate
-|Edző születési dátuma címke
+|title
+|Blog cím mező tartalma
 
-|gender
-|Edző neme címke
+|headerText
+|Blog fejléc szövege mező tartalma
 
-|loginId
-|Edző emailje és jelszava címke
+|mainText
+|Blog főszöveg mező tartalma
 
-A visszakapott érték alapján:
-MALE -> Male
-FEMALE -> Female
-OTHER -> Other
+|image
+|Blog képe mező tartalma
 
-|picture
-|Edző képe címke
-
-|qualification
-|Edző képesítése címke
-
-A visszakapott érték alapján:
-PERSONAL_TRAINER -> Personal Trainer
-
-FITNESS_INSTRUCTOR -> Fitness Instructor
-
-PILATES_INSTRUCTOR -> Pilates Instructor
-
-CROSSFIT_COACH -> Crossfit Coach
-
-TRX_TRAINER -> TRX Trainer
-
-POUND_TRAINER -> Pound Trainer
-
-OTHER -> Other
-
-|phoneNumber
-|Edző telefonszáma címke
-
-|rating
-|Edző átlag értékelése címke
-
+|trainer
+|A felhasználó adatai
 |===
 
-=== Edző megtekintése
-Használati eset azonosító: UC_T_Read
+=== Blog megtekintése
+Használati eset azonosító: UC_B_Read
 
 A felhasználó az
 
-- "Edzőinkről" felületen
+- "Blogok" felületen
 - a Megtekintés gombra kattintva
 
-A Profil oldalra jut, és az oldal betöltődés részeként meghívja a
+A Blog oldalára jut, és az oldal betöltődés részeként meghívja a
 
-- link:../interfaces/edzo-lekerdezese.adoc[GET /trainer/{id}] azonosítójú Edző lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/blog-lekerdezese.adoc[GET /blog/{id}] azonosítójú Blog lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -195,7 +147,7 @@ A Profil oldalra jut, és az oldal betöltődés részeként meghívja a
 |A frontend rendelkezésére álló azonosító
 |===
 
-A response visszatér az edző metaadataival. Mapping:
+A response visszatér a blog metaadataival. Mapping:
 [cols="1,1"]
 |===
 
@@ -204,49 +156,37 @@ A response visszatér az edző metaadataival. Mapping:
 |id
 |Nem jelenik meg. A frontend használja szerkesztés vagy törlés funkciókhoz.
 
-|name
-|Edző neve címke
+|blogType
+|Blog típus címke
 
-|picture
-|Edző képe címke
+|title
+|Blog címe címke
 
-|qualification
-|Edző képesítése címke
+|headerText
+|Blog fejléc címke
 
-A visszakapott érték alapján:
-PERSONAL_TRAINER -> Personal Trainer
+|mainText
+|Blog főszöveg címke
 
-FITNESS_INSTRUCTOR -> Fitness Instructor
+|image
+|Blog képe címke
 
-PILATES_INSTRUCTOR -> Pilates Instructor
-
-CROSSFIT_COACH -> Crossfit Coach
-
-TRX_TRAINER -> TRX Trainer
-
-POUND_TRAINER -> Pound Trainer
-
-OTHER -> Other
-
-|phoneNumber
-|Edző telefonszáma címke
-
-|rating
-|Edző átlag értékelése címke
+|trainer
+|A felhasználó adatai címke
 
 |===
 
-=== Edző módosítása
-Használati eset azonosító: UC_T_Update
+=== Blog módosítása
+Használati eset azonosító: UC_B_Update
 
 A felhasználó az
 
-- "Profilom" felületen
-- a Mentés gombra kattintva
+- "Blog módosítása" felületen
+- a "Módosítás" gombra kattintva
 
 A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 
-- PUT /trainer/{id} azonosítójú Edző módosítása elnevezésű interfészt az alábbi mapping megvalósításával
+- PUT /blog/{id} azonosítójú Blog módosítása elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
