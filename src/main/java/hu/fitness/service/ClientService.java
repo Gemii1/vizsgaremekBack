@@ -1,11 +1,14 @@
 package hu.fitness.service;
 
 import hu.fitness.converter.ClientConverter;
+import hu.fitness.converter.ProgramConverter;
 import hu.fitness.domain.Client;
 import hu.fitness.domain.Login;
+import hu.fitness.domain.Program;
 import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
 import hu.fitness.dto.ClientSave;
+import hu.fitness.dto.ProgramRead;
 import hu.fitness.exception.ClientNotFoundException;
 import hu.fitness.exception.LoginNotFoundException;
 import hu.fitness.repository.ClientRepository;
@@ -70,5 +73,17 @@ public class ClientService {
         Client client = ClientConverter.convertSaveToModel(id, clientSave, login);
         clientRepository.save(client);
         return ClientConverter.convertModelToRead(client);
+    }
+
+    public List<ProgramRead> getProgramsByClientId(Integer id) {
+        if (!clientRepository.existsById(id)) {
+            throw new ClientNotFoundException();
+        }
+        List<Program> programs = clientRepository.findProgramsByClientId(id);
+        List<ProgramRead> programReads = new ArrayList<>();
+        for (Program program : programs) {
+            programReads.add(ProgramConverter.convertModelToRead(program));
+        }
+        return programReads;
     }
 }

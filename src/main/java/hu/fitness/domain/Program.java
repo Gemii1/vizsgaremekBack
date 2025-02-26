@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -36,4 +38,7 @@ public class Program {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private ProgramStatus status;
+
+    @ManyToMany(mappedBy = "programs")
+    private Set<Client> clients = new HashSet<>();
 }

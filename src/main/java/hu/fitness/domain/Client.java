@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,5 +35,11 @@ public class Client {
     @JoinColumn(name = "login_id")
     private Login login;
 
-
+    @ManyToMany
+    @JoinTable(
+        name = "program_client",
+        joinColumns = @JoinColumn(name = "client_id"),
+        inverseJoinColumns = @JoinColumn(name = "program_id")
+    )
+    private Set<Program> programs = new HashSet<>();
 }

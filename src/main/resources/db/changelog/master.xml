@@ -43,4 +43,6 @@
 
     <include file="create_table_blog.sql" relativeToChangelogFile="true"/>
     <include file="insert_into_blog.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_program_client.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
