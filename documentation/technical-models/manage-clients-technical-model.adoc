@@ -2,58 +2,6 @@
 
 == Használati eset realizációk
 
-=== Kliensek listázása
-Használati eset azonosító: UC_C_List
-
-A felhasználó a
-
- - fő menüsorban
- - az "Kliensek" gombra kattintva
-
-A kliensek listázása felületre jut, és az oldal betöltődés részeként meghívja a
-
- - GET /client/ azonosítójú Kliensek listázása elnevezésű interfészt az alábbi mapping megvalósításával
-
-
-[cols="1,1"]
-|===
-
-| Interfész input paraméter |érték
-
-|-
-|-
-
-|===
-
-A response visszatér a kliensek listájával. Mapping:
-[cols="1,1"]
-|===
-
-|Interfész output paraméter| felhasználás
-
-|ClientListItem[].id
-| Nem jelenik meg. A frontend a Kliens megtekintése funkcióhoz használja
-
-|ClientListItem[].name
-|Kliens neve oszlop
-
-|ClientList[].birthDate
-|Kliens születési dátuma mező tartalma
-
-|ClientList[].gender
-|Kliens neme mező tartalma
-
-A visszakapott érték alapján:
-MALE -> Male
-FEMALE -> Female
-OTHER -> Other
-
-|ClientListItem[].phoneNumber
-|Kliens telefonszáma oszlop
-
-
-|===
-
 
 === Kliens rögzítése
 Használati eset azonosító: UC_C_Create
@@ -85,6 +33,9 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |phoneNumber
 |Kliens telefonszáma mező tartalma
 
+|loginId
+|Edző emailje és jelszava mező tartalma
+
 |===
 
 A response visszatér az kliens metaadataival. Mapping:
@@ -111,7 +62,7 @@ FEMALE -> Female
 OTHER -> Other
 
 |phoneNumber
-|Kliens neme címke
+|Kliens telefonszáma címke
 
 |===
 
@@ -192,9 +143,6 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |birthDate
 |Kliens születési dátuma mező tartalma
 
-|gender
-|Kliens neme mező tartalma
-
 |phoneNumber
 |Kliens telefonszáma mező tartalma
 
@@ -260,7 +208,7 @@ A response visszatér a törölt kliens metaadataival. Mapping:
 |Nem jelenik meg
 
 |name
-|Megjelenik a sikeres törlés felbukkanó ablakában a kliens neve címkében
+|Nem jelenik meg
 
 |birthDate
 |Nem jelenik meg
@@ -270,6 +218,58 @@ A response visszatér a törölt kliens metaadataival. Mapping:
 
 |phoneNumber
 |Nem jelenik meg
+
+|===
+
+=== Kliensek listázása (Tobábbfejlesztésre)
+Használati eset azonosító: UC_C_List
+
+A felhasználó a
+
+- fő menüsorban
+- a "Résztvevők" gombra kattintva
+
+A kliensek listázása felületre jut, és az oldal betöltődés részeként meghívja a
+
+- GET /client/ azonosítójú Kliensek listázása elnevezésű interfészt az alábbi mapping megvalósításával
+
+
+[cols="1,1"]
+|===
+
+| Interfész input paraméter |érték
+
+|-
+|-
+
+|===
+
+A response visszatér a kliensek listájával. Mapping:
+[cols="1,1"]
+|===
+
+|Interfész output paraméter| felhasználás
+
+|ClientListItem[].id
+| Nem jelenik meg. A frontend a Kliens megtekintése funkcióhoz használja
+
+|ClientListItem[].name
+|Kliens neve oszlop
+
+|ClientList[].birthDate
+|Kliens születési dátuma mező tartalma
+
+|ClientList[].gender
+|Kliens neme mező tartalma
+
+A visszakapott érték alapján:
+MALE -> Male
+FEMALE -> Female
+OTHER -> Other
+
+|ClientListItem[].phoneNumber
+|Kliens telefonszáma oszlop
+
 
 |===
 

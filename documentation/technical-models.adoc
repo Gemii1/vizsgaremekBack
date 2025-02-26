@@ -10,4 +10,6 @@ Blogok kezelése
 
 Értékelések
 
+Bejelentkezés
+
 link:system-plan.adoc[Vissza]

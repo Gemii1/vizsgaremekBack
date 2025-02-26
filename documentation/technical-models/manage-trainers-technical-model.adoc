@@ -79,10 +79,10 @@ Használati eset azonosító: UC_T_Create
 
 A felhasználó a
 
-- Bejelentkezés felületen
+- Regisztrációs felületen
 - a Mentés gombra kattintva
 
-A Főoldalra jut, és az oldal betöltődés részeként meghívja a
+A Login oldara jut, és az oldal betöltődés részeként meghívja a
 
 - POST /trainer/ azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
 
@@ -112,6 +112,10 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 
 |rating
 |Edző átlag értékelése mező tartalma
+
+|loginId
+|Edző emailje és jelszava mező tartalma
+
 |===
 
 A response visszatér az edző metaadataival. Mapping:
@@ -131,6 +135,9 @@ A response visszatér az edző metaadataival. Mapping:
 
 |gender
 |Edző neme címke
+
+|loginId
+|Edző emailje és jelszava címke
 
 A visszakapott érték alapján:
 MALE -> Male
@@ -200,17 +207,6 @@ A response visszatér az edző metaadataival. Mapping:
 |name
 |Edző neve címke
 
-|birthDate
-|Edző születési dátuma címke
-
-|gender
-|Edző neme címke
-
-A visszakapott érték alapján:
-MALE -> Male
-FEMALE -> Female
-OTHER -> Other
-
 |picture
 |Edző képe címke
 
@@ -261,17 +257,8 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |id
 | A frontend rendelkezésére álló azonosító
 
-|name
-|Edző neve mező tartalma
-
 |birthDate
 |Edző születési dátuma mező tartalma
-
-|gender
-|Edző neme mező tartalma
-
-|picture
-|Edző képe mező tartalma
 
 |qualification
 |Edző képesítése mező tartalma
@@ -279,8 +266,6 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |phoneNumber
 |Edző telefonszáma mező tartalma
 
-|rating
-|Edző átlag értékelése mező tartalma
 |===
 
 A response visszatér az edző metaadataival. Mapping:
@@ -330,9 +315,6 @@ OTHER -> Other
 |phoneNumber
 |Edző telefonszáma címke
 
-|rating
-|Edző átlag értékelése címke
-
 |===
 
 === Edző törlése
@@ -367,7 +349,7 @@ A response visszatér a törölt edző metaadataival. Mapping:
 |Nem jelenik meg
 
 |name
-|Megjelenik a sikeres törlés felbukkanó ablakában az edző neve címkében
+|Nem jelenik meg
 
 |birthDate
 |Nem jelenik meg
@@ -385,6 +367,9 @@ A response visszatér a törölt edző metaadataival. Mapping:
 |Nem jelenik meg
 
 |rating
+|Nem jelenik meg
+
+|loginId
 |Nem jelenik meg
 
 |===
