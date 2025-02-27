@@ -62,7 +62,7 @@ public class ProgramController {
     @Operation(summary = "Add Client to Program by id")
     public ResponseEntity<String> registerClientToProgram(@PathVariable int clientId, @PathVariable int programId) {
         programService.addClientToProgram(clientId,programId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Successful registration.",HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -70,7 +70,7 @@ public class ProgramController {
     @Operation(summary = "Remove Client from Program by id")
     public ResponseEntity<String> removeClientFromProgram(@PathVariable int clientId, @PathVariable int programId) {
         programService.removeClientFromProgram(clientId,programId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Client successfully removed.",HttpStatus.OK);
     }
     
     @CrossOrigin
