@@ -56,8 +56,8 @@ Az edzők listázása
 
 === A folyamat lépései
 
-1. Az edzők lekérdezése az adatbázisból
-2. A response összeállítása és küldése
+1) Az edzők lekérdezése az adatbázisból
+2) A response összeállítása és küldése
 
 [col="1,1"]
 |===

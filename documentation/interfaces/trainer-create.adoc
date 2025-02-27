@@ -1,0 +1,151 @@
+= Edző rögzítése interface
+
+[col="1h,3"]
+|===
+
+| summary
+| Create Trainer
+
+| description
+| -
+
+| Request method
+| POST
+
+| PathURL
+| /trainer
+
+| Params
+| -
+
+| request body
+|
+    {
+
+    name,
+
+    birthDate,
+
+    gender,
+
+    picture,
+
+    qualification,
+
+    phoneNumber,
+
+    rating,
+
+    loginId
+
+    }
+
+| response
+|
+  {
+
+    id,
+
+    name,
+
+    birthDate,
+
+    gender,
+
+    picture,
+
+    qualification,
+
+    phoneNumber,
+
+    rating,
+
+    loginId
+
+  }
+
+|===
+
+== Leírás
+Új edző rögzítése az adatbázisba metaadatok megadásával
+
+== Műveletek
+
+=== Validáció
+
+Nincs
+
+=== A folyamat lépései
+
+1) Új link:../entities/trainer-jpa.adoc[edző] példány rögzítése az adazbázisba a a rewuest paraméterek értékei alapján
+
+[cols="3,4"]
+|===
+
+|Request paraméter | entitás mező
+
+|name
+|trainer.name
+
+|birthDate
+|trainer.birthDate
+
+|gender
+|trainer.gender
+
+|picture
+|trainer.picture
+
+|qualification
+|trainer.qualification
+
+|phoneNumber
+|trainer.phoneNumber
+
+|rating
+|trainer.rating
+
+|loginId
+|trainer.loginId
+
+
+|===
+
+2) A response összeállítása és küldése
+
+[cols="3,4"]
+|===
+
+| response paraméter |érték
+
+|id
+|trainer.id
+
+|name
+|trainer.name
+
+|birthDate
+|trainer.birthDate
+
+|gender
+|trainer.gender
+
+|picture
+|trainer.picture
+
+|qualification
+|trainer.qualification
+
+|phoneNumber
+|trainer.phoneNumber
+
+|rating
+|trainer.rating
+
+|loginId
+|trainer.loginId
+
+
+|===
+
+link:../technical-models/manage-trainers-technical-model.adoc[Vissza]

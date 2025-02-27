@@ -125,7 +125,7 @@
 
 | Elsődleges lefutás
 |
-1. A felhasználó megadja a módosítani kívánt adatokat.
+1. A felhasználó megadja a módosítani kívánt adatot.
 
 2. A felhasználó elindítja a módosítás folyamatát.
 

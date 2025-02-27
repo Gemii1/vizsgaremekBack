@@ -1,0 +1,5 @@
+= Entitások
+
+- link:../documentation/entities/trainer-jpa.adoc[Trainer]
+
+link:../documentation/system-plan.adoc[Vissza]

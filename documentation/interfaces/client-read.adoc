@@ -62,8 +62,8 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 
 === A folyamat lépései
 
-1. A kliens lekérdezése az adatbázisból
-2. A response összeállítása és küldése
+1) A kliens lekérdezése az adatbázisból
+2) A response összeállítása és küldése
 
 [cols="3,4"]
 |===

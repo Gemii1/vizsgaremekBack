@@ -84,7 +84,7 @@ A felhasználó a
 
 A Login oldara jut, és az oldal betöltődés részeként meghívja a
 
-- POST /trainer/ azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/trainer-create.adoc[POST /trainer/] azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -136,9 +136,6 @@ A response visszatér az edző metaadataival. Mapping:
 |gender
 |Edző neme címke
 
-|loginId
-|Edző emailje és jelszava címke
-
 A visszakapott érték alapján:
 MALE -> Male
 FEMALE -> Female
@@ -171,6 +168,9 @@ OTHER -> Other
 |rating
 |Edző átlag értékelése címke
 
+|loginId
+|Edző emailje és jelszava címke
+
 |===
 
 === Edző megtekintése
@@ -183,7 +183,7 @@ A felhasználó az
 
 A Profil oldalra jut, és az oldal betöltődés részeként meghívja a
 
-- link:../interfaces/trainer-get.adoc[GET /trainer/{id}] azonosítójú Edző lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/trainer-read.adoc[GET /trainer/{id}] azonosítójú Edző lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -246,7 +246,7 @@ A felhasználó az
 
 A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 
-- PUT /trainer/{id} azonosítójú Edző módosítása elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/trainer-update.adoc[PUT /trainer/{id}] azonosítójú Edző módosítása elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -257,17 +257,11 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |id
 | A frontend rendelkezésére álló azonosító
 
-|name
-|Edző neve mező tartalma
+|selected
+|Módosítani kívánt mező
 
-|birthDate
-|Edző születési dátuma mező tartalma
-
-|qualification
-|Edző képesítése mező tartalma
-
-|phoneNumber
-|Edző telefonszáma mező tartalma
+|value
+|Módosítani kívánt mező tartalma
 
 |===
 
@@ -330,7 +324,7 @@ A felhasználó az
 
 A Bejelentkezés oldalra jut, és az oldal betöltődés részeként meghívja a
 
-- DELETE /trainer/{id} azonosítójú Edző törlése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/trainer-delete.adoc[DELETE /trainer/{id}] azonosítójú Edző törlése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -387,7 +381,7 @@ A felhasználó az
 
 A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 
-- POST /trainer/{id}/rating azonosítójú Edző értékelése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/trainer-rate.adoc[POST /trainer/{id}/rating] azonosítójú Edző értékelése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]

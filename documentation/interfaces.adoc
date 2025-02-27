@@ -1,0 +1,9 @@
+= Interfaces
+
+- link:interfaces/trainer-create.adoc[trainer-create]
+
+- link:technical-models.adoc[
+
+- link:technical-models.adoc[
+
+- link:system-plan.adoc[Vissza]

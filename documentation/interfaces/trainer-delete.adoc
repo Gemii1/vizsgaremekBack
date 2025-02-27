@@ -1,16 +1,16 @@
-= Edző lekérdezése interface
+= Edző törlése interface
 
 [col="1h,3"]
 |===
 
 | summary
-| Read selected trainer
+| Delete selected trainer
 
 | description
 | -
 
 | Request method
-| GET
+| DELETE
 
 | PathURL
 | /trainer/{id}
@@ -46,7 +46,7 @@
 |===
 
 == Leírás
-Az edző metaadatainak lekérdezése egyedi azonosító alapján
+A kiválasztott edző törlése az adatbázisból
 
 == Műveletek
 
@@ -68,8 +68,7 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 
 === A folyamat lépései
 
-1. Az edző lekérdezése az adatbázisból
-2. A response összeállítása és küldése
+1) A response összeállítása
 
 [cols="3,4"]
 |===
@@ -104,3 +103,8 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 |===
 
 link:../technical-models/manage-trainers-technical-model.adoc[Vissza]
+
+
+2) A trainer törlése
+
+3) A response küldése

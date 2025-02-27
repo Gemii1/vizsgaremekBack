@@ -1,5 +1,7 @@
 = Fejlesztő dokumentáció
 
+* link:entities.adoc[Entitások]
+
 * link:functional-models.adoc[Funkcionális modellek]
 
 * link:technical-models.adoc[Technikai modellek]

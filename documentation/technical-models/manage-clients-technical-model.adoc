@@ -76,7 +76,7 @@ A felhasználó a
 
 A Profil oldalra jut, és az oldal betöltődés részeként meghívja a
 
-- link:../interfaces/client-get.adoc[GET /client/{id}] azonosítójú Kliens lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../interfaces/client-read.adoc[GET /client/{id}] azonosítójú Kliens lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -137,14 +137,11 @@ A Főoldalra jut, és az oldal betöltődés részeként meghívja a
 |id
 | A frontend rendelkezésére álló azonosító
 
-|name
-|Kliens neve mező tartalma
+|selected
+|Módosítani kívánt mező
 
-|birthDate
-|Kliens születési dátuma mező tartalma
-
-|phoneNumber
-|Kliens telefonszáma mező tartalma
+|value
+|Módosítani kívánt mező tartalma
 
 |===
 
