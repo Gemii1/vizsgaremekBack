@@ -3,12 +3,10 @@ package hu.fitness.service;
 import hu.fitness.converter.TrainerConverter;
 import hu.fitness.domain.Login;
 import hu.fitness.domain.Trainer;
-import hu.fitness.dto.TrainerList;
-import hu.fitness.dto.TrainerRead;
-import hu.fitness.dto.TrainerSave;
-import hu.fitness.dto.TrainerUpdate;
+import hu.fitness.dto.*;
 import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
+import hu.fitness.exception.FailedSaveException;
 import hu.fitness.exception.InvalidInputException;
 import hu.fitness.exception.LoginNotFoundException;
 import hu.fitness.exception.TrainerNotFoundException;
@@ -19,10 +17,22 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.io.IOException;
+import java.util.Date;
 
 @Service
 public class TrainerService {
@@ -120,5 +130,37 @@ public class TrainerService {
         if (!trainerRepository.existsById(id)) {
             throw new TrainerNotFoundException();
         }
+    }
+
+    public PictureRead store(MultipartFile file, Integer trainerId){
+        String rootFolder = "src/main/resources/static/";
+        String subFolderName = new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/";
+        File fullPath = new File(rootFolder + subFolderName);
+        String fullFolderName = rootFolder + subFolderName;
+        if(!fullPath.exists()){
+            if(!fullPath.mkdirs()){
+                fullFolderName = rootFolder;
+            }
+        }
+        String fileName = file.getOriginalFilename().split("\\.")[0];
+        String fileExtension = file.getOriginalFilename().split("\\.")[1];
+        String fileNameUniquePart = "-" + new SimpleDateFormat("HH-mm-ss").format(new Date()) + "-" + (int)(Math.random()*1000);
+        String savingFileName = fileName + fileNameUniquePart + "." + fileExtension;
+
+        Path destinationFilePath = Paths.get(fullFolderName + savingFileName);
+
+        try(InputStream inputStream = file.getInputStream()){
+            Files.copy(inputStream, destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch(IOException ex){
+            throw new FailedSaveException();
+        }
+
+        TrainerSave trainerSave = new TrainerSave();
+        trainerSave.setPicture(savingFileName);
+        TrainerRead trainerRead = updateTrainer(trainerId,trainerSave);
+        PictureRead pictureRead = new PictureRead();
+        pictureRead.setTrainerId(trainerRead.getId());
+        pictureRead.setFullPath(trainerRead.getPicture());
+        return pictureRead;
     }
 }

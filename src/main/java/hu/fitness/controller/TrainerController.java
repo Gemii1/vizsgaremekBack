@@ -8,7 +8,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -72,6 +75,13 @@ public class TrainerController {
     @Operation(summary = "Add rating to Trainer by id")
     public void addRating(@PathVariable int id, @RequestBody RatingSave ratingSave) {
         ratingService.addRating(id, ratingSave);
+    }
+
+    @CrossOrigin
+    @PostMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Upload Trainer's picture")
+    public PictureRead uploadPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id){
+        return trainerService.store(file, id);
     }
 
 

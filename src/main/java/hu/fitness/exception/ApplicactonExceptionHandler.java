@@ -20,11 +20,11 @@ public class ApplicactonExceptionHandler {
     @ExceptionHandler(ClientNotFoundException.class)
     public void clientNotFound(ClientNotFoundException ex) {}
 
-    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "Must be number (1-5)")
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "MUST_BE_NUMBER(1-5)")
     @ExceptionHandler(RatingNotDoubleException.class)
     public void ratingNotDouble(RatingNotDoubleException ex) {}
 
-    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "Must be number (1-5)")
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "MUST_BE_NUMBER(1-5)")
     @ExceptionHandler(InvalidRatingInputException.class)
     public void invalidRatingInputException(InvalidRatingInputException ex) {}
 
@@ -36,7 +36,12 @@ public class ApplicactonExceptionHandler {
     @ExceptionHandler(BlogNotFoundException.class)
     public void blogNotFound(BlogNotFoundException ex) {}
 
-    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "Invalid input")
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE, reason = "INVALID_INPUT")
     @ExceptionHandler(InvalidInputException.class)
     public void invalidInputException(BlogNotFoundException ex) {}
+
+    @ResponseStatus(value = HttpStatus.EXPECTATION_FAILED, reason = "SAVE_FAILED")
+    @ExceptionHandler(FailedSaveException.class)
+    public void failedSaveException(BlogNotFoundException ex) {}
+
 }
