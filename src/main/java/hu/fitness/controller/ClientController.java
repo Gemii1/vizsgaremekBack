@@ -59,7 +59,7 @@ public class ClientController {
     }
 
     @CrossOrigin
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @Operation(summary = "Update Client by id")
     public ClientRead updateClient(@PathVariable int id, @Valid @RequestBody ClientUpdate clientUpdate) {
         return clientService.updateClientSelected(id, clientUpdate);
