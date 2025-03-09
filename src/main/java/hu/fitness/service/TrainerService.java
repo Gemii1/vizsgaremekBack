@@ -28,11 +28,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.io.IOException;
-import java.util.Date;
 
 @Service
 public class TrainerService {
@@ -132,35 +130,50 @@ public class TrainerService {
         }
     }
 
-    public PictureRead store(MultipartFile file, Integer trainerId){
-        String rootFolder = "src/main/resources/static/";
-        String subFolderName = new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/";
+    @Transactional
+    public PictureRead store(MultipartFile file, Integer trainerId) {
+        String rootFolder = "src/main/resources/static/images/";
+
+        if(!trainerRepository.existsById(trainerId)){
+            throw new TrainerNotFoundException();
+        }
+        Trainer trainer = trainerRepository.getReferenceById(trainerId);
+
+        String subFolderName = new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + '/';
         File fullPath = new File(rootFolder + subFolderName);
         String fullFolderName = rootFolder + subFolderName;
-        if(!fullPath.exists()){
-            if(!fullPath.mkdirs()){
+        if (!fullPath.exists()) {
+            if (!fullPath.mkdirs()) {
                 fullFolderName = rootFolder;
             }
         }
-        String fileName = file.getOriginalFilename().split("\\.")[0];
-        String fileExtension = file.getOriginalFilename().split("\\.")[1];
-        String fileNameUniquePart = "-" + new SimpleDateFormat("HH-mm-ss").format(new Date()) + "-" + (int)(Math.random()*1000);
-        String savingFileName = fileName + fileNameUniquePart + "." + fileExtension;
-
-        Path destinationFilePath = Paths.get(fullFolderName + savingFileName);
-
-        try(InputStream inputStream = file.getInputStream()){
+        String uniqueFileName = createSavingFileName(file);
+        Path destinationFilePath = Paths.get(fullFolderName + uniqueFileName);
+        try (InputStream inputStream = file.getInputStream()) {
             Files.copy(inputStream, destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch(IOException ex){
+        } catch (IOException ex) {
             throw new FailedSaveException();
         }
-
-        TrainerSave trainerSave = new TrainerSave();
-        trainerSave.setPicture(savingFileName);
-        TrainerRead trainerRead = updateTrainer(trainerId,trainerSave);
+        trainer.setPicture("/images/" + subFolderName + uniqueFileName);
+        trainerRepository.save(trainer);
         PictureRead pictureRead = new PictureRead();
-        pictureRead.setTrainerId(trainerRead.getId());
-        pictureRead.setFullPath(trainerRead.getPicture());
+        pictureRead.setTrainerId(trainer.getId());
+        pictureRead.setFullPath(trainer.getPicture());
         return pictureRead;
     }
+
+    private static String createSavingFileName(MultipartFile file) {
+        String fileNameUniquePart = '-' + new SimpleDateFormat("HH-mm-ss").format(new Date()) + '-' + (int)(Math.random() * 1000);
+        String fileName = file.getOriginalFilename().split("\\.")[0];
+        String fileExtension = file.getOriginalFilename().split("\\.")[1];
+        return fileName + fileNameUniquePart + '.' + fileExtension;
+    }
+
+
+
+
+
+
+
+
 }
