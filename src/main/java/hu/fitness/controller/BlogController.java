@@ -1,16 +1,15 @@
 package hu.fitness.controller;
 
-import hu.fitness.dto.BlogList;
-import hu.fitness.dto.BlogRead;
-import hu.fitness.dto.BlogSave;
-import hu.fitness.dto.BlogUpdate;
+import hu.fitness.dto.*;
 import hu.fitness.service.BlogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -56,5 +55,12 @@ public class BlogController {
     @Operation(summary = "Update Blog by id")
     public BlogRead updateBlog(@PathVariable int id, @Valid @RequestBody BlogUpdate blogUpdate){
         return blogService.updateBlog(id, blogUpdate);
+    }
+
+    @CrossOrigin
+    @PostMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Upload Blog's picture")
+    public PictureRead uploadPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id){
+        return blogService.store(file, id);
     }
 }

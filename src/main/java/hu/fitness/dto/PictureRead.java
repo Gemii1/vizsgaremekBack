@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class PictureRead {
 
-    private Integer trainerId;
+    private Integer id;
     private String fullPath;
 }

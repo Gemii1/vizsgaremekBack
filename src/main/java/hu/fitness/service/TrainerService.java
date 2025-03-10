@@ -139,14 +139,15 @@ public class TrainerService {
         }
         Trainer trainer = trainerRepository.getReferenceById(trainerId);
 
-        String subFolderName = new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + '/';
-        File fullPath = new File(rootFolder + subFolderName);
-        String fullFolderName = rootFolder + subFolderName;
+        String dateFolder = new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/trainerImages/";
+        File fullPath = new File(rootFolder + dateFolder);
+        String fullFolderName = rootFolder + dateFolder;
         if (!fullPath.exists()) {
             if (!fullPath.mkdirs()) {
                 fullFolderName = rootFolder;
             }
         }
+
         String uniqueFileName = createSavingFileName(file);
         Path destinationFilePath = Paths.get(fullFolderName + uniqueFileName);
         try (InputStream inputStream = file.getInputStream()) {
@@ -154,13 +155,16 @@ public class TrainerService {
         } catch (IOException ex) {
             throw new FailedSaveException();
         }
-        trainer.setPicture("/images/" + subFolderName + uniqueFileName);
+
+        trainer.setPicture("/images/" + dateFolder + uniqueFileName);
         trainerRepository.save(trainer);
+
         PictureRead pictureRead = new PictureRead();
-        pictureRead.setTrainerId(trainer.getId());
+        pictureRead.setId(trainer.getId());
         pictureRead.setFullPath(trainer.getPicture());
         return pictureRead;
     }
+
 
     private static String createSavingFileName(MultipartFile file) {
         String fileNameUniquePart = '-' + new SimpleDateFormat("HH-mm-ss").format(new Date()) + '-' + (int)(Math.random() * 1000);
