@@ -26,7 +26,6 @@ public class TrainerController {
     @Autowired
     private RatingService ratingService;
 
-
     @CrossOrigin
     @GetMapping("/")
     @Operation(summary = "List all Trainers")
