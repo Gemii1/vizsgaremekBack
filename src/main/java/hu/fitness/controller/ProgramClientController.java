@@ -22,7 +22,7 @@ public class ProgramClientController {
     private ProgramService programService;
 
     @CrossOrigin
-    @PostMapping("/{programId}/clients/{clientId}")
+    @PostMapping("/program/{programId}/clients/{clientId}")
     @Operation(summary = "Add Client to Program by id")
     public ResponseEntity<String> registerClientToProgram(@PathVariable int clientId, @PathVariable int programId) {
         programService.addClientToProgram(clientId,programId);
@@ -30,7 +30,7 @@ public class ProgramClientController {
     }
 
     @CrossOrigin
-    @DeleteMapping("/{programId}/clients/{clientId}")
+    @DeleteMapping("/program/{programId}/clients/{clientId}")
     @Operation(summary = "Remove Client from Program by id")
     public ResponseEntity<String> removeClientFromProgram(@PathVariable int clientId, @PathVariable int programId) {
         programService.removeClientFromProgram(clientId,programId);
@@ -38,28 +38,28 @@ public class ProgramClientController {
     }
 
     @CrossOrigin
-    @GetMapping("/{id}/client-count")
+    @GetMapping("/program/{id}/client-count")
     @Operation(summary = "Count how many Clients registered for Program")
     public ResponseEntity<Integer> countClients(@PathVariable int id) {
         return new ResponseEntity<>(programService.countClients(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping("/{id}/client-list")
+    @GetMapping("/program/{id}/client-list")
     @Operation(summary = "List joined Clients by id")
     public List<ClientRead> listClients(@PathVariable int id) {
         return programService.getClientsByProgramId(id);
     }
 
     @CrossOrigin
-    @GetMapping("/{id}/program-count")
+    @GetMapping("/client/{id}/program-count")
     @Operation(summary = "Count how many Programs the Client registered for")
     public ResponseEntity<Integer> countPrograms(@PathVariable int id) {
         return new ResponseEntity<>(programService.countPrograms(id),HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping("/{id}/program-list")
+    @GetMapping("/client/{id}/program-list")
     @Operation(summary = "List joined Programs by id")
     public List<ProgramRead> readJoinedPrograms(@PathVariable int id) {
         return clientService.getProgramsByClientId(id);
