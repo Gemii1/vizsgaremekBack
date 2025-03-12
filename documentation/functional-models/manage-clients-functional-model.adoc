@@ -115,10 +115,10 @@
 |===
 
 | Azonosító
-| UC_C_Update
+| UC_C_Patch
 
 | Kiváltó esemény
-| A felhasználó módosítani kívánja a kiválasztott kliens metaadatait.
+| A felhasználó módosítani kívánja a kiválasztott kliens metaadatát.
 
 | Felhasználók
 | Kliens
@@ -138,7 +138,7 @@
 |A rendszerben a kliens módosításra került.
 
 | Eredmény
-| A felhasználó látja a kliens módosított metaadatait.
+| A felhasználó látja a kliens módosított metaadatát.
 
 | Használati eset realizáció
 | Technikai modell
@@ -187,7 +187,7 @@
 | Kliens listázása| CLIENT_LIST| Kliens, Edző
 | Kliens rögzítése| CLIENT_CREATE| Kliens
 | Kliens megtekintése| CLIENT_READ| Kliens
-| Kliens módosítása| CLIENT_UPDATE| Kliens
+| Kliens módosítása| CLIENT_PATCH| Kliens
 | Kliens törlése| CLIENT_DELETE| Kliens
 |===
 
@@ -233,7 +233,7 @@
 
 |Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
 |Születési dátum |Dátum input mező| I| N|
-|Nem |Lenyíló lista| I| N| Felvehető értékek: ["Male","Female","Other"]
+|Nem |Választó gomb| I| N| Felvehető értékek: ["Male","Female","Other"]
 |Telefonszám | Szöveges input mező| I| I|
 
 |===
@@ -244,7 +244,7 @@
 |===
 |Esemény |Leírás | Felület|Jogosultság
 
-|A "Mentés" gombra kattintás
+|Az "Ok" gombra kattintás
 |Végrehajtásra kerül a Kliens rögzítése használati eset. A felhasználó a kliens megtekintése felületre jut.
 
 A gomb mindaddig DISABLED amíg az űrlap nem valid.
@@ -256,7 +256,7 @@ Végrehajtásra kerül a Kliens módosítása használati eset. A felhasználó 
 
 A gomb mindaddig DISABLED amíg az űrlap nem valid.
 | Kliens módosítása felület
-| CLIENT_UPDATE
+| CLIENT_PATCH
 
 |===
 

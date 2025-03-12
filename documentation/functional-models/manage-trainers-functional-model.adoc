@@ -115,10 +115,10 @@
 |===
 
 | Azonosító
-| UC_T_Update
+| UC_T_Patch
 
 | Kiváltó esemény
-| A felhasználó módosítani kívánja a kiválasztott edző metaadatait.
+| A felhasználó módosítani kívánja a kiválasztott edző metaadatát.
 
 | Felhasználók
 | Edző
@@ -138,7 +138,7 @@
 |A rendszerben az edző módosításra került.
 
 | Eredmény
-| A felhasználó látja az edző módosított metaadatait.
+| A felhasználó látja az edző módosított metaadatát.
 
 | Használati eset realizáció
 | Technikai modell
@@ -222,7 +222,7 @@
 | Edzők listázása| TRAINER_LIST| Kliens, Edző
 | Edző rögzítése| TRAINER_CREATE| Edző
 | Edző megtekintése| TRAINER_READ| Kliens, Edző
-| Edző módosítása| TRAINER_UPDATE| Edző
+| Edző módosítása| TRAINER_PATCH| Edző
 | Edző törlése| TRAINER_DELETE| Edző
 | Edző értékelése | TRAINER_POST| Kliens
 |===
@@ -293,12 +293,12 @@ A gomb mindaddig DISABLED amíg az űrlap nem valid.
 | Edző létrehozása felület
 | TRAINER_CREATE
 
-|A "Mentés" gombra kattintás|
+|Az "Ok" gombra kattintás|
 Végrehajtásra kerül az Edző módosítása használati eset. A felhasználó az edző megtekintése felületre jut.
 
 A gomb mindaddig DISABLED amíg az űrlap nem valid.
 | Edző módosítása felület
-| TRAINER_UPDATE
+| TRAINER_PATCH
 
 vagy TRAINER_POST ha az Értékelés gombra kattintva érkezett erre a felületre.
 
