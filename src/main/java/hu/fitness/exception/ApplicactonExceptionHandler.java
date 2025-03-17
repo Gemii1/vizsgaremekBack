@@ -44,4 +44,8 @@ public class ApplicactonExceptionHandler {
     @ExceptionHandler(FailedSaveException.class)
     public void failedSaveException(BlogNotFoundException ex) {}
 
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "PICTURE_NOT_FOUND")
+    @ExceptionHandler(PictureNotFoundException.class)
+    public void pictureNotFound(PictureNotFoundException ex) {}
+
 }

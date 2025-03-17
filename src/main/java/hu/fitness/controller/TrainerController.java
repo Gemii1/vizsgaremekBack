@@ -83,6 +83,13 @@ public class TrainerController {
         return trainerService.store(file, id);
     }
 
+    @CrossOrigin
+    @GetMapping("/picture/{id}")
+    @Operation(summary = "Get Trainer's picture by ID")
+    public PictureRead readPicture(@PathVariable int id) {
+        return trainerService.getTrainerPicture(id);
+    }
+
 
 
 }

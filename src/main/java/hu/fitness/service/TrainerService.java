@@ -6,10 +6,7 @@ import hu.fitness.domain.Trainer;
 import hu.fitness.dto.*;
 import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
-import hu.fitness.exception.FailedSaveException;
-import hu.fitness.exception.InvalidInputException;
-import hu.fitness.exception.LoginNotFoundException;
-import hu.fitness.exception.TrainerNotFoundException;
+import hu.fitness.exception.*;
 import hu.fitness.repository.LoginRepository;
 import hu.fitness.repository.RatingRepository;
 import hu.fitness.repository.TrainerRepository;
@@ -171,6 +168,22 @@ public class TrainerService {
         String fileName = file.getOriginalFilename().split("\\.")[0];
         String fileExtension = file.getOriginalFilename().split("\\.")[1];
         return fileName + fileNameUniquePart + '.' + fileExtension;
+    }
+
+    public PictureRead getTrainerPicture(Integer trainerId){
+        if(!trainerRepository.existsById(trainerId)){
+            throw new TrainerNotFoundException();
+        }
+
+        Trainer trainer = trainerRepository.getReferenceById(trainerId);
+        if(trainer.getPicture()==null || trainer.getPicture().isEmpty()){
+            throw new PictureNotFoundException();
+        }
+
+        PictureRead pictureRead = new PictureRead();
+        pictureRead.setId(trainer.getId());
+        pictureRead.setFullPath(trainer.getPicture());
+        return pictureRead;
     }
 
 
