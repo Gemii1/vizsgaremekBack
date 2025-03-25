@@ -8,8 +8,10 @@ create table trainer (
     phone_number        varchar(30)     not null,
     rating              decimal         not null,
     login_id            int             not null,
+    file_id             bigint,
 
     foreign key (gender) references gender (id),
     foreign key (qualification) references qualification (id),
-    foreign key (login_id) references login (id)
+    foreign key (login_id) references login (id),
+    foreign key (file_id) references file_entity(id) on delete set null
 );
