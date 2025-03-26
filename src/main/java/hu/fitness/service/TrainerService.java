@@ -1,18 +1,22 @@
 package hu.fitness.service;
 
 import hu.fitness.converter.TrainerConverter;
+import hu.fitness.domain.FileEntity;
 import hu.fitness.domain.Login;
 import hu.fitness.domain.Trainer;
 import hu.fitness.dto.*;
 import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
 import hu.fitness.exception.*;
+import hu.fitness.repository.FileRepository;
 import hu.fitness.repository.LoginRepository;
 import hu.fitness.repository.RatingRepository;
 import hu.fitness.repository.TrainerRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,6 +43,9 @@ public class TrainerService {
 
     @Autowired
     private RatingRepository ratingRepository;
+
+    @Autowired
+    private FileRepository fileRepository;
 
     public List<TrainerList> listTrainers() {
         List<TrainerList> trainerList = new ArrayList<>();
@@ -83,7 +90,7 @@ public class TrainerService {
             throw new LoginNotFoundException();
         }
         Login login = loginRepository.getReferenceById(trainerSave.getLoginId());
-        Trainer trainer = TrainerConverter.convertSaveToModel(id ,trainerSave, login);
+        Trainer trainer = TrainerConverter.convertSaveToModel(id, trainerSave, login);
         trainerRepository.save(trainer);
         return TrainerConverter.convertModelToRead(trainer);
     }
@@ -96,12 +103,12 @@ public class TrainerService {
     }
 
     @Transactional
-    public TrainerRead updateTrainerSelected(int id, TrainerUpdate trainerUpdate){
-        if(!trainerRepository.existsById(id)){
+    public TrainerRead updateTrainerSelected(int id, TrainerUpdate trainerUpdate) {
+        if (!trainerRepository.existsById(id)) {
             throw new TrainerNotFoundException();
         }
         Trainer trainer = trainerRepository.getReferenceById(id);
-        switch(trainerUpdate.getSelected()){
+        switch (trainerUpdate.getSelected()) {
             case NAME:
                 trainer.setName((String) trainerUpdate.getValue());
                 break;
@@ -128,39 +135,45 @@ public class TrainerService {
     }
 
     @Transactional
-    public PictureRead store(MultipartFile file, Integer trainerId) {
-        String rootFolder = "src/main/resources/static/images/";
-
-        if(!trainerRepository.existsById(trainerId)){
+    public PictureRead store(MultipartFile file, Integer trainerId) throws IOException {
+        if (!trainerRepository.existsById(trainerId)) {
             throw new TrainerNotFoundException();
         }
+
         Trainer trainer = trainerRepository.getReferenceById(trainerId);
 
-        String dateFolder = new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "/trainerImages/";
-        File fullPath = new File(rootFolder + dateFolder);
-        String fullFolderName = rootFolder + dateFolder;
-        if (!fullPath.exists()) {
-            if (!fullPath.mkdirs()) {
-                fullFolderName = rootFolder;
-            }
-        }
+        FileEntity fileEntity = new FileEntity();
+        fileEntity.setFileName(file.getOriginalFilename());
+        fileEntity.setFileType(file.getContentType());
+        fileEntity.setData(file.getBytes());
 
-        String uniqueFileName = createSavingFileName(file);
-        Path destinationFilePath = Paths.get(fullFolderName + uniqueFileName);
-        try (InputStream inputStream = file.getInputStream()) {
-            Files.copy(inputStream, destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            throw new FailedSaveException();
-        }
-
-        trainer.setPicture("/images/" + dateFolder + uniqueFileName);
+        fileEntity = fileRepository.save(fileEntity);
+        trainer.setFileEntity(fileEntity);
         trainerRepository.save(trainer);
 
         PictureRead pictureRead = new PictureRead();
         pictureRead.setId(trainer.getId());
-        pictureRead.setFullPath(trainer.getPicture());
+        pictureRead.setFullPath("File stored in DB with ID: " + fileEntity.getId());
         return pictureRead;
     }
+
+    public ResponseEntity<byte[]> getTrainerPicture(Integer trainerId) {
+        if (!trainerRepository.existsById(trainerId)) {
+            throw new TrainerNotFoundException();
+        }
+
+        Trainer trainer = trainerRepository.getReferenceById(trainerId);
+        FileEntity fileEntity = trainer.getFileEntity();
+        if (fileEntity == null) {
+            throw new PictureNotFoundException();
+        }
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(fileEntity.getFileType()))
+                .body(fileEntity.getData());
+    }
+
+
 
 
     private static String createSavingFileName(MultipartFile file) {
@@ -168,22 +181,6 @@ public class TrainerService {
         String fileName = file.getOriginalFilename().split("\\.")[0];
         String fileExtension = file.getOriginalFilename().split("\\.")[1];
         return fileName + fileNameUniquePart + '.' + fileExtension;
-    }
-
-    public PictureRead getTrainerPicture(Integer trainerId){
-        if(!trainerRepository.existsById(trainerId)){
-            throw new TrainerNotFoundException();
-        }
-
-        Trainer trainer = trainerRepository.getReferenceById(trainerId);
-        if(trainer.getPicture()==null || trainer.getPicture().isEmpty()){
-            throw new PictureNotFoundException();
-        }
-
-        PictureRead pictureRead = new PictureRead();
-        pictureRead.setId(trainer.getId());
-        pictureRead.setFullPath(trainer.getPicture());
-        return pictureRead;
     }
 
 

@@ -38,4 +38,9 @@ public class Trainer {
     @OneToOne
     @JoinColumn(name = "login_id")
     private Login login;
+
+    @OneToOne
+    @JoinColumn(name = "file_id")
+    private FileEntity fileEntity;
+
 }

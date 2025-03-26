@@ -12,6 +12,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -66,16 +68,17 @@ public class TrainerController {
     @CrossOrigin
     @PostMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Upload Trainer's picture")
-    public PictureRead uploadPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id){
+    public PictureRead uploadPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
         return trainerService.store(file, id);
     }
 
     @CrossOrigin
     @GetMapping("/picture/{id}")
     @Operation(summary = "Get Trainer's picture by ID")
-    public PictureRead readPicture(@PathVariable int id) {
+    public ResponseEntity<byte[]> readPicture(@PathVariable int id) {
         return trainerService.getTrainerPicture(id);
     }
+
 
 
 
