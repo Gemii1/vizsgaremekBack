@@ -16,6 +16,6 @@ public class BlogRead {
     private String title;
     private String headerText;
     private String mainText;
-    private String image;
     private TrainerMinimal trainer;
+    private PictureRead picture;
 }

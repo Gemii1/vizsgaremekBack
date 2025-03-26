@@ -15,6 +15,5 @@ public class BlogSave {
     private String title;
     private String headerText;
     private String mainText;
-    private String image;
     private Integer trainerId;
 }

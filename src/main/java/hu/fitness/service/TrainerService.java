@@ -176,16 +176,6 @@ public class TrainerService {
 
 
 
-    private static String createSavingFileName(MultipartFile file) {
-        String fileNameUniquePart = '-' + new SimpleDateFormat("HH-mm-ss").format(new Date()) + '-' + (int)(Math.random() * 1000);
-        String fileName = file.getOriginalFilename().split("\\.")[0];
-        String fileExtension = file.getOriginalFilename().split("\\.")[1];
-        return fileName + fileNameUniquePart + '.' + fileExtension;
-    }
-
-
-
-
 
 
 

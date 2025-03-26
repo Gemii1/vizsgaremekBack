@@ -8,10 +8,11 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,6 @@ public class BlogController {
         return blogService.readBlogById(id);
     }
 
-    @PreAuthorize("hasAuthority('CREATE_BLOG')")
     @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/")
@@ -45,7 +45,6 @@ public class BlogController {
         return blogService.createBlog(blogSave);
     }
 
-    @PreAuthorize("hasAuthority('DELETE_BLOG')")
     @CrossOrigin
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete Blog by id")
@@ -53,7 +52,6 @@ public class BlogController {
         return blogService.deleteBlog(id);
     }
 
-    @PreAuthorize("hasAuthority('UPDATE_BLOG')")
     @CrossOrigin
     @PutMapping("{id}")
     @Operation(summary = "Update Blog by id")
@@ -61,11 +59,17 @@ public class BlogController {
         return blogService.updateBlog(id, blogUpdate);
     }
 
-    @PreAuthorize("hasAuthority('UPLOAD_BLOG_PICTURE')")
     @CrossOrigin
-    @PostMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Upload Blog's picture")
-    public PictureRead uploadPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id){
-        return blogService.store(file, id);
+    @PostMapping(value="/upload-image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Upload Blog's Image")
+    public PictureRead uploadImage(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
+        return blogService.storeImage(file, id);
+    }
+
+    @CrossOrigin
+    @GetMapping("/blog/picture/{id}")
+    @Operation(summary = "Get Blog's picture by ID")
+    public ResponseEntity<byte[]> readPicture(@PathVariable int id) {
+        return blogService.getBlogPicture(id);
     }
 }

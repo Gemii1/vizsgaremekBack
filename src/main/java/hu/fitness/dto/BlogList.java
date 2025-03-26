@@ -16,6 +16,5 @@ public class BlogList {
     private String headerText;
     private String mainText;
     private BlogType blogType;
-    private String image;
     private TrainerMinimal trainer;
 }

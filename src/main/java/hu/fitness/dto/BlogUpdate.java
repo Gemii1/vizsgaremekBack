@@ -16,5 +16,4 @@ public class BlogUpdate {
     private String title;
     private String headerText;
     private String mainText;
-    private String image;
 }
