@@ -13,6 +13,6 @@ public class LoginRead {
 
     private int loginId;
     private String email;
-    private String password;
+    private String role;
 
 }

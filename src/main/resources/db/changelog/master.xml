@@ -20,6 +20,12 @@
     <include file="create_table_login.sql" relativeToChangelogFile="true"/>
     <include file="insert_into_login.sql" relativeToChangelogFile="true"/>
 
+    <include file="create_table_permission.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_permission.sql" relativeToChangelogFile="true"/>
+
+    <include file="create_table_allocate.sql" relativeToChangelogFile="true"/>
+    <include file="insert_into_allocate.sql" relativeToChangelogFile="true"/>
+
     <include file="create_table_qualification.sql" relativeToChangelogFile="true"/>
     <include file="insert_into_qualification.sql" relativeToChangelogFile="true"/>
 

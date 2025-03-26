@@ -30,7 +30,7 @@ public class TrainerConverter {
         trainerList.setQualification(trainer.getQualification());
         trainerList.setPhoneNumber(trainer.getPhoneNumber());
         trainerList.setRating(trainer.getRating());
-        trainerList.setLogin(trainer.getLogin());
+        trainerList.setLogin(LoginConverter.convertModelToRead(trainer.getLogin()));
         return trainerList;
     }
 

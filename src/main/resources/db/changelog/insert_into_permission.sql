@@ -1,0 +1,18 @@
+insert into permission (id) values
+    ('CREATE_PROGRAM'),
+    ('UPDATE_PROGRAM'),
+    ('DELETE_PROGRAM'),
+    ('LIST_PROGRAMS_CLIENTS'),
+    ('PATCH_TRAINER'),
+    ('UPLOAD_TRAINER_PICTURE'),
+    ('UPLOAD_BLOG_PICTURE'),
+    ('CREATE_BLOG'),
+    ('UPDATE_BLOG'),
+    ('DELETE_BLOG'),
+    ('ADD_RATING'),
+    ('PATCH_CLIENT'),
+    ('JOIN_PROGRAM'),
+    ('LEAVE_PROGRAM'),
+    ('LIST_CLIENTS_PROGRAMS'),
+    ('GET_CLIENT'),
+    ('LIST_CLIENTS');

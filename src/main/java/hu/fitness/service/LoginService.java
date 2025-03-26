@@ -1,49 +1,43 @@
 package hu.fitness.service;
 
-import hu.fitness.converter.LoginConverter;
+import hu.fitness.auth.PermissionCollector;
 import hu.fitness.domain.Login;
-import hu.fitness.dto.LoginRead;
-import hu.fitness.dto.LoginSave;
 import hu.fitness.exception.LoginNotFoundException;
 import hu.fitness.repository.LoginRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class LoginService {
+@Transactional
+public class LoginService implements UserDetailsService {
+
+    private final LoginRepository loginRepository;
 
     @Autowired
-    private LoginRepository loginRepository;
-
-    public LoginRead readLogin(int id) {
-        if (!loginRepository.existsById(id)) {
-            throw new LoginNotFoundException();
-        }
-        Login login = loginRepository.getReferenceById(id);
-        return LoginConverter.convertModelToRead(login);
+    public LoginService(LoginRepository loginRepository) {
+        this.loginRepository = loginRepository;
     }
 
-    public List<LoginRead> listLogins() {
-        List<LoginRead> contactList;
-        List<Login> logins = loginRepository.findAll();
-        contactList = LoginConverter.convertModelsToList(logins);
-        return contactList;
+    public List<String> findPermissionsByUser(Integer id) {
+        return loginRepository.findPermissionsByUser(id);
     }
 
-    public LoginRead createLogin(LoginSave loginSave) {
-        Login login = LoginConverter.convertSaveToModel(loginSave);
-        Login savedLogin = loginRepository.save(login);
-        return LoginConverter.convertModelToRead(savedLogin);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return loginRepository.findLoginByEmail(username)
+                .map(PermissionCollector::new)
+                .orElseThrow(() -> new UsernameNotFoundException("Felhasználó nem található: " + username));
     }
 
-    public LoginRead deleteLogin(int id) {
-        if (!loginRepository.existsById(id)) {
-            throw new LoginNotFoundException();
-        }
-        Login login = loginRepository.getReferenceById(id);
-        loginRepository.delete(login);
-        return LoginConverter.convertModelToRead(login);
+
+    public Login findLoginByEmail(final String email) {
+        return loginRepository.findLoginByEmail(email)
+                .orElseThrow(LoginNotFoundException::new);
     }
 }

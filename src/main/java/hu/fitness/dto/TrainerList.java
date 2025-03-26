@@ -1,6 +1,5 @@
 package hu.fitness.dto;
 
-import hu.fitness.domain.Login;
 import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
 import lombok.AllArgsConstructor;
@@ -25,5 +24,5 @@ public class TrainerList {
     private Qualification qualification;
     private String phoneNumber;
     private Double rating;
-    private Login login;
+    private LoginRead login;
 }

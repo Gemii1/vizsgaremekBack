@@ -7,9 +7,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,21 +39,7 @@ public class TrainerController {
         return trainerService.readTrainer(id);
     }
 
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/")
-    @Operation(summary = "Create Trainer")
-    public TrainerRead createTrainer( @RequestBody TrainerSave trainer) {
-        return trainerService.createTrainer(trainer);
-    }
-
-    @CrossOrigin
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Delete Trainer by id")
-    public TrainerRead deleteTrainer(@PathVariable int id) {
-        return trainerService.deleteTrainer(id);
-    }
-
+    @PreAuthorize("hasAuthority('PATCH_TRAINER')")
     @CrossOrigin
     @PatchMapping("/{id}")
     @Operation(summary = "Update Trainer by id")
@@ -69,6 +54,7 @@ public class TrainerController {
         return trainerService.getAverageRating(id);
     }
 
+    @PreAuthorize("hasAuthority('ADD_RATING')")
     @CrossOrigin
     @PostMapping("/{id}/rating")
     @Operation(summary = "Add rating to Trainer by id")
@@ -76,6 +62,7 @@ public class TrainerController {
         ratingService.addRating(id, ratingSave);
     }
 
+    @PreAuthorize("hasAuthority('UPLOAD_TRAINER_PICTURE')")
     @CrossOrigin
     @PostMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Upload Trainer's picture")
