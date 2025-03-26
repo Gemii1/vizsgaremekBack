@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ProgramClientController {
     @Autowired
     private ProgramService programService;
 
+    @PreAuthorize("hasAuthority('JOIN_PROGRAM')")
     @CrossOrigin
     @PostMapping("/program/{programId}/clients/{clientId}")
     @Operation(summary = "Add Client to Program by id")
@@ -29,6 +31,7 @@ public class ProgramClientController {
         return new ResponseEntity<>("Successful registration.", HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('LEAVE_PROGRAM')")
     @CrossOrigin
     @DeleteMapping("/program/{programId}/clients/{clientId}")
     @Operation(summary = "Remove Client from Program by id")
@@ -44,12 +47,14 @@ public class ProgramClientController {
         return new ResponseEntity<>(programService.countClients(id), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('LIST_PROGRAMS_CLIENTS')")
     @CrossOrigin
     @GetMapping("/program/{id}/client-list")
     @Operation(summary = "List joined Clients by id")
     public List<ClientRead> listClients(@PathVariable int id) {
         return programService.getClientsByProgramId(id);
     }
+
 
     @CrossOrigin
     @GetMapping("/client/{id}/program-count")
@@ -58,6 +63,7 @@ public class ProgramClientController {
         return new ResponseEntity<>(programService.countPrograms(id),HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('LIST_CLIENTS_PROGRAMS')")
     @CrossOrigin
     @GetMapping("/client/{id}/program-list")
     @Operation(summary = "List joined Programs by id")

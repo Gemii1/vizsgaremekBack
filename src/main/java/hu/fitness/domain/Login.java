@@ -20,7 +20,10 @@ public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String email;
     private String password;
+
+    private String role;
 
 }

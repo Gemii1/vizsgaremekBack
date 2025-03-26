@@ -2,14 +2,13 @@ package hu.fitness.controller;
 
 import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
-import hu.fitness.dto.ClientSave;
 import hu.fitness.dto.ClientUpdate;
 import hu.fitness.service.ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +23,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @PreAuthorize("hasAuthority('LIST_CLIENTS')")
     @CrossOrigin
     @GetMapping("/")
     @Operation(summary = "List all Clients")
@@ -31,6 +31,7 @@ public class ClientController {
         return clientService.listClients();
     }
 
+    @PreAuthorize("hasAuthority('GET_CLIENT')")
     @CrossOrigin
     @GetMapping("/{id}")
     @Operation(summary = "Get Client by id")
@@ -38,21 +39,7 @@ public class ClientController {
         return clientService.readClient(id);
     }
 
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/")
-    @Operation(summary = "Create Client")
-    public ClientRead createClient(@Valid @RequestBody ClientSave clientSave) {
-        return clientService.createClient(clientSave);
-    }
-
-    @CrossOrigin
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Delete Client by id")
-    public ClientRead deleteClient(@PathVariable int id) {
-        return clientService.deleteClient(id);
-    }
-
+    @PreAuthorize("hasAuthority('PATCH_CLIENT')")
     @CrossOrigin
     @PatchMapping("/{id}")
     @Operation(summary = "Update Client by id")

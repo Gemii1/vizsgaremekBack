@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class ProgramController {
         return programService.listPrograms();
     }
 
+    @PreAuthorize("hasAuthority('CREATE_PROGRAM')")
     @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/")
@@ -41,6 +43,7 @@ public class ProgramController {
         return programService.createProgram(programSave);
     }
 
+    @PreAuthorize("hasAuthority('DELETE_PROGRAM')")
     @CrossOrigin
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete Program by id")
@@ -48,6 +51,7 @@ public class ProgramController {
         return programService.deleteProgram(id);
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_PROGRAM')")
     @CrossOrigin
     @PutMapping("/{id}")
     @Operation(summary = "Update Program by id")
