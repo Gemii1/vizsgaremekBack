@@ -26,7 +26,6 @@ public class TrainerConverter {
         trainerList.setName(trainer.getName());
         trainerList.setBirthDate(trainer.getBirthDate());
         trainerList.setGender(trainer.getGender());
-        trainerList.setPicture(trainer.getPicture());
         trainerList.setQualification(trainer.getQualification());
         trainerList.setPhoneNumber(trainer.getPhoneNumber());
         trainerList.setRating(trainer.getRating());
@@ -39,7 +38,6 @@ public class TrainerConverter {
         trainer.setName(trainerSave.getName());
         trainer.setBirthDate(trainerSave.getBirthDate());
         trainer.setGender(trainerSave.getGender());
-        trainer.setPicture(trainerSave.getPicture());
         trainer.setQualification(trainerSave.getQualification());
         trainer.setPhoneNumber(trainerSave.getPhoneNumber());
         trainer.setRating(trainerSave.getRating());
@@ -54,7 +52,6 @@ public class TrainerConverter {
         trainerRead.setName(trainer.getName());
         trainerRead.setBirthDate(trainer.getBirthDate());
         trainerRead.setGender(trainer.getGender());
-        trainerRead.setPicture(trainer.getPicture());
         trainerRead.setQualification(trainer.getQualification());
         trainerRead.setPhoneNumber(trainer.getPhoneNumber());
         trainerRead.setRating(trainer.getRating());
@@ -68,7 +65,6 @@ public class TrainerConverter {
         trainer.setName(trainerSave.getName());
         trainer.setBirthDate(trainerSave.getBirthDate());
         trainer.setGender(trainerSave.getGender());
-        trainer.setPicture(trainerSave.getPicture());
         trainer.setQualification(trainerSave.getQualification());
         trainer.setPhoneNumber(trainerSave.getPhoneNumber());
         trainer.setRating(trainerSave.getRating());

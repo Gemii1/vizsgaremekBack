@@ -26,7 +26,6 @@ public class TrainerSave {
     private LocalDate birthDate;
     @NotNull
     private Gender gender;
-    private String picture;
     @NotNull
     private Qualification qualification;
     @NotNull

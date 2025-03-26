@@ -12,7 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
 public class Blog {
 
     @Id
@@ -24,9 +23,12 @@ public class Blog {
     private String title;
     private String headerText;
     private String mainText;
-    private String image;
 
     @ManyToOne
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
+
+    @OneToOne
+    @JoinColumn(name = "file_id")
+    private FileEntity fileEntity;
 }

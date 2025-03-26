@@ -21,7 +21,6 @@ public class TrainerList {
     private String name;
     private LocalDate birthDate;
     private Gender gender;
-    private String picture;
     private Qualification qualification;
     private String phoneNumber;
     private Double rating;

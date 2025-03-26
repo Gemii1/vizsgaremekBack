@@ -1,11 +1,11 @@
-CREATE TABLE blog (
-    id              INT AUTO_INCREMENT       PRIMARY KEY,
-    blog_type       VARCHAR(400)             NOT NULL,
-    title           VARCHAR(400)             NOT NULL,
-    header_text            TEXT                     NOT NULL,
-    main_text            TEXT                     NOT NULL,
-    image           VARCHAR(400),
-    trainer_id      INT                      NOT NULL,
-
-    foreign key (trainer_id) references trainer (id)
+create table blog (
+                      id              int auto_increment primary key,
+                      blog_type       varchar(400) not null,
+                      title           varchar(400) not null,
+                      header_text     TEXT not null,
+                      main_text       TEXT not null,
+                      file_id         BIGINT,
+                      trainer_id      int not null,
+                      foreign key (file_id) references file_entity(id),
+                      foreign key (trainer_id) references trainer(id)
 );

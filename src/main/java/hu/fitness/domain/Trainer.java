@@ -27,7 +27,6 @@ public class Trainer {
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
-    private String picture;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "qualification")
