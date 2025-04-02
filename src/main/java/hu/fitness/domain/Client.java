@@ -42,4 +42,8 @@ public class Client {
         inverseJoinColumns = @JoinColumn(name = "program_id")
     )
     private Set<Program> programs = new HashSet<>();
+
+    public void setPrograms() {
+
+    }
 }

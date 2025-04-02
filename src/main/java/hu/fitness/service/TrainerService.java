@@ -2,32 +2,20 @@ package hu.fitness.service;
 
 import hu.fitness.converter.TrainerConverter;
 import hu.fitness.domain.FileEntity;
-import hu.fitness.domain.Login;
 import hu.fitness.domain.Trainer;
 import hu.fitness.dto.*;
-import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
 import hu.fitness.exception.*;
 import hu.fitness.repository.FileRepository;
-import hu.fitness.repository.LoginRepository;
 import hu.fitness.repository.RatingRepository;
 import hu.fitness.repository.TrainerRepository;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -37,9 +25,6 @@ import java.io.IOException;
 public class TrainerService {
     @Autowired
     private TrainerRepository trainerRepository;
-
-    @Autowired
-    private LoginRepository loginRepository;
 
     @Autowired
     private RatingRepository ratingRepository;
@@ -55,16 +40,6 @@ public class TrainerService {
     }
 
 
-    public TrainerRead createTrainer(TrainerSave trainerSave) {
-        if (!loginRepository.existsById(trainerSave.getLoginId())) {
-            throw new LoginNotFoundException();
-        }
-        Login login = loginRepository.getReferenceById(trainerSave.getLoginId());
-        Trainer trainer = TrainerConverter.convertSaveToModel(trainerSave, login);
-        Trainer savedTrainer = trainerRepository.save(trainer);
-        return TrainerConverter.convertModelToRead(savedTrainer);
-    }
-
     public TrainerRead readTrainer(Integer id) {
         if (!trainerRepository.existsById(id)) {
             throw new TrainerNotFoundException();
@@ -73,27 +48,6 @@ public class TrainerService {
         return TrainerConverter.convertModelToRead(trainer);
     }
 
-    public TrainerRead deleteTrainer(int id) {
-        if (!trainerRepository.existsById(id)) {
-            throw new TrainerNotFoundException();
-        }
-        TrainerRead trainerRead = TrainerConverter.convertModelToRead(trainerRepository.getReferenceById(id));
-        trainerRepository.deleteById(id);
-        return trainerRead;
-    }
-
-    public TrainerRead updateTrainer(int id, @Valid TrainerSave trainerSave) {
-        if (!trainerRepository.existsById(id)) {
-            throw new TrainerNotFoundException();
-        }
-        if (!loginRepository.existsById(trainerSave.getLoginId())) {
-            throw new LoginNotFoundException();
-        }
-        Login login = loginRepository.getReferenceById(trainerSave.getLoginId());
-        Trainer trainer = TrainerConverter.convertSaveToModel(id, trainerSave, login);
-        trainerRepository.save(trainer);
-        return TrainerConverter.convertModelToRead(trainer);
-    }
 
     public Double getAverageRating(Integer trainerId) {
         if (!trainerRepository.existsById(trainerId)) {

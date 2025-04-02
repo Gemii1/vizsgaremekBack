@@ -20,6 +20,12 @@ public class ApplicationExceptionHandler {
                 httpStatus.getReasonPhrase().toUpperCase(), message), httpStatus);
     }
 
+    @ExceptionHandler(EmailTakenException.class)
+    public ResponseEntity<ExceptionResponse> emailTakenException() {
+        return createHttpResponse(HttpStatus.CONFLICT, "Email taken");
+    }
+
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ExceptionResponse> badCredentialsException() {
         return createHttpResponse(HttpStatus.UNAUTHORIZED, INCORRECT_CREDENTIALS);

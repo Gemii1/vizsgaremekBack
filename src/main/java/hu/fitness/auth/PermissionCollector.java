@@ -1,7 +1,7 @@
 package hu.fitness.auth;
 
 import hu.fitness.domain.Login;
-import hu.fitness.service.LoginService;
+import hu.fitness.service.AuthService;
 import hu.fitness.service.SpringContext;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +15,7 @@ public class PermissionCollector implements UserDetails {
 
     private Login login;
 
-    private LoginService loginService = SpringContext.getBean(LoginService.class);
+    private AuthService authService = SpringContext.getBean(AuthService.class);
 
     public PermissionCollector(Login login) {
         this.login = login;
@@ -23,7 +23,7 @@ public class PermissionCollector implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<String> permissions = loginService.findPermissionsByUser(this.login.getId());
+        List<String> permissions = authService.findPermissionsByUser(this.login.getId());
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         permissions.forEach(p -> authorities.add(new SimpleGrantedAuthority(p)));
         return authorities;

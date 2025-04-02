@@ -3,7 +3,6 @@ create table trainer (
     name                varchar(30)     not null,
     birth_date          date            not null,
     gender              varchar(30)     not null,
-    picture             varchar(255)    not null,
     qualification       varchar(30)     not null,
     phone_number        varchar(30)     not null,
     rating              decimal         not null,
