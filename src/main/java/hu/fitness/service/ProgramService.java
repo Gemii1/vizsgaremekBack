@@ -137,6 +137,12 @@ public class ProgramService {
     }
 
     public ResponseEntity<Boolean> wasOnProgram(int clientId, int programId) {
+        if(!clientRepository.existsById(clientId)){
+            throw new ClientNotFoundException();
+        }
+        if(!programRepository.existsById(programId)){
+            throw new ProgramNotFoundException();
+        }
         Client client = clientRepository.getReferenceById(clientId);
         boolean wasOnProgram = false;
         for (Program program : client.getPrograms()) {
