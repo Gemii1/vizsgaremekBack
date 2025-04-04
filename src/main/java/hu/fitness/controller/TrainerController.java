@@ -13,7 +13,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -33,6 +32,13 @@ public class TrainerController {
     @Operation(summary = "List all Trainers")
     public List<TrainerList> readTrainerList() {
         return trainerService.listTrainers();
+    }
+
+    @CrossOrigin
+    @GetMapping("/bestRatedTrainers")
+    @Operation(summary = "Get best rated Trainers")
+    public List<TrainerRead> readBestRatedTrainerList() {
+        return trainerService.listBestRatedTrainers();
     }
 
     @CrossOrigin
@@ -61,16 +67,16 @@ public class TrainerController {
     @CrossOrigin
     @PostMapping("/{id}/rating")
     @Operation(summary = "Add rating to Trainer by id")
-    public void addRating(@PathVariable int id, @RequestBody RatingSave ratingSave) {
+    public void addRating(@PathVariable int id, @RequestBody @Valid RatingSave ratingSave) {
         ratingService.addRating(id, ratingSave);
     }
 
     @PreAuthorize("hasAuthority('UPLOAD_TRAINER_PICTURE')")
     @CrossOrigin
-    @PostMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Upload Trainer's picture")
-    public PictureRead uploadPicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
-        return trainerService.store(file, id);
+    @PutMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Update Trainer's picture")
+    public PictureRead updatePicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
+        return trainerService.update(file, id);
     }
 
     @CrossOrigin

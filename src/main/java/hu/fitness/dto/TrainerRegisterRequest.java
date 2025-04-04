@@ -2,9 +2,7 @@ package hu.fitness.dto;
 
 import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +27,10 @@ public class TrainerRegisterRequest {
     @NotNull
     private Qualification qualification;
     @NotNull
+    @Pattern(regexp = "\\d{11}")
     private String phoneNumber;
     @NotNull
+    @Email
     private String email;
     @NotNull
     private String password;

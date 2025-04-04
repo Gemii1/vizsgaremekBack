@@ -9,12 +9,14 @@ import hu.fitness.dto.ClientRead;
 import hu.fitness.dto.ProgramRead;
 import hu.fitness.dto.ProgramSave;
 import hu.fitness.exception.ClientNotFoundException;
+import hu.fitness.exception.InvalidInputException;
 import hu.fitness.exception.ProgramNotFoundException;
 import hu.fitness.exception.TrainerNotFoundException;
 import hu.fitness.repository.ClientRepository;
 import hu.fitness.repository.ProgramRepository;
 import hu.fitness.repository.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,6 +52,9 @@ public class ProgramService {
             throw new TrainerNotFoundException();
         }
         Trainer trainer = trainerRepository.getReferenceById(programSave.getTrainerId());
+        if (programSave.getEndTime().isBefore(programSave.getStartTime())) {
+            throw new InvalidInputException();
+        }
         Program program = ProgramConverter.convertSaveToModel(programSave, trainer);
         Program savedProgram = programRepository.save(program);
         return ProgramConverter.convertModelToRead(savedProgram);
@@ -129,5 +134,21 @@ public class ProgramService {
             clientReads.add(ClientConverter.convertModelToRead(client));
         }
         return clientReads;
+    }
+
+    public ResponseEntity<Boolean> wasOnProgram(int clientId, int programId) {
+        Client client = clientRepository.getReferenceById(clientId);
+        boolean wasOnProgram = false;
+        for (Program program : client.getPrograms()) {
+            if (programId == program.getId()) {
+                wasOnProgram = true;
+                break;
+            }
+        }
+        if (wasOnProgram) {
+            return ResponseEntity.ok(true);
+        } else {
+            return ResponseEntity.ok(false);
+        }
     }
 }

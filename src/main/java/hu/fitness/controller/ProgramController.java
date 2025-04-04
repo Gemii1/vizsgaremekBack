@@ -5,6 +5,7 @@ import hu.fitness.dto.ProgramSave;
 import hu.fitness.service.ProgramService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,7 +40,7 @@ public class ProgramController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/")
     @Operation(summary = "Create Program")
-    public ProgramRead createProgram(@RequestBody final ProgramSave programSave){
+    public ProgramRead createProgram(@RequestBody @Valid final ProgramSave programSave){
         return programService.createProgram(programSave);
     }
 
@@ -55,7 +56,7 @@ public class ProgramController {
     @CrossOrigin
     @PutMapping("/{id}")
     @Operation(summary = "Update Program by id")
-    public ProgramRead updateProgram(@PathVariable int id, @RequestBody final ProgramSave programSave){
+    public ProgramRead updateProgram(@PathVariable int id, @RequestBody @Valid final ProgramSave programSave){
         return programService.updateProgram(id,programSave);
     }
 }

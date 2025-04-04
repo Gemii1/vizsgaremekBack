@@ -1,10 +1,8 @@
 package hu.fitness.converter;
 
 import hu.fitness.domain.Client;
-import hu.fitness.domain.Login;
 import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
-import hu.fitness.dto.ClientSave;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +27,6 @@ public class ClientConverter {
         return clientList;
     }
 
-    public static Client convertSaveToModel(ClientSave clientSave, Login login) {
-        Client client = new Client();
-        client.setName(clientSave.getName());
-        client.setBirthDate(clientSave.getBirthDate());
-        client.setGender(clientSave.getGender());
-        client.setPhoneNumber(clientSave.getPhone());
-        client.setLogin(login);
-        return client;
-    }
 
     public static ClientRead convertModelToRead(Client client) {
         ClientRead clientRead = new ClientRead();
@@ -50,14 +39,4 @@ public class ClientConverter {
         return clientRead;
     }
 
-    public static Client convertSaveToModel(int id, ClientSave clientSave, Login login) {
-        Client client = new Client();
-        client.setId(id);
-        client.setName(clientSave.getName());
-        client.setBirthDate(clientSave.getBirthDate());
-        client.setGender(clientSave.getGender());
-        client.setPhoneNumber(clientSave.getPhone());
-        client.setLogin(login);
-        return client;
-    }
 }

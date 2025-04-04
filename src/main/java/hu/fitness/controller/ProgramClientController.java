@@ -55,6 +55,13 @@ public class ProgramClientController {
         return programService.getClientsByProgramId(id);
     }
 
+    @CrossOrigin
+    @GetMapping("/program/{programId}/clients/{clientId}")
+    @Operation(summary = "See if the Client was on the Program")
+    public ResponseEntity<Boolean> wasOnProgram(@PathVariable int clientId, @PathVariable int programId) {
+        return programService.wasOnProgram(clientId,programId);
+    }
+
 
     @CrossOrigin
     @GetMapping("/client/{id}/program-count")

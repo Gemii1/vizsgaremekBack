@@ -63,7 +63,7 @@ public class BlogController {
         return blogService.updateBlog(id, blogUpdate);
     }
 
-    //@PreAuthorize("hasAuthority('UPLOAD_BLOG_PICTURE')")
+    @PreAuthorize("hasAuthority('UPLOAD_BLOG_PICTURE')")
     @CrossOrigin
     @PostMapping(value="/upload-image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Upload Blog's Image")

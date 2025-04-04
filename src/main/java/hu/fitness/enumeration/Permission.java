@@ -23,4 +23,5 @@ public enum Permission {
     //admin
     GET_CLIENT,
     LIST_CLIENTS,
+    DELETE_USER
 }

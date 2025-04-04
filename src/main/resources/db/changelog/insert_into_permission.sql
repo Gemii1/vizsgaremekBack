@@ -15,4 +15,5 @@ insert into permission (id) values
     ('LEAVE_PROGRAM'),
     ('LIST_CLIENTS_PROGRAMS'),
     ('GET_CLIENT'),
-    ('LIST_CLIENTS');
+    ('LIST_CLIENTS'),
+    ('DELETE_USER');

@@ -3,27 +3,24 @@ package hu.fitness.controller;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import hu.fitness.auth.PermissionCollector;
 import hu.fitness.converter.LoginConverter;
 import hu.fitness.domain.Login;
 import hu.fitness.dto.*;
-import hu.fitness.exception.PictureNotFoundException;
 import hu.fitness.service.AuthService;
 import hu.fitness.token.JWTTokenProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -42,8 +39,9 @@ public class AuthController {
         this.authService = authService;
     }
 
+    @CrossOrigin
     @PostMapping("/login")
-    @Operation(summary = "Login")
+    @Operation(summary = "Login with email and password")
     public ResponseEntity<LoginRead> login(@RequestBody final LoginRequest loginRequest) {
         authenticate(loginRequest.getEmail(), loginRequest.getPassword());
         Login login = authService.findLoginByEmail(loginRequest.getEmail());
@@ -53,7 +51,9 @@ public class AuthController {
         return new ResponseEntity<>(loginRead, jwtHeader,HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/me")
+    @Operation(summary = "Get authenticated User details")
     public ResponseEntity<?> getMe(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -65,14 +65,42 @@ public class AuthController {
             return new ResponseEntity<>("UNAUTHORIZED", HttpStatus.BAD_REQUEST);
         }
     }
-    
-    @PostMapping("/registerClient")
-    public ResponseEntity<ClientRead> registerClient(@RequestBody ClientRegisterRequest request) {
-        return ResponseEntity.ok(authService.registerClient(request));
+
+    @CrossOrigin
+    @DeleteMapping("/delete")
+    @Operation(summary = "Delete authenticated User")
+    public ResponseEntity<?> deleteMe(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            DecodedJWT jwt = JWT.decode(token);
+            String email = jwt.getClaim("sub").asString();
+
+            authService.deleteUserByEmail(email);
+            return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("UNAUTHORIZED", HttpStatus.BAD_REQUEST);
+        }
     }
 
+    @CrossOrigin
+    @PreAuthorize("hasAuthority('DELETE_USER')")
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete User by Id")
+    public Object delete(@PathVariable int id) {
+        return authService.deleteUserById(id);
+    }
+
+    @CrossOrigin
+    @PostMapping("/registerClient")
+    @Operation(summary = "Register as a Client")
+    public ResponseEntity<ClientRead> registerClient(@RequestBody @Valid ClientRegisterRequest request) {
+        return ResponseEntity.ok(authService.registerClient(request));
+    }
+    @CrossOrigin
     @PostMapping("/registerTrainer")
-    public ResponseEntity<TrainerRead> registerTrainer(@RequestBody TrainerRegisterRequest request) {
+    @Operation(summary = "Register as a Trainer")
+    public ResponseEntity<TrainerRead> registerTrainer(@RequestBody @Valid TrainerRegisterRequest request) {
         return ResponseEntity.ok(authService.registerTrainer(request));
     }
 

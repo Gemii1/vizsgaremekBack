@@ -1,12 +1,10 @@
 package hu.fitness.converter;
 
-import hu.fitness.domain.Login;
+
 import hu.fitness.domain.Trainer;
 import hu.fitness.dto.TrainerList;
 import hu.fitness.dto.TrainerMinimal;
 import hu.fitness.dto.TrainerRead;
-import hu.fitness.dto.TrainerSave;
-import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,18 +31,6 @@ public class TrainerConverter {
         return trainerList;
     }
 
-    public static Trainer convertSaveToModel(TrainerSave trainerSave, Login login) {
-        Trainer trainer = new Trainer();
-        trainer.setName(trainerSave.getName());
-        trainer.setBirthDate(trainerSave.getBirthDate());
-        trainer.setGender(trainerSave.getGender());
-        trainer.setQualification(trainerSave.getQualification());
-        trainer.setPhoneNumber(trainerSave.getPhoneNumber());
-        trainer.setRating(trainerSave.getRating());
-        trainer.setLogin(login);
-        return trainer;
-
-    }
 
     public static TrainerRead convertModelToRead(Trainer trainer) {
         TrainerRead trainerRead = new TrainerRead();
@@ -59,18 +45,6 @@ public class TrainerConverter {
         return trainerRead;
     }
 
-    public static Trainer convertSaveToModel(int id, @Valid TrainerSave trainerSave, Login login) {
-        Trainer trainer = new Trainer();
-        trainer.setId(id);
-        trainer.setName(trainerSave.getName());
-        trainer.setBirthDate(trainerSave.getBirthDate());
-        trainer.setGender(trainerSave.getGender());
-        trainer.setQualification(trainerSave.getQualification());
-        trainer.setPhoneNumber(trainerSave.getPhoneNumber());
-        trainer.setRating(trainerSave.getRating());
-        trainer.setLogin(login);
-        return trainer;
-    }
 
     public static TrainerMinimal convetModelToMinimal(Trainer trainer) {
         TrainerMinimal trainerMinimal = new TrainerMinimal();

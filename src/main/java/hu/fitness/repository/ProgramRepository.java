@@ -2,6 +2,7 @@ package hu.fitness.repository;
 
 import hu.fitness.domain.Client;
 import hu.fitness.domain.Program;
+import hu.fitness.domain.Trainer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,10 @@ public interface ProgramRepository extends JpaRepository<Program, Integer> {
 
     @Query("SELECT c FROM Program p JOIN p.clients c WHERE p.id = :programId")
     List<Client> findClientsByProgramId(@Param("programId") Integer programId);
+
+    void deleteByTrainer(Trainer t);
+
+
 
 
 }

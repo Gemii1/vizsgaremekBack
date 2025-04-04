@@ -5,22 +5,14 @@ import hu.fitness.auth.PermissionCollector;
 import hu.fitness.converter.ClientConverter;
 import hu.fitness.converter.LoginConverter;
 import hu.fitness.converter.TrainerConverter;
-import hu.fitness.domain.Client;
-import hu.fitness.domain.FileEntity;
-import hu.fitness.domain.Login;
-import hu.fitness.domain.Trainer;
-import hu.fitness.dto.ClientRead;
-import hu.fitness.dto.ClientRegisterRequest;
-import hu.fitness.dto.TrainerRead;
-import hu.fitness.dto.TrainerRegisterRequest;
+import hu.fitness.domain.*;
+import hu.fitness.dto.*;
 import hu.fitness.exception.*;
-import hu.fitness.repository.ClientRepository;
-import hu.fitness.repository.FileRepository;
-import hu.fitness.repository.LoginRepository;
-import hu.fitness.repository.TrainerRepository;
+import hu.fitness.repository.*;
 import jakarta.transaction.Transactional;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -39,18 +32,26 @@ public class AuthService implements UserDetailsService {
     private final ClientRepository clientRepository;
     private final TrainerRepository trainerRepository;
     private final PasswordEncoder passwordEncoder;
-    private final TrainerService trainerService;
     private final FileRepository fileRepository;
+    private final ProgramRepository programRepository;
+    private final BlogRepository blogRepository;
+    private final RatingRepository ratingRepository;
+    private final PermissionService permissionService;
+    private final AllocateRepository allocateRepository;
 
 
     @Autowired
-    public AuthService(LoginRepository loginRepository, ClientRepository clientRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder, TrainerService trainerService, FileRepository fileRepository) {
+    public AuthService(LoginRepository loginRepository, ClientRepository clientRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder, FileRepository fileRepository, ProgramRepository programRepository, BlogRepository blogRepository, RatingRepository ratingRepository, PermissionService permissionService, AllocateRepository allocateRepository) {
         this.loginRepository = loginRepository;
         this.clientRepository = clientRepository;
         this.trainerRepository = trainerRepository;
         this.passwordEncoder = passwordEncoder;
-        this.trainerService = trainerService;
         this.fileRepository = fileRepository;
+        this.programRepository = programRepository;
+        this.blogRepository = blogRepository;
+        this.ratingRepository = ratingRepository;
+        this.permissionService = permissionService;
+        this.allocateRepository = allocateRepository;
     }
 
     public List<String> findPermissionsByUser(Integer id) {
@@ -83,6 +84,66 @@ public class AuthService implements UserDetailsService {
         };
     }
 
+    public void deleteUserByEmail(String email) {
+        Login login = findLoginByEmail(email);
+        String role = login.getRole();
+        switch (role) {
+            case "CLIENT" ->
+                deleteClient(clientRepository.getByLoginId(login.getId()));
+            case "TRAINER" ->
+                deleteTrainer(trainerRepository.getByLoginId(login.getId()));
+            case "ADMIN" ->
+                throw new AccessDeniedException("ACCESS_DENIED");
+        }
+    }
+
+    private void deleteTrainer(Optional<Trainer> trainer) {
+        if (trainer.isPresent()) {
+            Trainer t = trainer.get();
+            List<Blog> blogs = blogRepository.findAllByTrainer(t);
+            for (Blog blog : blogs) {
+                if (blog.getFileEntity()!=null) {
+                    fileRepository.delete(blog.getFileEntity());
+                }
+            }
+            blogRepository.deleteAll(blogs);
+
+            programRepository.deleteByTrainer(t);
+
+            if (t.getFileEntity()!=null) {
+                fileRepository.delete(t.getFileEntity());
+            }
+
+            Login login = t.getLogin();
+
+            ratingRepository.deleteByTrainer(t);
+
+            allocateRepository.deleteByLogin(login);
+            loginRepository.delete(login);
+        } else {
+            throw new TrainerNotFoundException();
+        }
+    }
+
+    private void deleteClient(Optional<Client> client) {
+        if (client.isPresent()) {
+            Client c = client.get();
+            for (Program program : c.getPrograms()) {
+                program.getClients().remove(c);
+            }
+            programRepository.saveAll(c.getPrograms());
+
+            Login login = c.getLogin();
+
+            clientRepository.delete(c);
+
+            allocateRepository.deleteByLogin(login);
+            loginRepository.delete(login);
+        } else {
+            throw new ClientNotFoundException();
+        }
+    }
+
     public ClientRead registerClient(ClientRegisterRequest request) {
         if (loginRepository.existsByEmail(request.getEmail())) {
             throw new EmailTakenException();
@@ -94,6 +155,8 @@ public class AuthService implements UserDetailsService {
         login.setRole("CLIENT");
 
         Login savedLogin = loginRepository.save(login);
+
+        permissionService.assignPermissionsForRole(savedLogin);
 
         Client client = new Client();
         client.setLogin(savedLogin);
@@ -119,6 +182,8 @@ public class AuthService implements UserDetailsService {
         login.setRole("TRAINER");
 
         Login savedLogin = loginRepository.save(login);
+
+        permissionService.assignPermissionsForRole(savedLogin);
 
         Trainer trainer = new Trainer();
         trainer.setLogin(savedLogin);
@@ -146,5 +211,35 @@ public class AuthService implements UserDetailsService {
         Trainer savedTrainer = trainerRepository.save(trainer);
 
         return TrainerConverter.convertModelToRead(savedTrainer);
+    }
+
+
+    public Object deleteUserById(int loginId) {
+        Login login = loginRepository.getReferenceById(loginId);
+        String role = login.getRole();
+        switch (role) {
+            case "CLIENT" -> {
+                Optional<Client> optionalClient = clientRepository.getByLoginId(login.getId());
+                if (optionalClient.isPresent()) {
+                    Client client = optionalClient.get();
+                    ClientRead clientRead = ClientConverter.convertModelToRead(client);
+                    deleteClient(optionalClient);
+                    return clientRead;
+                }
+            }
+
+            case "TRAINER" -> {
+                Optional<Trainer> optionalTrainer = trainerRepository.getByLoginId(loginId);
+                if (optionalTrainer.isPresent()) {
+                    Trainer trainer = optionalTrainer.get();
+                    TrainerRead trainerRead = TrainerConverter.convertModelToRead(trainer);
+                    deleteTrainer(optionalTrainer);
+                    return trainerRead;
+                }
+            }
+
+            case "ADMIN" -> throw new AccessDeniedException("ACCESS_DENIED");
+        }
+        return new LoginNotFoundException();
     }
 }

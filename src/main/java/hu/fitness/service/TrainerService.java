@@ -33,7 +33,7 @@ public class TrainerService {
     private FileRepository fileRepository;
 
     public List<TrainerList> listTrainers() {
-        List<TrainerList> trainerList = new ArrayList<>();
+        List<TrainerList> trainerList;
         List<Trainer> trainers = trainerRepository.findAll();
         trainerList = TrainerConverter.convertModelsToLists(trainers);
         return trainerList;
@@ -82,21 +82,19 @@ public class TrainerService {
         return TrainerConverter.convertModelToRead(trainer);
     }
 
-    private void throwExceptionIfTrainerNotFound(int id) {
-        if (!trainerRepository.existsById(id)) {
-            throw new TrainerNotFoundException();
-        }
-    }
-
     @Transactional
-    public PictureRead store(MultipartFile file, Integer trainerId) throws IOException {
+    public PictureRead update(MultipartFile file, Integer trainerId) throws IOException {
         if (!trainerRepository.existsById(trainerId)) {
             throw new TrainerNotFoundException();
         }
 
         Trainer trainer = trainerRepository.getReferenceById(trainerId);
+        FileEntity fileEntity = trainer.getFileEntity();
 
-        FileEntity fileEntity = new FileEntity();
+        if (fileEntity == null) {
+            fileEntity = new FileEntity();
+        }
+
         fileEntity.setFileName(file.getOriginalFilename());
         fileEntity.setFileType(file.getContentType());
         fileEntity.setData(file.getBytes());
@@ -128,10 +126,15 @@ public class TrainerService {
     }
 
 
-
-
-
-
-
-
+    public List<TrainerRead> listBestRatedTrainers() {
+        List<Trainer> trainers = trainerRepository.findAll();
+        trainers.sort(Comparator.comparing(Trainer::getRating).reversed());
+        List<TrainerRead> bestRatedTrainers = new ArrayList<>();
+        int i = 0;
+        while (i < trainers.size() && i < 5) {
+            bestRatedTrainers.add(TrainerConverter.convertModelToRead(trainers.get(i)));
+            i++;
+        }
+        return bestRatedTrainers;
+    }
 }
