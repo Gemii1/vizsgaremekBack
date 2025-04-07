@@ -17,8 +17,7 @@ import java.time.LocalDate;
 public class TrainerRegisterRequest {
 
     @NotNull
-    @Min(2)
-    @Max(50)
+    @Size(min = 2, max = 50)
     private String name;
     @NotNull
     private LocalDate birthDate;

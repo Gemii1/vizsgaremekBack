@@ -86,7 +86,7 @@ public class AuthController {
     @CrossOrigin
     @PreAuthorize("hasAuthority('DELETE_USER')")
     @DeleteMapping("/delete/{id}")
-    @Operation(summary = "Delete User by Id")
+    @Operation(summary = "Delete User by Login Id")
     public Object delete(@PathVariable int id) {
         return authService.deleteUserById(id);
     }

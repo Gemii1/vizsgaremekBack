@@ -15,10 +15,6 @@ public interface ProgramRepository extends JpaRepository<Program, Integer> {
 
     @Query("SELECT c FROM Program p JOIN p.clients c WHERE p.id = :programId")
     List<Client> findClientsByProgramId(@Param("programId") Integer programId);
-
-    void deleteByTrainer(Trainer t);
-
-
-
-
+    
+    void deleteAllByTrainer(Trainer t);
 }

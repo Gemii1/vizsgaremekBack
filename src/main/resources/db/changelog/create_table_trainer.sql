@@ -5,7 +5,7 @@ create table trainer (
     gender              varchar(30)     not null,
     qualification       varchar(30)     not null,
     phone_number        varchar(30)     not null,
-    rating              decimal         not null,
+    rating              decimal(3,2)    not null,
     login_id            int             not null,
     file_id             bigint,
 

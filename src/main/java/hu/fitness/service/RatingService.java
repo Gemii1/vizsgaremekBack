@@ -3,7 +3,6 @@ package hu.fitness.service;
 import hu.fitness.domain.Rating;
 import hu.fitness.domain.Trainer;
 import hu.fitness.dto.RatingSave;
-import hu.fitness.exception.InvalidRatingInputException;
 import hu.fitness.exception.TrainerNotFoundException;
 import hu.fitness.repository.RatingRepository;
 import hu.fitness.repository.TrainerRepository;
@@ -21,18 +20,15 @@ public class RatingService {
 
     public void addRating(Integer trainerId, RatingSave ratingSave) {
         throwExceptionIfTrainerNotFound(trainerId);
-        Integer score = ratingSave.getScore();
-        if (score<1 || score>5) {
-            throw new InvalidRatingInputException();
-        }
         Trainer trainer = trainerRepository.getReferenceById(trainerId);
+
         Rating rating = new Rating();
         rating.setTrainer(trainer);
-        rating.setScore(score.doubleValue());
+        rating.setScore(ratingSave.getScore().doubleValue());
         ratingRepository.save(rating);
 
         Double averageRating = ratingRepository.getAverageRatingByTrainer(trainerId);
-        trainer.setRating(averageRating);
+        trainer.setRating(averageRating != null ? averageRating : 0.0);
         trainerRepository.save(trainer);
     }
 

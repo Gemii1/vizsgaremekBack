@@ -35,13 +35,12 @@ public class AuthService implements UserDetailsService {
     private final FileRepository fileRepository;
     private final ProgramRepository programRepository;
     private final BlogRepository blogRepository;
-    private final RatingRepository ratingRepository;
     private final PermissionService permissionService;
     private final AllocateRepository allocateRepository;
 
 
     @Autowired
-    public AuthService(LoginRepository loginRepository, ClientRepository clientRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder, FileRepository fileRepository, ProgramRepository programRepository, BlogRepository blogRepository, RatingRepository ratingRepository, PermissionService permissionService, AllocateRepository allocateRepository) {
+    public AuthService(LoginRepository loginRepository, ClientRepository clientRepository, TrainerRepository trainerRepository, PasswordEncoder passwordEncoder, FileRepository fileRepository, ProgramRepository programRepository, BlogRepository blogRepository, PermissionService permissionService, AllocateRepository allocateRepository) {
         this.loginRepository = loginRepository;
         this.clientRepository = clientRepository;
         this.trainerRepository = trainerRepository;
@@ -49,7 +48,6 @@ public class AuthService implements UserDetailsService {
         this.fileRepository = fileRepository;
         this.programRepository = programRepository;
         this.blogRepository = blogRepository;
-        this.ratingRepository = ratingRepository;
         this.permissionService = permissionService;
         this.allocateRepository = allocateRepository;
     }
@@ -97,7 +95,8 @@ public class AuthService implements UserDetailsService {
         }
     }
 
-    private void deleteTrainer(Optional<Trainer> trainer) {
+    @Transactional
+    protected void deleteTrainer(Optional<Trainer> trainer) {
         if (trainer.isPresent()) {
             Trainer t = trainer.get();
             List<Blog> blogs = blogRepository.findAllByTrainer(t);
@@ -108,15 +107,14 @@ public class AuthService implements UserDetailsService {
             }
             blogRepository.deleteAll(blogs);
 
-            programRepository.deleteByTrainer(t);
+            programRepository.deleteAllByTrainer(t);
 
             if (t.getFileEntity()!=null) {
                 fileRepository.delete(t.getFileEntity());
             }
-
             Login login = t.getLogin();
 
-            ratingRepository.deleteByTrainer(t);
+            trainerRepository.delete(t);
 
             allocateRepository.deleteByLogin(login);
             loginRepository.delete(login);
@@ -125,7 +123,8 @@ public class AuthService implements UserDetailsService {
         }
     }
 
-    private void deleteClient(Optional<Client> client) {
+    @Transactional
+    protected void deleteClient(Optional<Client> client) {
         if (client.isPresent()) {
             Client c = client.get();
             for (Program program : c.getPrograms()) {
@@ -134,7 +133,6 @@ public class AuthService implements UserDetailsService {
             programRepository.saveAll(c.getPrograms());
 
             Login login = c.getLogin();
-
             clientRepository.delete(c);
 
             allocateRepository.deleteByLogin(login);
@@ -215,11 +213,14 @@ public class AuthService implements UserDetailsService {
 
 
     public Object deleteUserById(int loginId) {
+        if (!loginRepository.existsById(loginId)) {
+            throw new LoginNotFoundException();
+        }
         Login login = loginRepository.getReferenceById(loginId);
         String role = login.getRole();
         switch (role) {
             case "CLIENT" -> {
-                Optional<Client> optionalClient = clientRepository.getByLoginId(login.getId());
+                Optional<Client> optionalClient = clientRepository.getByLoginId(loginId);
                 if (optionalClient.isPresent()) {
                     Client client = optionalClient.get();
                     ClientRead clientRead = ClientConverter.convertModelToRead(client);
@@ -240,6 +241,6 @@ public class AuthService implements UserDetailsService {
 
             case "ADMIN" -> throw new AccessDeniedException("ACCESS_DENIED");
         }
-        return new LoginNotFoundException();
+        return null;
     }
 }
