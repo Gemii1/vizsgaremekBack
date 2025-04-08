@@ -4,12 +4,6 @@ Az edző példányokat eltároló entitás
 
 Az adatbázisban hozzátartozó tábla neve: trainer
 
-[cols=1,1,1]
-|===
-
-| mező neve | típusa | kötelező | megkötések
-
-|===
 
 [cols="1,1,1,1"]
 |===
@@ -22,7 +16,7 @@ Az adatbázisban hozzátartozó tábla neve: trainer
 | elsődleges kulcs, auto-increment
 
 | name
-| String (varchar(50))
+| String (varchar(30))
 | I
 | -
 
@@ -36,29 +30,29 @@ Az adatbázisban hozzátartozó tábla neve: trainer
 | I
 | Gender enum értékeit veheti fel
 
-| picture
-| String
-| N
-| -
-
 | qualification (qualification)
 | Qualification(varchar(30))
 | I
 | Qualification enum értékeit veheti fel
 
 | phoneNumber
-| Integer (int)
+| String (varchar(30))
 | I
 | -
 
 | rating
-| Double (double)
+| Double (decimal(3,2))
 | I
 | Az értéke 1 és 5 között lehet
 
-| login (login)
-| Login
+| loginId
+| Integer (int)
 | I
+| -
+
+| fileId
+| Integer (bigint)
+| N
 | -
 
 |===

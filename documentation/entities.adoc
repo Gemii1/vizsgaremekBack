@@ -2,4 +2,18 @@
 
 - link:../documentation/entities/trainer-jpa.adoc[Trainer]
 
+- link:../documentation/entities/client-jpa.adoc[Client]
+
+- link:../documentation/entities/blog-jpa.adoc[Blog]
+
+- link:../documentation/entities/program-jpa.adoc[Program]
+
+- link:../documentation/entities/login-jpa.adoc[Login]
+
+- link:../documentation/entities/rating-jpa.adoc[Rating]
+
+- link:../documentation/entities/fileEntity-jpa.adoc[FileEntity]
+
+- link:../documentation/entities/allocate-jpa.adoc[Allocate]
+
 link:../documentation/system-plan.adoc[Vissza]

@@ -48,7 +48,7 @@
 
 |A rendszerbe bejelentkezéssel lehet belépni. Szerepkörök: Kliens és Edző. A kliensek programokra jelentkezhetnek. Az adott programon módosításokat, törléseket csak a hozzátartozó edző végezhet.
 |Bejelentkezés, Kijelentkezés
-|Elkészítésre vár
+|Backend elkészítve
 |===
 
 link:../README.adoc[Vissza]
