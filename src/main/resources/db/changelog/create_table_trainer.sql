@@ -12,5 +12,5 @@ create table trainer (
     foreign key (gender) references gender (id),
     foreign key (qualification) references qualification (id),
     foreign key (login_id) references login (id),
-    foreign key (file_id) references file_entity(id) on delete set null
+    foreign key (file_id) references file_entity (id) on delete set null
 );
