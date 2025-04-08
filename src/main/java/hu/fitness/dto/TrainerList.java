@@ -2,18 +2,13 @@ package hu.fitness.dto;
 
 import hu.fitness.enumeration.Gender;
 import hu.fitness.enumeration.Qualification;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class TrainerList {
 
     private Integer id;

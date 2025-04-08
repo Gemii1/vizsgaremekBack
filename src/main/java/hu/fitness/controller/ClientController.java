@@ -1,6 +1,5 @@
 package hu.fitness.controller;
 
-import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
 import hu.fitness.dto.ClientUpdate;
 import hu.fitness.service.ClientService;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/client")
-@Tag(name = "Client Test Functions", description = "Manage Clients")
+@Tag(name = "Client Functions", description = "Manage Clients")
 public class ClientController {
 
 
@@ -27,7 +26,7 @@ public class ClientController {
     @CrossOrigin
     @GetMapping("/")
     @Operation(summary = "List all Clients")
-    public List<ClientList> readClientList() {
+    public List<ClientRead> listClients() {
         return clientService.listClients();
     }
 

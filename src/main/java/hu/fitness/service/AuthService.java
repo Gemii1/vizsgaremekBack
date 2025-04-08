@@ -95,8 +95,7 @@ public class AuthService implements UserDetailsService {
         }
     }
 
-    @Transactional
-    protected void deleteTrainer(Optional<Trainer> trainer) {
+    public void deleteTrainer(Optional<Trainer> trainer) {
         if (trainer.isPresent()) {
             Trainer t = trainer.get();
             List<Blog> blogs = blogRepository.findAllByTrainer(t);
@@ -123,8 +122,7 @@ public class AuthService implements UserDetailsService {
         }
     }
 
-    @Transactional
-    protected void deleteClient(Optional<Client> client) {
+    public void deleteClient(Optional<Client> client) {
         if (client.isPresent()) {
             Client c = client.get();
             for (Program program : c.getPrograms()) {

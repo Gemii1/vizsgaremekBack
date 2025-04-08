@@ -1,6 +1,5 @@
 package hu.fitness.converter;
 
-
 import hu.fitness.domain.Trainer;
 import hu.fitness.dto.TrainerList;
 import hu.fitness.dto.TrainerMinimal;

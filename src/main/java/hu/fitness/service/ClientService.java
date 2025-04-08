@@ -4,7 +4,6 @@ import hu.fitness.converter.ClientConverter;
 import hu.fitness.converter.ProgramConverter;
 import hu.fitness.domain.Client;
 import hu.fitness.domain.Program;
-import hu.fitness.dto.ClientList;
 import hu.fitness.dto.ClientRead;
 import hu.fitness.dto.ClientUpdate;
 import hu.fitness.dto.ProgramRead;
@@ -24,10 +23,12 @@ public class ClientService {
     private ClientRepository clientRepository;
 
 
-    public List<ClientList> listClients() {
-        List<ClientList> clientList;
+    public List<ClientRead> listClients() {
+        List<ClientRead> clientList = new ArrayList<>();
         List<Client> clients = clientRepository.findAll();
-        clientList = ClientConverter.convertModelsToLists(clients);
+        for (Client client : clients) {
+            clientList.add(ClientConverter.convertModelToRead(client));
+        }
         return clientList;
     }
 

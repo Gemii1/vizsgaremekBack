@@ -2,15 +2,11 @@ package hu.fitness.dto;
 
 import hu.fitness.enumeration.ProgramStatus;
 import hu.fitness.enumeration.ProgramType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProgramRead {

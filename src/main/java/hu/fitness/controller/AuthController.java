@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "Authentication and Authorization Controller")
+@Tag(name = "Authentication and Authorization Controller", description = "Manage Users")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;

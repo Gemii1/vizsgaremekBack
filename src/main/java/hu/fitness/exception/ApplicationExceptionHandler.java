@@ -47,48 +47,42 @@ public class ApplicationExceptionHandler {
     }
 
     @ExceptionHandler(TrainerNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> trainerNotFound(TrainerNotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> trainerNotFound() {
         return createHttpResponse(HttpStatus.NOT_FOUND, "Trainer not found");
     }
 
     @ExceptionHandler(ClientNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> clientNotFound(ClientNotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> clientNotFound() {
         return createHttpResponse(HttpStatus.NOT_FOUND, "Client not found");
     }
 
-    @ExceptionHandler({RatingNotDoubleException.class, InvalidRatingInputException.class})
-    public ResponseEntity<ExceptionResponse> invalidRatingException(Exception ex) {
-        return createHttpResponse(HttpStatus.NOT_ACCEPTABLE, "Rating must be a number between 1 and 5");
-    }
-
     @ExceptionHandler(ProgramNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> programNotFound(ProgramNotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> programNotFound() {
         return createHttpResponse(HttpStatus.NOT_FOUND, "Program not found");
     }
 
     @ExceptionHandler(BlogNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> blogNotFound(BlogNotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> blogNotFound() {
         return createHttpResponse(HttpStatus.NOT_FOUND, "Blog not found");
     }
 
     @ExceptionHandler(InvalidInputException.class)
-    public ResponseEntity<ExceptionResponse> invalidInputException(InvalidInputException ex) {
+    public ResponseEntity<ExceptionResponse> invalidInputException() {
         return createHttpResponse(HttpStatus.NOT_ACCEPTABLE, "Invalid input");
     }
 
     @ExceptionHandler(FailedSaveException.class)
-    public ResponseEntity<ExceptionResponse> failedSaveException(FailedSaveException ex) {
+    public ResponseEntity<ExceptionResponse> failedSaveException() {
         return createHttpResponse(HttpStatus.EXPECTATION_FAILED, "Failed to save the entity");
     }
 
     @ExceptionHandler(PictureNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> pictureNotFound(PictureNotFoundException ex) {
+    public ResponseEntity<ExceptionResponse> pictureNotFound() {
         return createHttpResponse(HttpStatus.NOT_FOUND, "Picture not found");
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ExceptionResponse> handleGenericException(Exception ex) {
-        ex.printStackTrace();
         return createHttpResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred: " + ex.getMessage());
     }
 }

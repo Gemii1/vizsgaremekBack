@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Tag(name = "Program Client Test Functions", description = "Manage Programs and Clients")
+@Tag(name = "Program Client Functions", description = "Manage Programs and Clients")
 public class ProgramClientController {
     @Autowired
     private ClientService clientService;
