@@ -77,7 +77,7 @@ Nincs
 
 === A folyamat lépései
 
-1) Új link:../entities/trainer-jpa.adoc[edző] példány rögzítése az adazbázisba a a rewuest paraméterek értékei alapján
+1) Új link:../entities/trainer-jpa.adoc[edző] példány rögzítése az adazbázisba a a request paraméterek értékei alapján
 
 [cols="3,4"]
 |===

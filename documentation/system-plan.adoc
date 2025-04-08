@@ -8,4 +8,4 @@
 
 * Interfész leírások
 
-link:../README.adoc[Vissza]
+link:../application-documentation.adoc[Vissza]
