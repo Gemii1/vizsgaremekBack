@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class PictureRead {
 
     private Integer id;
-    private Long fullPath;
+    private String fullPath;
 }

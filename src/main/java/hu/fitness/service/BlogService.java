@@ -104,7 +104,7 @@ public class BlogService {
 
         PictureRead pictureRead = new PictureRead();
         pictureRead.setId(blog.getId());
-        pictureRead.setFullPath(fileEntity.getId());
+        pictureRead.setFullPath("fullPath: " + fileEntity.getId());
         return pictureRead;
     }
 
