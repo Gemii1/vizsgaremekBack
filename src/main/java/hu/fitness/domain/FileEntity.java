@@ -20,9 +20,6 @@ public class FileEntity {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] data;
 
-    @OneToOne(mappedBy = "fileEntity", cascade = CascadeType.ALL)
-    private Trainer trainer;
-
     public FileEntity(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;
