@@ -22,18 +22,27 @@
 |
   [
     {
+
       id,
+
       name,
+
       birthDate,
+
       gender,
+
       qualification,
+
       phoneNumber,
+
       rating,
+
       login {
         loginId,
         email,
         role
       }
+
     }
   ]
 
@@ -45,8 +54,7 @@ A legjobban értékelt edzők lekérdezése. Az edzők listáját a legmagasabb 
 == Műveletek
 
 === Validáció
-
-- A válasz mindig tartalmazni fogja az 5 legmagasabb értékeléssel rendelkező edzőt.
+-
 
 === A folyamat lépései
 

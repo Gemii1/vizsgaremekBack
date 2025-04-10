@@ -22,14 +22,23 @@
 |
   [
     {
+
       id,
+
       name,
+
       birthDate,
+
       gender,
+
       picture,
+
       qualification,
+
       phoneNumber,
+
       rating
+
     }
   ]
 
@@ -39,7 +48,10 @@
 
 Az edzők listázása az adatbázisból. Az endpoint visszaadja az összes elérhető edzőt a rendszerben.
 
-== Működés
+== Műveletek
+
+=== Validáció
+-
 
 === A folyamat lépései
 
