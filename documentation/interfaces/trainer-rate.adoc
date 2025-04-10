@@ -1,13 +1,10 @@
-= Edző értékelése interface
+= Edző értékelése interfész
 
 [col="1h,3"]
 |===
 
-| summary
-| Add rating to Trainer by id
-
-| description
-| -
+| Összegzés
+| Értékelés hozzáadása egy id alapján kiválasztott edzőhöz
 
 | Request method
 | POST
@@ -20,46 +17,25 @@
 
 | request body
 |
-
     {
-
-    id,
-
-    score
-
+      "score": 0
     }
 
 | response
 |
-  {
-
-    id,
-
-    name,
-
-    birthDate,
-
-    gender,
-
-    picture,
-
-    qualification,
-
-    phoneNumber,
-
-    rating
-
-  }
+  200 OK
 
 |===
 
 == Leírás
-Az edző értékelése egyedi azonosító alapján
+Az edző értékelése az id alapján. Az értékelést hozzáadjuk az edzőhöz, majd frissítjük az edző átlagos értékelését.
 
 == Műveletek
 
 === Validáció
- - Az id pathVariable alapján léteznie kell trainer entitásnak az adatbázisban.
+
+- Az id pathVariable alapján léteznie kell trainer entitásnak az adatbázisban.
+- A score értéknek valid számnak kell lennie.
 
 Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 
@@ -72,54 +48,27 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 |TRAINER_NOT_FOUND
 |404
 
+|A score nem érvényes
+|INVALID_SCORE
+|400
+
 |===
 
 === A folyamat lépései
 
-1) Az edző rating mezőjének módosítása
+1) Az edző rating mezőjének módosítása a score értékének megfelelően.
 
-[cols="3,4"]
+2) Az edző átlagos értékelésének frissítése.
+
+3) A response összeállítása és küldése.
+
+[col="1,1"]
 |===
 
 |Request paraméter | entitás mező
 
-|rating
+|score
 |trainer.rating
-
-
-|===
-
-2) A response összeállítása és küldése
-
-[cols="3,4"]
-|===
-
-| response paraméter |érték
-
-|id
-|trainer.id
-
-|name
-|trainer.name
-
-|birthDate
-|trainer.birthDate
-
-|gender
-|trainer.gender
-
-|picture
-|trainer.picture
-
-|qualification
-|trainer.qualification
-
-|phoneNumber
-|trainer.phoneNumber
-
-|rating
-|trainer.rating
-
 
 |===
 

@@ -1,13 +1,11 @@
-= Edző módosítása interface
+= Edző módosítása interfész
 
 [col="1h,3"]
 |===
 
-| summary
-| Update Trainer by id
+| Összegzés
+| Egy id alapján kiválasztott edző adatainak módosítása
 
-| description
-| -
 
 | Request method
 | PATCH
@@ -21,43 +19,31 @@
 | request body
 |
     {
-
-    id,
-
-    selected,
-
-    value,
-
+      selected,
+      value
     }
 
 | response
 |
   {
-
     id,
-
     name,
-
     birthDate,
-
     gender,
-
-    picture,
-
     qualification,
-
     phoneNumber,
-
     rating,
-
-    loginId
-
+    login {
+        loginId,
+        email,
+        role
+    }
   }
 
 |===
 
 == Leírás
-Kiválasztott edző metaadatainak módosítása az adatbázisban
+Kiválasztott edző metaadatainak módosítása az adatbázisban.
 
 == Műveletek
 
@@ -65,7 +51,7 @@ Kiválasztott edző metaadatainak módosítása az adatbázisban
 
 - Az id pathVariable alapján léteznie kell trainer entitásnak az adatbázisban.
 
-Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
+Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld.
 
 [cols="4,2,1"]
 |===
@@ -78,37 +64,35 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 
 |===
 
-
 === A folyamat lépései
 
-1) A Trainer példány módosítása az adatbázisban, ahol trainer.id == pathVariable: id
+1) A Trainer példány módosítása az adatbázisban, ahol trainer.id == pathVariable: id.
 
 [cols="3,4"]
 |===
 
-|Request paraméter | entitás mező
+|Request paraméter |Entitás mező
 
-|name
+|selected: NAME
 |trainer.name
 
-|birthDate
+|selected: BIRTH_DATE
 |trainer.birthDate
 
-|qualification
+|selected: QUALIFICATION
 |trainer.qualification
 
-|phoneNumber
+|selected: PHONE_NUMBER
 |trainer.phoneNumber
-
 
 |===
 
-2) A response összeállítása és küldése
+2) A response összeállítása és küldése.
 
 [cols="3,4"]
 |===
 
-| response paraméter |érték
+|Response paraméter |Érték
 
 |id
 |trainer.id
@@ -122,9 +106,6 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 |gender
 |trainer.gender
 
-|picture
-|trainer.picture
-
 |qualification
 |trainer.qualification
 
@@ -134,9 +115,8 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld
 |rating
 |trainer.rating
 
-|loginId
-|trainer.loginId
-
+|login
+|trainer.login (loginId, email, role)
 
 |===
 

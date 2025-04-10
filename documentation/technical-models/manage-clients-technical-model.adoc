@@ -76,7 +76,7 @@ A felhasználó a
 
 A Profil oldalra jut, és az oldal betöltődés részeként meghívja a
 
-- link:../interfaces/client-read.adoc[GET /client/{id}] azonosítójú Kliens lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../[GET /client/{id}] azonosítójú Kliens lekérdezése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]

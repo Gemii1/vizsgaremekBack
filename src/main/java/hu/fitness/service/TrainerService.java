@@ -105,7 +105,7 @@ public class TrainerService {
 
         PictureRead pictureRead = new PictureRead();
         pictureRead.setId(trainer.getId());
-        pictureRead.setFullPath("File stored in DB with ID: " + fileEntity.getId());
+        pictureRead.setFullPath(fileEntity.getId());
         return pictureRead;
     }
 

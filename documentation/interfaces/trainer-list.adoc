@@ -1,16 +1,13 @@
-= Edzők listázása
+= Edzők listázása interfész
 
 [col="1h,3"]
 |===
 
-| summary
-| List of trainers
-
-| description
-| List all Trainers
+| Összegzés
+| Az összes edző listázása
 
 | Request method
-| POST
+| GET
 
 | PathURL
 | /trainer/
@@ -23,40 +20,31 @@
 
 | response
 |
-
+  [
     {
-
-        [].id,
-
-        [].name,
-
-        [].birthDate,
-
-        [].gender,
-
-        [].picture,
-
-        [].qualification,
-
-        [].phoneNumber,
-
-        [].rating
-
+      id,
+      name,
+      birthDate,
+      gender,
+      picture,
+      qualification,
+      phoneNumber,
+      rating
     }
+  ]
 
 |===
 
 == Leírás
 
-Az edzők listázása
+Az edzők listázása az adatbázisból. Az endpoint visszaadja az összes elérhető edzőt a rendszerben.
 
 == Működés
-
-
 
 === A folyamat lépései
 
 1) Az edzők lekérdezése az adatbázisból
+
 2) A response összeállítása és küldése
 
 [col="1,1"]
@@ -87,8 +75,6 @@ Az edzők listázása
 
 |[].rating
 |trainer.rating
-
-
 
 |===
 

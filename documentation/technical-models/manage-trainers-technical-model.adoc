@@ -84,7 +84,7 @@ A felhasználó a
 
 A Login oldara jut, és az oldal betöltődés részeként meghívja a
 
-- link:../interfaces/trainer-create.adoc[POST /trainer/] azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../[POST /trainer/] azonosítójú Edző rögzítése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]
@@ -324,7 +324,7 @@ A felhasználó az
 
 A Bejelentkezés oldalra jut, és az oldal betöltődés részeként meghívja a
 
-- link:../interfaces/trainer-delete.adoc[DELETE /trainer/{id}] azonosítójú Edző törlése elnevezésű interfészt az alábbi mapping megvalósításával
+- link:../[DELETE /trainer/{id}] azonosítójú Edző törlése elnevezésű interfészt az alábbi mapping megvalósításával
 
 
 [cols="1,1"]

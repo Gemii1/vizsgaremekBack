@@ -1,6 +1,6 @@
-= Interfaces
+= Interfészek
 
-- link:interfaces/trainer-create.adoc[trainer-create]
+- link:interfaces/[trainer-list]
 
 - link:technical-models.adoc[
 

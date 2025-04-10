@@ -1,16 +1,16 @@
-= Edző lekérdezése interfész
+= Edző képe lekérdezése interfész
 
 [col="1h,3"]
 |===
 
 | Összegzés
-| Az adott edző adatainak lekérdezése
+| Az adott edző képének lekérdezése
 
 | Request method
 | GET
 
 | PathURL
-| /trainer/{id}
+| /trainer/picture/{id}
 
 | Params
 | id: Az edző egyedi azonosítója
@@ -20,39 +20,19 @@
 
 | response
 |
-  {
-
-    id,
-
-    name,
-
-    birthDate,
-
-    gender,
-
-    qualification,
-
-    phoneNumber,
-
-    rating,
-
-    login {
-        loginId,
-        email,
-        role
-    }
-
-  }
+  string (base64 encoded image)
 
 |===
 
 == Leírás
-Az edző metaadatainak lekérdezése egyedi azonosító alapján.
+Az edző képének lekérdezése az edző egyedi azonosítója alapján.
 
 == Műveletek
 
 === Validáció
+
 - Az id pathVariable alapján léteznie kell trainer entitásnak az adatbázisban.
+- Ha a trainer nem rendelkezik képpel, a rendszer hibaüzenetet küld.
 
 Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld.
 
@@ -65,42 +45,37 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld.
 |TRAINER_NOT_FOUND
 |404
 
+|A kiválasztott edzőnek nincs képe
+|PICTURE_NOT_FOUND
+|404
+
 |===
 
 === A folyamat lépései
 
 1) Az edző lekérdezése az adatbázisból.
 
+2) Ha az edzőnek van képe, az adatokat base64 formátumban visszaküldi.
+
+[cols="3,4"]
+|===
+
+|Request paraméter |Entitás mező
+
+|id
+|trainer.id
+
+|===
+
 2) A response összeállítása és küldése.
 
 [cols="3,4"]
 |===
 
-| response paraméter |érték
+|Response paraméter |Érték
 
-|id
-|trainer.id
-
-|name
-|trainer.name
-
-|birthDate
-|trainer.birthDate
-
-|gender
-|trainer.gender
-
-|qualification
-|trainer.qualification
-
-|phoneNumber
-|trainer.phoneNumber
-
-|rating
-|trainer.rating
-
-|login
-|trainer.login (loginId, email, role)
+|képek (base64 kódolású adat)
+|fileEntity.data
 
 |===
 
