@@ -22,20 +22,20 @@
 | [
   {
 
-    "id": 0,
+    "id",
 
-    "name": "string",
+    "name",
 
-    "birthDate": "2025-04-10",
+    "birthDate",
 
-    "gender": "MALE",
+    "gender",
 
-    "phoneNumber": "string",
+    "phoneNumber",
 
     "login": {
-      "loginId": 0,
-      "email": "string",
-      "role": "string"
+      "loginId",
+      "email",
+      "role"
     }
 
   }

@@ -42,41 +42,6 @@
 
 |===
 
-==== Edző rögzítése
-[cols="1h,3"]
-|===
-
-| Azonosító
-| UC_T_Create
-
-| Kiváltó esemény
-| A felhasználó új edzőt kíván rögzíteni.
-
-| Felhasználók
-| Edző
-
-| Elsődleges lefutás
-|
-1. A felhasználó megadja az edző létrehozásához szükséges adatokat.
-
-2. A felhasználó elindítja a rögzítés folyamatát.
-
-3. A rendszerben rögzítésre kerül az új edző.
-
-| Kivételek és alternatívák
-| -
-
-|Utófeltétel
-|A rendszerben az edző rögzítésre került.
-
-| Eredmény
-| A felhasználó számára az imént rögzített edző elérhető a rendszerben.
-
-| Használati eset realizáció
-| Technikai modell
-
-|===
-
 ==== Edző megtekintése
 [cols="1h,3"]
 |===
@@ -139,39 +104,6 @@
 
 | Eredmény
 | A felhasználó látja az edző módosított metaadatát.
-
-| Használati eset realizáció
-| Technikai modell
-
-|===
-
-==== Edző törlése
-[cols="1h,3"]
-|===
-
-| Azonosító
-| UC_T_Delete
-
-| Kiváltó esemény
-| A felhasználó törölni kívánja a kiválasztott edzőt a rendszerből.
-
-| Felhasználók
-| Edző
-
-| Elsődleges lefutás
-|
-1. A felhasználó elindítja a törlés folyamatát.
-
-2. A rendszerben törlésre kerül az edző.
-
-| Kivételek és alternatívák
-| -
-
-|Utófeltétel
-|A rendszerben az edző törlésre került.
-
-| Eredmény
-| A felhasználó a továbbiakban nem látja a törölt edző metaadatait.
 
 | Használati eset realizáció
 | Technikai modell
@@ -331,24 +263,6 @@ vagy TRAINER_POST ha az Értékelés gombra kattintva érkezett erre a felületr
 |A "Szerkesztés" gombra kattintás
 |A felhasználó az edző szerkesztése felületre jut.
 | -
-
-|A "Törlés" gombra kattintás|
-Megjelenik egy párbeszéd ablak.
-
-Cím: Törlés
-
-Üzenet: Biztosan törli a profilt?
-
-A Nem gombra kattintásra eltűnik a párbeszédablak.
-
-Az Igen gombra kattintásra végrehajtásra kerül az Edző törlése használati eset.
-A felhasználó az edzők listázása felületre jut.
-
-Ha a törlés nem sikerül, akkor az alábbi hibaüzenetek érkezhetnek:
-
-
-
-| TRAINER_DELETE
 
 |===
 
