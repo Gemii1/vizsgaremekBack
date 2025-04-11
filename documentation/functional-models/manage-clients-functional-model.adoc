@@ -9,6 +9,7 @@
 === Használati eset diagram
 
 === Használati esetek rövid leírása
+
 ==== Kliensek listázása
 [cols="1h,3"]
 |===
@@ -24,58 +25,23 @@
 
 | Elsődleges lefutás
 |
-1. A felhasználó a Kliensek listázása menüpontra kattint.
+1. A felhasználó a "Kliensek listázása" menüpontra kattint.
 
-2. A rendszerben kiválogatásra kerülnek a kliensek.
+2. A rendszer lekérdezi az összes kliens adatait, beleértve a név, születési dátum, nem, telefonszám, és login információkat.
 
 | Kivételek és alternatívák
-| -
+| - Ha nincs elérhető kliens, a rendszer egy üres listát ad vissza.
 
-|Utófeltétel
-|A rendszerben a kliensek listája előállt.
+| Utófeltétel
+| A rendszer az összes kliens adatát megjeleníti.
 
 | Eredmény
 | A felhasználó látja a kliensek listáját.
 
 | Használati eset realizáció
 | Technikai modell
-
 |===
 
-==== Kliens rögzítése
-[cols="1h,3"]
-|===
-
-| Azonosító
-| UC_C_Create
-
-| Kiváltó esemény
-| A felhasználó új klienset kíván rögzíteni.
-
-| Felhasználók
-| Kliens
-
-| Elsődleges lefutás
-|
-1. A felhasználó megadja a kliens létrehozásához szükséges adatokat.
-
-2. A felhasználó elindítja a rögzítés folyamatát.
-
-3. A rendszerben rögzítésre kerül az új kliens.
-
-| Kivételek és alternatívák
-| -
-
-|Utófeltétel
-|A rendszerben a kliens rögzítésre került.
-
-| Eredmény
-| A felhasználó számára az imént rögzített kliens elérhető a rendszerben.
-
-| Használati eset realizáció
-| Technikai modell
-
-|===
 
 ==== Kliens megtekintése
 [cols="1h,3"]
@@ -124,59 +90,30 @@
 | Kliens
 
 | Elsődleges lefutás
+
 |
-1. A felhasználó megadja a módosítani kívánt adatot.
+1. A felhasználó kiválasztja a módosítani kívánt adatot (pl. név, születési dátum, telefonszám).
 
-2. A felhasználó elindítja a módosítás folyamatát.
+2. A felhasználó elindítja a módosítást.
 
-3. A rendszerben módosításra kerül a kliens.
+3. A rendszer módosítja a kliens adatot az adatbázisban.
 
-| Kivételek és alternatívák
-| -
+|Kivételek és alternatívák
+| - Ha az adat érvénytelen, az alkalmazás hibát jelez (például érvénytelen telefonszám formátum).
 
-|Utófeltétel
-|A rendszerben a kliens módosításra került.
+- A kiválasztott adat nem változtatható, ha nincs megfelelő jogosultság.
+
+| Utófeltétel
+| A kliens adatai frissültek az adatbázisban.
 
 | Eredmény
-| A felhasználó látja a kliens módosított metaadatát.
+| A felhasználó látja a módosított kliens metaadatait.
 
 | Használati eset realizáció
 | Technikai modell
 
 |===
 
-==== Kliens törlése
-[cols="1h,3"]
-|===
-
-| Azonosító
-| UC_C_Delete
-
-| Kiváltó esemény
-| A felhasználó törölni kívánja a kiválasztott klienst a rendszerből.
-
-| Felhasználók
-| Kliens
-
-| Elsődleges lefutás
-|
-1. A felhasználó elindítja a törlés folyamatát.
-
-2. A rendszerben törlésre kerül a kliens.
-
-| Kivételek és alternatívák
-| -
-
-|Utófeltétel
-|A rendszerben a kliens törlésre került.
-
-| Eredmény
-| A felhasználó a továbbiakban nem látja a törölt kliens metaadatait.
-
-| Használati eset realizáció
-| Technikai modell
-
-|===
 
 == Jogosultságok
 
@@ -185,10 +122,8 @@
 |Használati eset| Jogosultság| Szerepkörök
 
 | Kliens listázása| CLIENT_LIST| Kliens, Edző
-| Kliens rögzítése| CLIENT_CREATE| Kliens
 | Kliens megtekintése| CLIENT_READ| Kliens
 | Kliens módosítása| CLIENT_PATCH| Kliens
-| Kliens törlése| CLIENT_DELETE| Kliens
 |===
 
 == Felületi terv
@@ -206,7 +141,7 @@
 
 |Kliens neve |Header oszlopcím| I| I| Találati lista ablakrész
 |Kliens születési éve | Header oszlopcím| I| I| Találati lista ablakrész
-|Kliens neme | Header oszlopcím| I| I| Találati lista ablakrész
+|Kliens neme | Header oszlopcím| I| N| Találati lista ablakrész
 |Kliens telefonszáma | Header oszlopcím| I| I| Találati lista ablakrész
 
 |===
@@ -221,7 +156,7 @@
 
 |===
 
-=== Kliens rögzítése vagy szerkesztése felület
+=== Kliens szerkesztése felület
 ==== Arculat
 
 
@@ -232,7 +167,7 @@
 |Név |Típus |Kötelező?| Szerkeszthető?| Validáció
 
 |Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
-|Születési dátum |Dátum input mező| I| N|
+|Születési dátum |Dátum input mező| I| I|
 |Nem |Választó gomb| I| N| Felvehető értékek: ["Male","Female","Other"]
 |Telefonszám | Szöveges input mező| I| I|
 
@@ -244,15 +179,8 @@
 |===
 |Esemény |Leírás | Felület|Jogosultság
 
-|Az "Ok" gombra kattintás
-|Végrehajtásra kerül a Kliens rögzítése használati eset. A felhasználó a kliens megtekintése felületre jut.
-
-A gomb mindaddig DISABLED amíg az űrlap nem valid.
-| Kliens létrehozása felület
-| CLIENT_CREATE
-
 |A "Mentés" gombra kattintás|
-Végrehajtásra kerül a Kliens módosítása használati eset. A felhasználó a kliens megtekintése felületre jut.
+Végrehajtásra kerül a Kliens módosítása használati eset. A felhasználó adatai frissülnek.
 
 A gomb mindaddig DISABLED amíg az űrlap nem valid.
 | Kliens módosítása felület
@@ -260,18 +188,20 @@ A gomb mindaddig DISABLED amíg az űrlap nem valid.
 
 |===
 
+=== Kliens megtekintése felület
+==== Arculat
 
 
 ==== A felületen lévő mezők
 
-[cols="1,1"]
+[cols="1,1,1,1,1"]
 |===
-|Megnevezés| Típus
+|Név |Típus |Kötelező?| Szerkeszthető?| Validáció
 
-|Név |Szöveges címke
-|Születési dátum| Dátum címke
-|Nem |Szöveges címke
-|Telefonszám |Szöveges címke
+|Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
+|Születési dátum |Dátum input mező| I| I|
+|Nem |Választó gomb| I| N| Felvehető értékek: ["Male","Female","Other"]
+|Telefonszám | Szöveges input mező| I| I|
 
 |===
 
@@ -279,29 +209,12 @@ A gomb mindaddig DISABLED amíg az űrlap nem valid.
 
 [cols="1,1,1"]
 |===
-|Esemény |Leírás | Jogosultság
+|Esemény |Leírás |Jogosultság
 
-|A "Szerkesztés" gombra kattintás
-|A felhasználó a kliens szerkesztése felületre jut.
-| -
+|A "Profil" gombra kattintás|
+Végrehajtásra kerül a Kliens megtekintése használati eset. A felhasználó adatai megjelennek.
 
-|A "Törlés" gombra kattintás|
-Megjelenik egy párbeszéd ablak.
-
-Cím: Törlés
-
-Üzenet: Biztosan törli a profilt?
-
-A Nem gombra kattintásra eltűnik a párbeszédablak.
-
-Az Igen gombra kattintásra végrehajtásra kerül a Kliens törlése használati eset.
-A felhasználó a kliensek listázása felületre jut.
-
-Ha a törlés nem sikerül, akkor az alábbi hibaüzenetek érkezhetnek:
-
-
-
-| CLIENT_DELETE
+| CLIENT_READ
 
 |===
 

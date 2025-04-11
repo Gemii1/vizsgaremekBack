@@ -19,25 +19,37 @@
 | request body
 |
     {
+
       selected,
+
       value
+
     }
 
 | response
 |
   {
+
     id,
+
     name,
+
     birthDate,
+
     gender,
+
     qualification,
+
     phoneNumber,
+
     rating,
+
     login {
         loginId,
         email,
         role
     }
+
   }
 
 |===

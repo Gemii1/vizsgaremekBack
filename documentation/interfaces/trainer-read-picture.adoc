@@ -20,7 +20,12 @@
 
 | response
 |
-  string (base64 encoded image)
+
+{
+
+string (base64 encoded image)
+
+}
 
 |===
 
