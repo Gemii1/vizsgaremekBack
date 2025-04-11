@@ -35,7 +35,7 @@ public class BlogService {
     private FileRepository fileRepository;
 
     public List<BlogList> listBlogs() {
-        List<BlogList> blogList = new ArrayList<>();
+        List<BlogList> blogList;
         List<Blog> blogs = blogRepository.findAll();
         blogList = BlogConverter.convertModelsToList(blogs);
         return blogList;
@@ -86,7 +86,7 @@ public class BlogService {
     }
 
     @Transactional
-    public PictureRead storeImage(MultipartFile file, Integer blogId) throws IOException {
+    public void storeImage(MultipartFile file, Integer blogId) throws IOException {
         if (!blogRepository.existsById(blogId)) {
             throw new BlogNotFoundException();
         }
@@ -101,14 +101,9 @@ public class BlogService {
         fileEntity = fileRepository.save(fileEntity);
         blog.setFileEntity(fileEntity);
         blogRepository.save(blog);
-
-        PictureRead pictureRead = new PictureRead();
-        pictureRead.setId(blog.getId());
-        pictureRead.setFullPath("fullPath: " + fileEntity.getId());
-        return pictureRead;
     }
 
-    public ResponseEntity<byte[]> getBlogPicture(Integer blogId) {
+    public ResponseEntity<byte[]> getBlogImage(Integer blogId) {
 
         if (!blogRepository.existsById(blogId)) {
             throw new BlogNotFoundException();

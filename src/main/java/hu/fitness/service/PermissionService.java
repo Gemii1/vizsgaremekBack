@@ -32,8 +32,8 @@ public class PermissionService {
                     Permission.DELETE_PROGRAM,
                     Permission.LIST_PROGRAMS_CLIENTS,
                     Permission.PATCH_TRAINER,
-                    Permission.UPLOAD_TRAINER_PICTURE,
-                    Permission.UPLOAD_BLOG_PICTURE,
+                    Permission.UPLOAD_TRAINER_IMAGE,
+                    Permission.UPLOAD_BLOG_IMAGE,
                     Permission.CREATE_BLOG,
                     Permission.UPDATE_BLOG,
                     Permission.DELETE_BLOG

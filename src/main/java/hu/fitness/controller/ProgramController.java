@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/program")
+@RequestMapping("/api/program")
 @Tag(name = "Program Functions", description = "Manage Programs")
 public class ProgramController {
 

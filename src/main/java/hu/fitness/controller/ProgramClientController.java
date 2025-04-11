@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 @Tag(name = "Program Client Functions", description = "Manage Programs and Clients")
 public class ProgramClientController {
     @Autowired

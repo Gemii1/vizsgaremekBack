@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/blog")
+@RequestMapping("/api/blog")
 @Tag(name = "Blog Functions", description = "Manage Blogs")
 public class BlogController {
 
@@ -63,18 +63,19 @@ public class BlogController {
         return blogService.updateBlog(id, blogUpdate);
     }
 
-    @PreAuthorize("hasAuthority('UPLOAD_BLOG_PICTURE')")
+    @PreAuthorize("hasAuthority('UPLOAD_BLOG_IMAGE')")
     @CrossOrigin
     @PostMapping(value="/upload-image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Upload Blog's Image")
-    public PictureRead uploadImage(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
-        return blogService.storeImage(file, id);
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
+        blogService.storeImage(file, id);
+        return new ResponseEntity<>("Image uploaded successfully", HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping("/blog/picture/{id}")
-    @Operation(summary = "Get Blog's picture by ID")
-    public ResponseEntity<byte[]> readPicture(@PathVariable int id) {
-        return blogService.getBlogPicture(id);
+    @GetMapping("/image/{id}")
+    @Operation(summary = "Get Blog's image by ID")
+    public ResponseEntity<byte[]> getImage(@PathVariable int id) {
+        return blogService.getBlogImage(id);
     }
 }

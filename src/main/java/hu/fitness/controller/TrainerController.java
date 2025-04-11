@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/trainer")
+@RequestMapping("/api/trainer")
 @Tag(name = "Trainer Functions", description = "Manage Trainers")
 public class TrainerController {
 
@@ -71,19 +72,20 @@ public class TrainerController {
         ratingService.addRating(id, ratingSave);
     }
 
-    @PreAuthorize("hasAuthority('UPLOAD_TRAINER_PICTURE')")
+    @PreAuthorize("hasAuthority('UPLOAD_TRAINER_IMAGE')")
     @CrossOrigin
-    @PutMapping(value="/upload-picture/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @Operation(summary = "Update Trainer's picture")
-    public PictureRead updatePicture(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
-        return trainerService.update(file, id);
+    @PutMapping(value="/upload-image/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Update Trainer's image")
+    public ResponseEntity<String> updateImage(@RequestParam("file") MultipartFile file, @PathVariable Integer id) throws IOException {
+        trainerService.update(file, id);
+        return new ResponseEntity<>("Image uploaded successfully", HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping("/picture/{id}")
-    @Operation(summary = "Get Trainer's picture by ID")
+    @GetMapping("/image/{id}")
+    @Operation(summary = "Get Trainer's image by ID")
     public ResponseEntity<byte[]> readPicture(@PathVariable int id) {
-        return trainerService.getTrainerPicture(id);
+        return trainerService.getTrainerImage(id);
     }
 
 

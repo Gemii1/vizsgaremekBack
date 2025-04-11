@@ -16,7 +16,7 @@ public class ProgramStatusUpdater {
     @Autowired
     private ProgramRepository programRepository;
 
-    @Scheduled(fixedRate = 60000) // 1 perc
+    @Scheduled(cron = "0 * * * * *")
     public void updateProgramStatuses() {
         LocalDateTime now = LocalDateTime.now();
 

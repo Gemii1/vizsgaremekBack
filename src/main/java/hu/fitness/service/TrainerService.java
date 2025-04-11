@@ -83,7 +83,7 @@ public class TrainerService {
     }
 
     @Transactional
-    public PictureRead update(MultipartFile file, Integer trainerId) throws IOException {
+    public void update(MultipartFile file, Integer trainerId) throws IOException {
         if (!trainerRepository.existsById(trainerId)) {
             throw new TrainerNotFoundException();
         }
@@ -102,14 +102,9 @@ public class TrainerService {
         fileEntity = fileRepository.save(fileEntity);
         trainer.setFileEntity(fileEntity);
         trainerRepository.save(trainer);
-
-        PictureRead pictureRead = new PictureRead();
-        pictureRead.setId(trainer.getId());
-        pictureRead.setFullPath("fullPath: " + fileEntity.getId());
-        return pictureRead;
     }
 
-    public ResponseEntity<byte[]> getTrainerPicture(Integer trainerId) {
+    public ResponseEntity<byte[]> getTrainerImage(Integer trainerId) {
         if (!trainerRepository.existsById(trainerId)) {
             throw new TrainerNotFoundException();
         }
