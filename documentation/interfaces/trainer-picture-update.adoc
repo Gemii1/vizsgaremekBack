@@ -18,7 +18,7 @@
 | request body
 | {
 
-`file` (A feltöltendő kép fájlja (bináris adat))
+ file (A feltöltendő kép fájlja (bináris adat))
 
   }
 
