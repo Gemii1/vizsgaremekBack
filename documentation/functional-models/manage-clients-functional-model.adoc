@@ -2,7 +2,7 @@
 
 == Leírás
 
-
+A rendszer lehetővé teszi a kliensek kezelését.
 
 == Használati esetek
 

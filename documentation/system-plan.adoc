@@ -6,6 +6,4 @@
 
 * link:technical-models.adoc[Technikai modellek]
 
-* Interfész leírások
-
 link:../application-documentation.adoc[Vissza]

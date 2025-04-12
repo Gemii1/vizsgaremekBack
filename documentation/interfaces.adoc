@@ -1,9 +1,0 @@
-= Interfészek
-
-- link:interfaces/[trainer-list]
-
-- link:technical-models.adoc[
-
-- link:technical-models.adoc[
-
-- link:system-plan.adoc[Vissza]
