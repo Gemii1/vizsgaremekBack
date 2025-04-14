@@ -1,10 +1,10 @@
-= Ügyfél regisztráció interfész
+= Kliens regisztráció interfész
 
 [cols="1h,3"]
 |===
 
 | Összegzés
-| Új ügyfél regisztrációja az alkalmazásban.
+| Új kliens regisztrációja az alkalmazásban.
 
 | Request method
 | POST
@@ -58,7 +58,7 @@ role
 |===
 
 == Leírás
-Ez a végpont lehetővé teszi, hogy új ügyfélként regisztráljunk az alkalmazásban. A megadott e-mail címnek egyedinek kell lennie. Sikeres regisztráció után az ügyfél adatai visszaküldésre kerülnek.
+Ez a végpont lehetővé teszi, hogy új kliensként regisztráljunk az alkalmazásban. A megadott e-mail címnek egyedinek kell lennie. Sikeres regisztráció után az ügyfél adatai visszaküldésre kerülnek.
 
 == Műveletek
 
@@ -117,4 +117,4 @@ Ez a végpont lehetővé teszi, hogy új ügyfélként regisztráljunk az alkalm
 
 |===
 
-link:../technical-models/authentication-technical-model.adoc[Vissza]
+link:interfaces-auth.adoc[Vissza]

@@ -94,4 +94,4 @@ Validációs hiba esetén a folyamat leáll, a response hibaüzenetet küld.
 
 |===
 
-link:../technical-models/manage-clients-technical-model.adoc[Vissza]
+link:interfaces-client.adoc[Vissza]

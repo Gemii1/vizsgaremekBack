@@ -1,10 +1,10 @@
-= Programhoz csatlakozott ügyfelek listázása interfész
+= Programhoz csatlakozott kliensek listázása interfész
 
 [cols="1h,3"]
 |===
 
 | Összegzés
-| Egy adott programhoz csatlakozott ügyfelek listázása azonosító alapján.
+| Egy adott programhoz csatlakozott kliensek listázása azonosító alapján.
 
 | Request method
 | GET
@@ -14,18 +14,18 @@
 
 | Params
 |
-  `id`: A program azonosítója, amelyhez tartozó ügyfeleket le szeretnénk kérdezni.
+  `id`: A program azonosítója, amelyhez tartozó klienseket le szeretnénk kérdezni.
 
 | Request body
 | -
 
 | Response
-| Az adott programhoz csatlakozott ügyfelek listája ClientRead DTO formátumban.
+| Az adott programhoz csatlakozott kliensek listája ClientRead DTO formátumban.
 
 |===
 
 == Leírás
-Ez a végpont lehetővé teszi az adott programhoz tartozó ügyfelek lekérdezését az adatbázisból a program azonosítója alapján. A válaszban a ClientRead típusú DTO-k listája található.
+Ez a végpont lehetővé teszi az adott programhoz tartozó kliensek lekérdezését az adatbázisból a program azonosítója alapján. A válaszban a ClientRead típusú DTO-k listája található.
 
 == Műveletek
 
@@ -51,7 +51,7 @@ Ez a végpont lehetővé teszi az adott programhoz tartozó ügyfelek lekérdez�
 
 2) Az adott programhoz tartozó ügyfelek lekérdezése.
 
-3) Az ügyfelek konvertálása ClientRead DTO listára.
+3) A kliensek konvertálása ClientRead DTO listára.
 
 4) A lista visszaküldése válaszként.
 
@@ -80,4 +80,4 @@ Ez a végpont lehetővé teszi az adott programhoz tartozó ügyfelek lekérdez�
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]

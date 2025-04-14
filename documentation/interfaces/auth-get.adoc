@@ -1,4 +1,4 @@
-= Autentikált felhasználó adatainak lekérése
+= Autentikált felhasználó adatainak lekérdezése interfész
 
 [cols="1h,3"]
 |===
@@ -70,4 +70,4 @@ A 401 UNAUTHORIZED hiba akkor fordul elő, ha a kérés nem tartalmaz érvényes
 
 |===
 
-link:../technical-models/authentication-technical-model.adoc[Vissza]
+link:interfaces-auth.adoc[Vissza]

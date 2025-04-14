@@ -88,4 +88,4 @@ Ez a végpont lehetővé teszi a felhasználók számára, hogy e-mail cím és 
 
 |===
 
-link:../technical-models/authentication-technical-model.adoc[Vissza]
+link:interfaces-auth.adoc[Vissza]

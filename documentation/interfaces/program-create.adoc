@@ -127,4 +127,4 @@ Ez a végpont lehetővé teszi egy új program létrehozását. A kérésben meg
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-program.adoc[Vissza]

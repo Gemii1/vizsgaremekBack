@@ -67,4 +67,4 @@ Ez a végpont lehetővé teszi a bloghoz tartozó kép letöltését az adatbáz
 
 |===
 
-link:../technical-models/manage-blogs-technical-model.adoc[Vissza]
+link:interfaces-blog.adoc[Vissza]

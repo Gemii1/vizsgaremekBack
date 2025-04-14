@@ -126,4 +126,4 @@ Ez a végpont lehetővé teszi, hogy új edzőként regisztráljunk az alkalmaz�
 
 |===
 
-link:../technical-models/authentication-technical-model.adoc[Vissza]
+link:interfaces-auth.adoc[Vissza]

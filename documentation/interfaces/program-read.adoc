@@ -1,4 +1,4 @@
-= Program adatainak lekérdezése interfész
+= Program lekérdezése interfész
 
 [col="1h,3"]
 |===
@@ -105,4 +105,4 @@ A végpont segítségével lekérdezhető egy program részletes adathalmaza a p
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-program.adoc[Vissza]

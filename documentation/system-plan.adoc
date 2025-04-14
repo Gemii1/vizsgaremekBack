@@ -2,6 +2,8 @@
 
 * link:entities.adoc[Entitások]
 
+* link:interfaces.adoc[Interfészek]
+
 * link:functional-models.adoc[Funkcionális modellek]
 
 * link:technical-models.adoc[Technikai modellek]

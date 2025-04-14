@@ -62,4 +62,4 @@ Ez a végpont visszaadja, hogy hány programra regisztrált egy adott ügyfél. 
 
 |===
 
-link:../technical-models/manage-clients-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]

@@ -96,4 +96,4 @@ A végpont visszaadja az összes adatbázisban szereplő programot. A válasz eg
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-program.adoc[Vissza]

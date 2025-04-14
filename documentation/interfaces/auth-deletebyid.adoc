@@ -1,4 +1,4 @@
-= Felhasználó törlése Login Id alapján
+= Felhasználó törlése Login Id alapján interfész
 
 [cols="1h,3"]
 |===
@@ -63,4 +63,4 @@ A 403 ACCESS_DENIED hiba akkor fordul elő, ha az adminisztrátor próbálja tö
 
 |===
 
-link:../technical-models/authentication-technical-model.adoc[Vissza]
+link:interfaces-auth.adoc[Vissza]

@@ -1,4 +1,4 @@
-= Autentikált felhasználó törlése
+= Autentikált felhasználó törlése interfész
 
 [cols="1h,3"]
 |===
@@ -63,4 +63,4 @@ A 403 ACCESS_DENIED hiba akkor fordul elő, ha a felhasználó "ADMIN" szereppel
 
 |===
 
-link:../technical-models/authentication-technical-model.adoc[Vissza]
+link:interfaces-auth.adoc[Vissza]

@@ -1,4 +1,4 @@
-== Kliensek lekérdezése interfész
+== Kliensek listázása interfész
 
 [col="1h,3"]
 |===
@@ -82,4 +82,4 @@ Az összes kliens adatainak lekérdezése az adatbázisból.
 
 |===
 
-link:../technical-models/manage-clients-technical-model.adoc[Vissza]
+link:interfaces-client.adoc[Vissza]

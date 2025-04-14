@@ -97,4 +97,4 @@ Ez a végpont lehetővé teszi egy blog törlését az adatbázisból a megadott
 
 |===
 
-link:../technical-models/manage-blogs-technical-model.adoc[Vissza]
+link:interfaces-blog.adoc[Vissza]

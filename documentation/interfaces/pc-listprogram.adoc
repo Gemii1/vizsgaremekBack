@@ -1,10 +1,10 @@
-= Ügyfélhez csatlakozott programok listázása interfész
+= Klienshez kapcsolódó programok listázása interfész
 
 [cols="1h,3"]
 |===
 
 | Összegzés
-| Egy adott ügyfélhez tartozó programok listázása az azonosító alapján.
+| Egy adott klienshez tartozó programok listázása az azonosító alapján.
 
 | Request method
 | GET
@@ -14,32 +14,32 @@
 
 | Params
 |
-  `id`: Az ügyfél azonosítója, akinek a programlistáját szeretnénk lekérni.
+  `id`: A kliens azonosítója, akinek a programlistáját szeretnénk lekérni.
 
 | Request body
 | -
 
 | Response
-| Az adott ügyfélhez csatlakozott programok listája ProgramRead DTO formátumban.
+| Az adott klienshez csatlakozott programok listája ProgramRead DTO formátumban.
 
 |===
 
 == Leírás
-Ez a végpont visszaadja azokat a programokat, amelyekhez egy adott ügyfél már csatlakozott. A válaszban a programok adatai szerepelnek ProgramRead DTO formátumban.
+Ez a végpont visszaadja azokat a programokat, amelyekhez egy adott kliens már csatlakozott. A válaszban a programok adatai szerepelnek ProgramRead DTO formátumban.
 
 == Műveletek
 
 === Validáció
 
-- Az ügyfél létezését a clientRepository.existsById() segítségével ellenőrzi.
-- Ha az ügyfél nem található, a rendszer ClientNotFoundException kivételt dob.
+- A kliens létezését a clientRepository.existsById() segítségével ellenőrzi.
+- Ha a kliens nem található, a rendszer ClientNotFoundException kivételt dob.
 
 [cols="4,2,1"]
 |===
 
 | Hiba oka | Üzenet | Status code
 
-| A megadott ügyfél nem található
+| A megadott kliens nem található
 | CLIENT_NOT_FOUND
 | 404
 
@@ -47,9 +47,9 @@ Ez a végpont visszaadja azokat a programokat, amelyekhez egy adott ügyfél má
 
 === A folyamat lépései
 
-1) Ellenőrzés, hogy az adott id-val létezik-e ügyfél.
+1) Ellenőrzés, hogy az adott id-val létezik-e kliens.
 
-2) Az ügyfélhez tartozó programok lekérdezése a findProgramsByClientId() metódussal.
+2) A klienshez tartozó programok lekérdezése a findProgramsByClientId() metódussal.
 
 3) A program entitások konvertálása ProgramRead DTO listává.
 
@@ -86,4 +86,4 @@ Ez a végpont visszaadja azokat a programokat, amelyekhez egy adott ügyfél má
 
 |===
 
-link:../technical-models/manage-clients-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]

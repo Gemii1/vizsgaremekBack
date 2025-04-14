@@ -107,4 +107,4 @@ A végpont lehetőséget biztosít egy adott program törlésére az adatbázisb
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-program.adoc[Vissza]

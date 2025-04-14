@@ -154,4 +154,4 @@ A végpont lehetővé teszi egy meglévő program teljes adatainak frissítésé
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-program.adoc[Vissza]

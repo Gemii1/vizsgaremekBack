@@ -1,10 +1,10 @@
-= Ügyfél programon való részvételének lekérdezése interfész
+= Kliens programon való részvételének lekérdezése interfész
 
 [cols="1h,3"]
 |===
 
 | Összegzés
-| Annak ellenőrzése, hogy egy adott ügyfél részt vett-e egy megadott programon.
+| Annak ellenőrzése, hogy egy adott kliens részt vett-e egy megadott programon.
 
 | Request method
 | GET
@@ -15,24 +15,24 @@
 | Params
 |
   programId: A program azonosítója, amelyen való részvételt ellenőrizni szeretnénk. +
-  clientId: Az ügyfél azonosítója, akinek a részvételét ellenőrizzük.
+  clientId: A kliens azonosítója, akinek a részvételét ellenőrizzük.
 
 | Request body
 | -
 
 | Response
-| true ha az ügyfél részt vett a programon, különben false.
+| true ha a kliens részt vett a programon, különben false.
 
 |===
 
 == Leírás
-Ez a végpont lehetővé teszi annak ellenőrzését, hogy egy adott ügyfél részt vett-e egy megadott programon.
+Ez a végpont lehetővé teszi annak ellenőrzését, hogy egy adott kliens részt vett-e egy megadott programon.
 
 == Műveletek
 
 === Validáció
 
-- A clientId alapján léteznie kell ügyfélnek az adatbázisban.
+- A clientId alapján léteznie kell kliensnek az adatbázisban.
 - A programId alapján léteznie kell programnak az adatbázisban.
 - Ha az ügyfél vagy program nem található, a rendszer hibaüzenetet küld vissza.
 
@@ -41,7 +41,7 @@ Ez a végpont lehetővé teszi annak ellenőrzését, hogy egy adott ügyfél r�
 
 | Hiba oka | Üzenet | Status code
 
-| A megadott ügyfél nem található
+| A megadott kliens nem található
 | CLIENT_NOT_FOUND
 | 404
 
@@ -74,4 +74,4 @@ Ez a végpont lehetővé teszi annak ellenőrzését, hogy egy adott ügyfél r�
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]

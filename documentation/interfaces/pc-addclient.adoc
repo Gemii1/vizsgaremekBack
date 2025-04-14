@@ -1,10 +1,10 @@
-= Ügyfél programhoz rendelése interfész
+= Kliens programhoz való rendelése interfész
 
 [cols="1h,3"]
 |===
 
 | Összegzés
-| Egy adott ügyfél hozzárendelése egy programhoz a megadott azonosítók alapján.
+| Egy adott kliens hozzárendelése egy programhoz a megadott azonosítók alapján.
 
 | Request method
 | POST
@@ -15,7 +15,7 @@
 | Params
 |
   programId: A program azonosítója, amelyhez hozzá szeretnénk rendelni az ügyfelet. +
-  clientId: Az ügyfél azonosítója, akit hozzá szeretnénk adni a programhoz.
+  clientId: A kliens azonosítója, akit hozzá szeretnénk adni a programhoz.
 
 | Request body
 | -
@@ -26,14 +26,14 @@
 |===
 
 == Leírás
-Ez a végpont lehetővé teszi egy ügyfél programhoz való hozzárendelését a clientId és programId paraméterek alapján. A kapcsolatot mindkét oldalon (ügyfél és program) menti az adatbázisba.
+Ez a végpont lehetővé teszi egy kliens programhoz való hozzárendelését a clientId és programId paraméterek alapján. A kapcsolatot mindkét oldalon (ügyfél és program) menti az adatbázisba.
 
 == Műveletek
 
 === Validáció
 
 - A programId alapján léteznie kell programnak az adatbázisban.
-- A clientId alapján léteznie kell ügyfélnek az adatbázisban.
+- A clientId alapján léteznie kell kliensnek az adatbázisban.
 - Ha bármelyik entitás nem található, a rendszer hibaüzenetet küld vissza.
 
 [cols="4,2,1"]
@@ -45,7 +45,7 @@ Ez a végpont lehetővé teszi egy ügyfél programhoz való hozzárendelését 
 | PROGRAM_NOT_FOUND
 | 404
 
-| A megadott ügyfél nem található
+| A megadott kliens nem található
 | CLIENT_NOT_FOUND
 | 404
 
@@ -73,4 +73,4 @@ Ez a végpont lehetővé teszi egy ügyfél programhoz való hozzárendelését 
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]

@@ -1,4 +1,4 @@
-= Blog kép feltöltése interfész
+= Blog képének frissítése interfész
 
 [col="1h,3"]
 |===
@@ -68,4 +68,4 @@ Ez a végpont lehetővé teszi egy kép feltöltését egy meglévő bloghoz az 
 
 |===
 
-link:../technical-models/manage-blogs-technical-model.adoc[Vissza]
+link:interfaces-blog.adoc[Vissza]

@@ -76,4 +76,4 @@ Ez a végpont lehetővé teszi az összes blog lekérdezését az adatbázisból
 
 |===
 
-link:../technical-models/manage-blogs-technical-model.adoc[Vissza]
+link:interfaces-blog.adoc[Vissza]

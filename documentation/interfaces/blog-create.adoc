@@ -115,4 +115,4 @@ Ez a végpont lehetővé teszi új blog létrehozását az adatbázisban.
 
 |===
 
-link:../technical-models/manage-blogs-technical-model.adoc[Vissza]
+link:interfaces-blog.adoc[Vissza]

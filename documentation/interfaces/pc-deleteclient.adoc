@@ -1,10 +1,10 @@
-= Ügyfél eltávolítása programból interfész
+= Kliens eltávolítása programból interfész
 
 [cols="1h,3"]
 |===
 
 | Összegzés
-| Egy adott ügyfél eltávolítása egy megadott programból az azonosítók alapján.
+| Egy adott kliens eltávolítása egy megadott programból az azonosítók alapján.
 
 | Request method
 | DELETE
@@ -15,7 +15,7 @@
 | Params
 |
   programId: A program azonosítója, amelyből el szeretnénk távolítani az ügyfelet. +
-  clientId: Az ügyfél azonosítója, akit el szeretnénk távolítani a programból.
+  clientId: A kliens azonosítója, akit el szeretnénk távolítani a programból.
 
 | Request body
 | -
@@ -26,14 +26,14 @@
 |===
 
 == Leírás
-Ez a végpont lehetővé teszi egy adott ügyfél eltávolítását egy programból a clientId és programId paraméterek alapján. A kapcsolatot mindkét oldalon törli az adatbázisból.
+Ez a végpont lehetővé teszi egy adott kliens eltávolítását egy programból a clientId és programId paraméterek alapján. A kapcsolatot mindkét oldalon törli az adatbázisból.
 
 == Műveletek
 
 === Validáció
 
 - A programId alapján léteznie kell programnak az adatbázisban.
-- A clientId alapján léteznie kell ügyfélnek az adatbázisban.
+- A clientId alapján léteznie kell kliensnek az adatbázisban.
 - Ha bármelyik entitás nem található, a rendszer hibaüzenetet küld vissza.
 
 [cols="4,2,1"]
@@ -45,7 +45,7 @@ Ez a végpont lehetővé teszi egy adott ügyfél eltávolítását egy programb
 | PROGRAM_NOT_FOUND
 | 404
 
-| A megadott ügyfél nem található
+| A megadott kliens nem található
 | CLIENT_NOT_FOUND
 | 404
 
@@ -73,4 +73,4 @@ Ez a végpont lehetővé teszi egy adott ügyfél eltávolítását egy programb
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]

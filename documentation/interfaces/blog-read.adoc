@@ -95,4 +95,4 @@ Ez a végpont lehetővé teszi egy adott blog adatainak lekérdezését az adatb
 
 |===
 
-link:../technical-models/manage-blogs-technical-model.adoc[Vissza]
+link:interfaces-blog.adoc[Vissza]

@@ -62,4 +62,4 @@ Ez a végpont visszaadja, hogy hány ügyfél csatlakozott (regisztrált) egy ad
 
 |===
 
-link:../technical-models/manage-programs-technical-model.adoc[Vissza]
+link:interfaces-pc.adoc[Vissza]
