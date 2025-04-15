@@ -1,243 +1,365 @@
-== Programok kezelése - Funkcionális modell
+= Programok kezelése - Funkcionális modell
 
-=== Leírás
+== Leírás
 
 A rendszer lehetővé teszi a programok kezelését.
 
-=== Használati esetek
+== Használati esetek
 
-==== Használati eset diagram
+=== Használati eset diagram
 
-==== Használati esetek rövid leírása
+=== Használati esetek rövid leírása
 
-=== Programok listázása
+==== Programok listázása
 [cols="1h,3"]
 |===
 | Azonosító
 | UC_P_List
 
 | Kiváltó esemény
-| A felhasználó listázni kívánja a programokat.
+| A felhasználó listázni kívánja az elérhető edzésprogramokat.
 
 | Felhasználók
-| Kliens, Edző
+| Edző, Kliens
 
 | Elsődleges lefutás
 |
-1. A felhasználó a "Programok listázása" menüpontra kattint.
-2. A rendszer lekérdezi az összes program adatait, beleértve a program neve, leírás, időpontok, és státusz információkat.
+
+A felhasználó a "Programok" menüpontra kattint.
+
+A rendszer lekérdezi és visszaadja az összes elérhető program alapadatait.
 
 | Kivételek és alternatívák
-| - Ha nincs elérhető program, a rendszer egy üres listát ad vissza.
+| - Nincs elérhető program: üres lista jelenik meg.
 
 | Utófeltétel
-| A rendszer az összes program adatát megjeleníti.
+| A programok listája megjelenik.
 
 | Eredmény
-| A felhasználó látja a programok listáját.
+| A felhasználó látja az edzésprogramokat.
 
 | Használati eset realizáció
 | Technikai modell
 |===
 
-=== Program megtekintése
+==== Program megtekintése
 [cols="1h,3"]
 |===
 | Azonosító
 | UC_P_Read
 
 | Kiváltó esemény
-| A felhasználó megkívánja tekinteni a kiválasztott program adatait.
+| A felhasználó egy program részletes adataira kíváncsi.
 
 | Felhasználók
-| Kliens, Edző
+| Edző, Kliens
 
 | Elsődleges lefutás
 |
-1. A felhasználó kiválasztja a programot.
-2. A rendszerben lekérdezésre kerül a kiválasztott program.
+
+A felhasználó kiválaszt egy programot.
+
+A rendszer lekérdezi és megjeleníti a részletes adatokat.
 
 | Kivételek és alternatívák
-| -
+| - Nem létező program: hibaüzenet jelenik meg.
 
 | Utófeltétel
-| A rendszerben a program lekérdezésre került.
+| A kiválasztott program részletes adatai megjelennek.
 
 | Eredmény
-| A felhasználó látja a kiválasztott program metaadatait.
+| A felhasználó megtekinti a program részleteit.
 
 | Használati eset realizáció
 | Technikai modell
 |===
 
-=== Program módosítása
-[cols="1h,3"]
-|===
-| Azonosító
-| UC_P_Update
-
-| Kiváltó esemény
-| A felhasználó módosítani kívánja a kiválasztott program metaadatát.
-
-| Felhasználók
-| Trainer
-
-| Elsődleges lefutás
-|
-1. A felhasználó kiválasztja a módosítani kívánt adatot.
-2. A felhasználó elindítja a módosítást.
-3. A rendszer módosítja a program adatot az adatbázisban.
-
-| Kivételek és alternatívák
-| - Ha az adat érvénytelen, az alkalmazás hibát jelez (pl. érvénytelen formátum).
-  - A kiválasztott adat nem változtatható, ha nincs megfelelő jogosultság.
-
-| Utófeltétel
-| A program adatai frissültek az adatbázisban.
-
-| Eredmény
-| A felhasználó látja a módosított program metaadatait.
-
-| Használati eset realizáció
-| Technikai modell
-|===
-
-=== Program törlése
-[cols="1h,3"]
-|===
-| Azonosító
-| UC_P_Delete
-
-| Kiváltó esemény
-| A felhasználó törölni kívánja a kiválasztott programot.
-
-| Felhasználók
-| Admin
-
-| Elsődleges lefutás
-|
-1. A felhasználó kiválasztja a törölni kívánt programot.
-2. A rendszer törli a kiválasztott programot az adatbázisból.
-
-| Kivételek és alternatívák
-| - Ha a törlés nem lehetséges (pl. a programhoz kapcsolódó események vannak), a rendszer hibaüzenetet jelenít meg.
-
-| Utófeltétel
-| A program eltávolításra került az adatbázisból.
-
-| Eredmény
-| A felhasználó látja, hogy a program törlésre került.
-
-| Használati eset realizáció
-| Technikai modell
-|===
-
-=== Program létrehozása
-
+==== Program létrehozása
 [cols="1h,3"]
 |===
 | Azonosító
 | UC_P_Create
 
 | Kiváltó esemény
-| A felhasználó létrehozni kíván programot.
+| A felhasználó új edzésprogramot kíván létrehozni.
 
 | Felhasználók
 | Edző
 
 | Elsődleges lefutás
 |
-1. A felhasználó megadja a program adatait.
-2. A rendszer létrehozza a kiválasztott programot az adatbázisba.
+
+A felhasználó megadja a program adatait.
+
+A rendszer validálja az adatokat.
+
+Az új program mentésre kerül.
 
 | Kivételek és alternatívák
-| -
+| - Hibás adatbevitel: validációs hiba.
+
+  - Nem létező edző azonosító: hibaüzenet.
 
 | Utófeltétel
-| A program létrehozódik az adatbázisban.
+| A program bekerült az adatbázisba.
 
 | Eredmény
-| A felhasználó látja, hogy a program létrehozódott.
+| A program elérhető lesz a felületen.
 
 | Használati eset realizáció
 | Technikai modell
 |===
 
-==== Jogosultságok
+==== Program módosítása
+[cols="1h,3"]
+|===
+| Azonosító
+| UC_P_Update
+
+| Kiváltó esemény
+| A felhasználó módosítani kívánja a program adatait.
+
+| Felhasználók
+| Edző
+
+| Elsődleges lefutás
+|
+
+Az edző kiválaszt egy programot.
+
+Módosítja a kívánt mezőket.
+
+A rendszer validálja és frissíti az adatokat.
+
+| Kivételek és alternatívák
+| - Érvénytelen dátum: hibaüzenet.
+
+  - Nem létező program vagy edző: hibaüzenet.
+
+| Utófeltétel
+| A módosított program elmentésre kerül.
+
+| Eredmény
+| A felhasználók az új adatokat látják.
+
+| Használati eset realizáció
+| Technikai modell
+|===
+
+==== Program törlése
+[cols="1h,3"]
+|===
+| Azonosító
+| UC_P_Delete
+
+| Kiváltó esemény
+| A felhasználó törölni kíván egy programot.
+
+| Felhasználók
+| Admin, Edző
+
+| Elsődleges lefutás
+|
+
+A felhasználó kiválasztja a törlendő programot.
+
+A rendszer megerősítést kérhet.
+
+A program törlésre kerül.
+
+| Kivételek és alternatívák
+| - Nem létező program: hibaüzenet.
+
+| Utófeltétel
+| A program törölve lett.
+
+| Eredmény
+| A törölt program többé nem elérhető.
+
+| Használati eset realizáció
+| Technikai modell
+|===
+
+==== Kliensek hozzárendelése programhoz
+[cols="1h,3"]
+|===
+| Azonosító
+| UC_P_AddClient
+
+| Kiváltó esemény
+| A felhasználó hozzárendeli a klienst egy programhoz.
+
+| Felhasználók
+| Kliens
+
+| Elsődleges lefutás
+|
+
+A felhasználó kiválasztja a klienst és a programot.
+
+A hozzárendelés megtörténik.
+
+| Kivételek és alternatívák
+| - Nem létező program vagy kliens: hibaüzenet.
+
+| Utófeltétel
+| A kliens bekerül a program résztvevői közé.
+
+| Eredmény
+| A kliens részt vesz a programban.
+
+| Használati eset realizáció
+| Technikai modell
+|===
+
+==== Programból kliens eltávolítása
+[cols="1h,3"]
+|===
+| Azonosító
+| UC_P_RemoveClient
+
+| Kiváltó esemény
+| A felhasználó eltávolít egy klienst egy programból.
+
+| Felhasználók
+| Admin, Kliens
+
+| Elsődleges lefutás
+|
+
+A felhasználó kiválasztja a klienst és a programot.
+
+A kliens eltávolításra kerül a programból.
+
+| Kivételek és alternatívák
+| - Nem létező program vagy kliens: hibaüzenet.
+
+| Utófeltétel
+| A kliens már nem része a programnak.
+
+| Eredmény
+| A kliens törlésre kerül a programból.
+
+| Használati eset realizáció
+| Technikai modell
+|===
+
+==== Kliens volt-e programon
+[cols="1h,3"]
+|===
+| Azonosító
+| UC_P_WasOnProgram
+
+| Kiváltó esemény
+| A rendszer ellenőrzi, hogy a kliens részt vett-e egy adott programon.
+
+| Felhasználók
+| Admin, Kliens
+
+| Elsődleges lefutás
+|
+
+A rendszer lekérdezi a kliens programlistáját.
+
+Megvizsgálja, szerepel-e benne a megadott program.
+
+| Kivételek és alternatívák
+| - Nem létező program vagy kliens: hibaüzenet.
+
+| Utófeltétel
+| Az eredmény visszaadásra kerül.
+
+| Eredmény
+| A rendszer válaszol, hogy a kliens részt vett-e a programon.
+
+| Használati eset realizáció
+| Technikai modell
+|===
+
+== Jogosultságok
 
 [cols="1,1,1"]
 |===
-| Használati eset | Jogosultság | Szerepkörök
-| Program listázása | PROGRAM_LIST | Kliens, Edző
-| Program megtekintése | PROGRAM_READ | Kliens, Edző
-| Program módosítása | PROGRAM_UPDATE | Edző
-| Program törlése | PROGRAM_DELETE | Admin, Edző
-| Program létrehozása | PROGRAM_CREATE | Edző
+|Használati eset| Jogosultság| Szerepkörök
+
+| Programok listázása| PROGRAM_LIST| Kliens, Edző
+| Program megtekintése| PROGRAM_READ| Kliens, Edző
+| Program létrehozása| CREATE_PROGRAM| Edző
+| Program módosítása| UPDATE_PROGRAM| Edző
+| Program törlése| DELETE_PROGRAM| Admin, Edző
+| Kliensek hozzárendelése| ADD_CLIENT_TO_PROGRAM| Kliens
+| Kliensek eltávolítása| REMOVE_CLIENT_FROM_PROGRAM| Admin, Kliens
+| Volt-e a kliens programon| WAS_ON_PROGRAM| Kliens, Admin
 |===
 
-==== Felületi terv
+== Felületi terv
 
 === Programok listázása felület
 
 ==== Arculat
 
 ==== A felületen lévő mezők
-
 [cols="1,1,1,1,1"]
 |===
-| Név | Típus | Kötelező? | Szerkeszthető? | Megjelenés
-| Program neve | Header oszlopcím | I | N | Találati lista ablakrész
-| Program leírása | Header oszlopcím | I | N | Találati lista ablakrész
-| Program státusza | Header oszlopcím | I | N | Találati lista ablakrész
+|Mező | Típus | Kötelező? | Szerkeszthető? | Megjelenés
+
+|Edző neve |Szöveg| N | N | Lista elem
+|Kezdés |Dátum/idő| I | N | Lista elem
+|Befejezés |Dátum/idő| I | N | Lista elem
+|Ár |Szám| I | N | Lista elem
+|Kapacitás |Szám| I | N | Lista elem
+|Típus |Enum| I | N | Lista elem
+|Státusz |Enum| I | N | Lista elem
 |===
 
 ==== A felületről elérhető műveletek
-
 [cols="1,1,1"]
 |===
-| Esemény | Leírás | Jogosultság
-| A "Programok" gombra kattintás | Végrehajtásra kerül a Programok listázása használati eset. A találati listában megjelennek a programok. | PROGRAM_LIST
+|Esemény | Leírás | Jogosultság
+
+|"Program létrehozása" gomb | Új program rögzítése | CREATE_PROGRAM
+|Program sor kiválasztása | Részletek megtekintése | PROGRAM_READ
 |===
 
-=== Program szerkesztése felület
+=== Program szerkesztő felület
 
 ==== Arculat
 
-==== A felületen lévő mezők
-
+==== Mezők
 [cols="1,1,1,1,1"]
 |===
-| Név | Típus | Kötelező? | Szerkeszthető? | Validáció
-| Programhoz tartozó Trainer neve | Szöveges input mező | I | N | Minimum 3, maximum 100 karakterből álljon
-| Program kezdete | Dátum | I | I | Az időpont nem lehet a vége után
-| Program vége | Dátum | I | I | Az időpont nem lehet a kezdete előtt
-| Program ára | Szám | I | I | Felvehető értékek: pozitív egész szám
-| Program kapacitása | Szám | I | I | Felvehető értékek: pozitív egész szám
-| Program típusa | Választó gomb | I | I | Felvehető értékek: ["STRENGTH_TRAINING", "PILATES", "CROSSFIT", "B_FIT", "SPINNING", "FUNCTIONAL_TRAINING", "TRX"]
-| Program státusza | Választó gomb | I | I | Felvehető értékek: ["UPCOMING", "ONGOING", "COMPLETED"]
+|Mező | Típus | Kötelező? | Szerkeszthető? | Validáció
+
+|Edző |Kiválasztó| I | I | Létező edző
+|Kezdés |Dátum/idő| I | I | Dátum < Befejezés
+|Befejezés |Dátum/idő| I | I | Dátum > Kezdés
+|Ár |Szám| I | I | Pozitív szám
+|Kapacitás |Szám| I | I | Pozitív egész szám
+|Típus |Enum| I | I | ProgramType
+|Státusz |Enum| I | I | ProgramStatus
 |===
 
-==== A felületről elérhető műveletek
-
-[cols="1,1,1,1"]
+==== Műveletek
+[cols="1,1,1"]
 |===
-| Esemény | Leírás | Felület | Jogosultság
-| A "Mentés" gombra kattintás | Végrehajtásra kerül a Program módosítása használati eset. A program adatai frissülnek. | Program módosítása felület | PROGRAM_Update
+|Esemény | Leírás | Jogosultság
+
+|"Mentés" gomb | Módosítások mentése | UPDATE_PROGRAM
+|"Törlés" gomb | Program törlése | DELETE_PROGRAM
 |===
 
-=== Program törlése felület
+=== Kliensek kezelése programon belül
 
 ==== Arculat
 
-==== A felületen lévő mezők
--
-
-==== A felületről elérhető műveletek
-
-[cols="1,1,1,1"]
+==== Műveletek
+[cols="1,1,1"]
 |===
-| Esemény | Leírás | Felület | Jogosultság
-| A "Törlés" gombra kattintás | Végrehajtásra kerül a Program törlése használati eset. A program adatai törlődnek. | Program törlése felület | PROGRAM_DELETE
+|Esemény | Leírás | Jogosultság
+
+|"Kliens hozzárendelése" | Új kliens rendelése a programhoz | ADD_CLIENT_TO_PROGRAM
+|"Eltávolítás" gomb | Kliens eltávolítása a programból | REMOVE_CLIENT_FROM_PROGRAM
+|"Részt vett?" kérdés | Ellenőrzés, hogy a kliens részt vett-e | WAS_ON_PROGRAM
 |===
 
 === Program megtekintése felület
@@ -245,45 +367,53 @@ A rendszer lehetővé teszi a programok kezelését.
 ==== Arculat
 
 ==== A felületen lévő mezők
-
-[cols="1,1,1,1,1"]
+[cols="1,1,1,1"]
 |===
-| Név | Típus | Kötelező? | Szerkeszthető? | Validáció
-| Programhoz tartozó Trainer neve | Szöveges input mező | I | N | Minimum 3, maximum 100 karakterből álljon
-| Program kezdete | Dátum | I | N | Az időpont nem lehet a vége után
-| Program vége | Dátum | I | N | Az időpont nem lehet a kezdete előtt
-| Program ára | Szám | I | N | Felvehető értékek: pozitív egész szám
-| Program kapacitása | Szám | I | N | Felvehető értékek: pozitív egész szám
-| Program típusa | Választó gomb | I | N | Felvehető értékek: ["STRENGTH_TRAINING", "PILATES", "CROSSFIT", "B_FIT", "SPINNING", "FUNCTIONAL_TRAINING", "TRX"]
-| Program státusza | Választó gomb | I | N | Felvehető értékek: ["UPCOMING", "ONGOING", "COMPLETED"]
+|Mező | Típus | Kötelező? | Szerkeszthető?
+
+|Edző |Szöveg| I | N
+|Kezdés |Dátum/idő| I | N
+|Befejezés |Dátum/idő| I | N
+|Ár |Szám| I | N
+|Kapacitás |Szám| I | N
+|Típus |Enum| I | N
+|Státusz |Enum| I | N
 |===
 
 ==== A felületről elérhető műveletek
--
+[cols="1,1,1"]
+|===
+|Esemény | Leírás | Jogosultság
+
+|Program kiválasztása a listából | Megnyílik a program részletes nézete | PROGRAM_READ
+|===
 
 === Program létrehozása felület
 
 ==== Arculat
 
-==== A felületen lévő mezők
-
+==== Mezők
 [cols="1,1,1,1,1"]
 |===
-| Név | Típus | Kötelező? | Szerkeszthető? | Validáció
-| Program kezdete | Dátum | I | I | Az időpont nem lehet a vége után
-| Program vége | Dátum | I | I | Az időpont nem lehet a kezdete előtt
-| Program ára | Szám | I | I | Felvehető értékek: pozitív egész szám
-| Program kapacitása | Szám | I | I | Felvehető értékek: pozitív egész szám
-| Program típusa | Választó gomb | I | I | Felvehető értékek: ["STRENGTH_TRAINING", "PILATES", "CROSSFIT", "B_FIT", "SPINNING", "FUNCTIONAL_TRAINING", "TRX"]
-| Program státusza | Választó gomb | I | I | Felvehető értékek: ["UPCOMING", "ONGOING", "COMPLETED"]
+|Mező | Típus | Kötelező? | Szerkeszthető? | Validáció
+
+|Edző |Kiválasztó| I | I | Létező edző
+|Kezdés |Dátum/idő| I | I | Dátum < Befejezés
+|Befejezés |Dátum/idő| I | I | Dátum > Kezdés
+|Ár |Szám| I | I | Pozitív szám
+|Kapacitás |Szám| I | I | Pozitív egész szám
+|Típus |Enum| I | I | ProgramType
+|Státusz |Enum| I | I | ProgramStatus
 |===
 
-==== A felületről elérhető műveletek
+==== Műveletek
+[cols="1,1,1"]
+|===
+|Esemény | Leírás | Jogosultság
 
-[cols="1,1,1,1"]
+|"Mentés" gomb | Új program létrehozása | CREATE_PROGRAM
 |===
-| Esemény | Leírás | Felület | Jogosultság
-| A "Létrehozás" gombra kattintás | Végrehajtásra kerül a Program létrehozása használati eset. A program létrejön az adatbázisban. | Program létrehozása felület | PROGRAM_CREATE
-|===
+
+
 
 link:../functional-models.adoc[Vissza]

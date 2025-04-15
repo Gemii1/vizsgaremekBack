@@ -197,11 +197,10 @@ A gomb mindaddig DISABLED amíg az űrlap nem valid.
 [cols="1,1,1,1,1"]
 |===
 |Név |Típus |Kötelező?| Szerkeszthető?| Validáció
-
-|Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
-|Születési dátum |Dátum input mező| I| I|
-|Nem |Választó gomb| I| N| Felvehető értékek: ["Male","Female","Other"]
-|Telefonszám | Szöveges input mező| I| I|
+|Név |Header oszlopcím| I| I| Minimum 2, maximum 50 karakterből álljon
+|Születési dátum |Header oszlopcím| I| I|
+|Nem |Header oszlopcím| I| N| Felvehető értékek: ["Male","Female","Other"]
+|Telefonszám | Header oszlopcím| I| I|
 
 |===
 

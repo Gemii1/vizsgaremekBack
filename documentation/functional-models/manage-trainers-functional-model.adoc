@@ -2,13 +2,14 @@
 
 == Leírás
 
-
+A rendszer lehetővé teszi az edzők kezelését.
 
 == Használati esetek
 
 === Használati eset diagram
 
 === Használati esetek rövid leírása
+
 ==== Edzők listázása
 [cols="1h,3"]
 |===
@@ -20,26 +21,26 @@
 | A felhasználó listázni kívánja az edzőket.
 
 | Felhasználók
-| Kliens, Edző
+| Kliens, Admin
 
 | Elsődleges lefutás
 |
-1. A felhasználó az Edzők listázása menüpontra kattint.
 
-2. A rendszerben kiválogatásra kerülnek az edzők.
+A felhasználó a "Trénerek listázása" menüpontra kattint.
+
+A rendszer lekérdezi az összes edző metaadatait (név, születési dátum, nem, végzettség, telefonszám, értékelés).
 
 | Kivételek és alternatívák
-| -
+| - Ha nincs elérhető edző, a rendszer üres listát ad vissza.
 
-|Utófeltétel
-|A rendszerben az edzők listája előállt.
+| Utófeltétel
+| A rendszer az összes edző adatát megjeleníti.
 
 | Eredmény
-| A felhasználó látja az edzők listáját, kiválaszthat egyet közülük.
+| A felhasználó látja az edzők listáját.
 
 | Használati eset realizáció
 | Technikai modell
-
 |===
 
 ==== Edző megtekintése
@@ -50,29 +51,28 @@
 | UC_T_Read
 
 | Kiváltó esemény
-| A felhasználó megkívánja tekinteni a kiválasztott edző adatait.
+| A felhasználó meg kívánja tekinteni az edző adatait.
 
 | Felhasználók
 | Kliens, Edző
 
 | Elsődleges lefutás
 |
-1. A felhasználó kiválasztja az edzőt.
 
-2. A rendszerben lekérdezésre kerül a kiválasztott edző.
+A felhasználó kiválasztja az edzőt.
 
-| Kivételek és alternatívák
-| -
+A rendszer lekérdezi és megjeleníti az edző részletes adatait.
 
-|Utófeltétel
-|A rendszerben az edző lekérdezésre került.
+Kivételek és alternatívák
+
+| Utófeltétel
+| Az edző részletes adatai megjelennek a felületen.
 
 | Eredmény
-| A felhasználó látja a kiválasztott edző metaadatait.
+| A felhasználó látja az edző adatait.
 
 | Használati eset realizáció
 | Technikai modell
-
 |===
 
 ==== Edző módosítása
@@ -83,31 +83,33 @@
 | UC_T_Patch
 
 | Kiváltó esemény
-| A felhasználó módosítani kívánja a kiválasztott edző metaadatát.
+| A felhasználó módosítani kívánja az edző metaadatait.
 
 | Felhasználók
-| Edző
+| Admin, Edző
 
 | Elsődleges lefutás
 |
-1. A felhasználó megadja a módosítani kívánt adatot.
 
-2. A felhasználó elindítja a módosítás folyamatát.
+A felhasználó kiválasztja a módosítandó mezőt (név, születési dátum, végzettség, telefonszám).
 
-3. A rendszerben módosításra kerül az edző.
+A rendszer érvényesíti az adatot.
+
+Az adatok frissülnek az adatbázisban.
 
 | Kivételek és alternatívák
-| -
+| - Hibás adatbevitel esetén hibaüzenet jelenik meg.
 
-|Utófeltétel
-|A rendszerben az edző módosításra került.
+Jogosultság hiányában a módosítás nem hajtható végre.
+
+| Utófeltétel
+| Az edző adatai frissültek.
 
 | Eredmény
-| A felhasználó látja az edző módosított metaadatát.
+| A felhasználó látja a módosított adatokat.
 
 | Használati eset realizáció
 | Technikai modell
-
 |===
 
 ==== Edző értékelése
@@ -115,34 +117,69 @@
 |===
 
 | Azonosító
-| UC_T_Post
+| UC_T_Rate
 
 | Kiváltó esemény
-| A felhasználó módosítani kívánja a kiválasztott edző "rating" metaadatát.
+| A felhasználó értékelést kíván adni egy edzőnek.
 
 | Felhasználók
 | Kliens
 
 | Elsődleges lefutás
 |
-1. A felhasználó megad egy értékelést.
 
-2. A felhasználó elindítja az edző értékelései átlagolásának folyamatát.
+A felhasználó értékelést ad.
 
-3. A rendszerben módosításra kerül az edző.
+Az értékelés bekerül az adatbázisba.
+
+A rendszer újra számolja az edző átlagos értékelését.
 
 | Kivételek és alternatívák
-| -
+| - Nem létező edző esetén hibaüzenet jelenik meg.
 
-|Utófeltétel
-|A rendszerben az edző módosításra került.
+| Utófeltétel
+| Az értékelés bekerült a rendszerbe.
 
 | Eredmény
-| A felhasználó látja az edző módosított metaadatait.
+| Az edző átlagos értékelése frissül.
 
 | Használati eset realizáció
 | Technikai modell
+|===
 
+==== Edző képének feltöltése
+[cols="1h,3"]
+|===
+
+| Azonosító
+| UC_T_UploadImage
+
+| Kiváltó esemény
+| A felhasználó képet kíván feltölteni egy edzőhöz.
+
+| Felhasználók
+| Edző
+
+| Elsődleges lefutás
+|
+
+A felhasználó kiválasztja a képfájlt.
+
+A fájl feltöltésre kerül.
+
+Az edzőhöz mentésre kerül a kép.
+
+| Kivételek és alternatívák
+| - Hibás formátum vagy túl nagy fájl esetén hibaüzenet jelenik meg.
+
+| Utófeltétel
+| Az edző profilképe frissül.
+
+| Eredmény
+| Az edző képe megtekinthető a rendszerben.
+
+| Használati eset realizáció
+| Technikai modell
 |===
 
 == Jogosultságok
@@ -151,12 +188,11 @@
 |===
 |Használati eset| Jogosultság| Szerepkörök
 
-| Edzők listázása| TRAINER_LIST| Kliens, Edző
-| Edző rögzítése| TRAINER_CREATE| Edző
+| Edzők listázása| TRAINER_LIST| Kliens, Admin
 | Edző megtekintése| TRAINER_READ| Kliens, Edző
-| Edző módosítása| TRAINER_PATCH| Edző
-| Edző törlése| TRAINER_DELETE| Edző
-| Edző értékelése | TRAINER_POST| Kliens
+| Edző módosítása| PATCH_TRAINER| Admin, Edző
+| Edző értékelése| ADD_RATING| Kliens
+| Edző kép feltöltése| UPLOAD_TRAINER_IMAGE| Edző
 |===
 
 == Felületi terv
@@ -164,7 +200,6 @@
 === Edzők listázása felület
 
 ==== Arculat
-image::image-2025-01-24-17-00-07-109.png[]
 
 
 ==== A felületen lévő mezők
@@ -173,28 +208,25 @@ image::image-2025-01-24-17-00-07-109.png[]
 |===
 |Név |Típus |Kötelező?| Szerkeszthető?| Megjelenés
 
-|Edző neve |Header oszlopcím| I| I| Találati lista ablakrész
-|Edző képe | Header oszlopcím| N| I| Találati lista ablakrész
-|Edző képesítése | Header oszlopcím| I| I| Találati lista ablakrész
-|Edző telefonszáma | Header oszlopcím| I| I| Találati lista ablakrész
-|Edző átlag értékelése | Header oszlopcím| I| I| Találati lista ablakrész
-
+|Név |Header oszlopcím| I| N| Találati lista
+|Születési dátum |Header oszlopcím| I| N| Találati lista
+|Nem |Header oszlopcím| I| N| Találati lista
+|Végzettség |Header oszlopcím| I| N| Találati lista
+|Telefonszám |Header oszlopcím| I| N| Találati lista
+|Értékelés |Header oszlopcím| N| N| Találati lista
 |===
 
 ==== A felületről elérhető műveletek
-
 [cols="1,1,1"]
 |===
 |Esemény |Leírás | Jogosultság
 
-|Az "Edzőinkről" gombra kattintás |Végrehajtásra kerül az Edzők listázása használati eset. A találati listában megjelennek az edzők.| TRAINER_LIST
-
+|"Edzők" gombra kattintás |Megjelennek az edzők.| TRAINER_LIST
 |===
 
-=== Edző rögzítése vagy szerkesztése felület
-==== Arculat
-image::image-2025-01-24-17-22-37-426.png[]
+=== Edző módosítása felület
 
+==== Arculat
 
 ==== A felületen lévő mezők
 
@@ -202,56 +234,35 @@ image::image-2025-01-24-17-22-37-426.png[]
 |===
 |Név |Típus |Kötelező?| Szerkeszthető?| Validáció
 
-|Név |Szöveges input mező| I| I| Minimum 2, maximum 50 karakterből álljon
-|Születési dátum |Dátum input mező| I| N|
-|Nem |Választó gomb| I| N| Felvehető értékek: ["Male","Female","Other"]
-|Kép |Fájl beviteli mező| N| I|
-|Képesítés | "Qualification" input mező| I| I|
-|Telefonszám | Szöveges input mező| I| I|
-|Átlag értékelés | Double input mező| I| N|
-
+|Név |Szöveges input| I| I|
+|Születési dátum |Dátum input| I| I| Formátum:YYYY-MM-DD
+|Végzettség |Választó| I| I| Csak a Qualification enum értékeit veheti fel
+|Telefonszám |Szöveges input| I| I| Telefonszám formátum
 |===
 
 ==== A felületről elérhető műveletek
-
 [cols="1,1,1,1"]
 |===
-|Esemény |Leírás | Felület|Jogosultság
+|Esemény |Leírás | Felület| Jogosultság
 
-|A "Mentés" gombra kattintás
-|Végrehajtásra kerül az Edző rögzítése használati eset. A felhasználó az edző megtekintése felületre jut.
-
-A gomb mindaddig DISABLED amíg az űrlap nem valid.
-| Edző létrehozása felület
-| TRAINER_CREATE
-
-|Az "Ok" gombra kattintás|
-Végrehajtásra kerül az Edző módosítása használati eset. A felhasználó az edző megtekintése felületre jut.
-
-A gomb mindaddig DISABLED amíg az űrlap nem valid.
-| Edző módosítása felület
-| TRAINER_PATCH
-
-vagy TRAINER_POST ha az Értékelés gombra kattintva érkezett erre a felületre.
-
+|"Mentés" gomb |Mentésre kerülnek a módosított adatok.| Szerkesztő nézet| PATCH_TRAINER
 |===
 
+=== Edző megtekintése felület
 
+==== Arculat
 
 ==== A felületen lévő mezők
 
-[cols="1,1"]
+[cols="1,1,1,1"]
 |===
-|Megnevezés| Típus
-
-|Név |Szöveges címke
-|Születési dátum| Dátum címke
-|Nem |Szöveges címke
-|Kép |Szöveges címke
-|Képesítés |Szöveges címke
-|Telefonszám |Szöveges címke
-|Átlag értékelés | Szám típusú címke egy tizedesjegy pontossággal.
-
+|Név |Típus |Kötelező?| Szerkeszthető?
+|Név |Header oszlopcím| I| N
+|Születési dátum |Header oszlopcím| I| N
+|Nem |Header oszlopcím| I| N
+|Végzettség |Header oszlopcím| I| N
+|Telefonszám |Header oszlopcím| I| N
+|Értékelés |Header oszlopcím| N| N
 |===
 
 ==== A felületről elérhető műveletek
@@ -259,11 +270,40 @@ vagy TRAINER_POST ha az Értékelés gombra kattintva érkezett erre a felületr
 [cols="1,1,1"]
 |===
 |Esemény |Leírás | Jogosultság
+|Edző megtekintése |A rendszer megjeleníti a kiválasztott edző adatait.| TRAINER_READ
+|===
 
-|A "Szerkesztés" gombra kattintás
-|A felhasználó az edző szerkesztése felületre jut.
-| -
+=== Edző kép feltöltése felület
 
+==== Arculat
+
+==== A felületről elérhető műveletek
+
+[cols="1,1,1"]
+|===
+|Esemény |Leírás | Jogosultság
+|Fájl kiválasztása és mentés |A rendszer feltölti a képet.| UPLOAD_TRAINER_IMAGE
+|===
+
+
+=== Edző értékelése felület
+
+==== Arculat
+
+==== A felületen lévő mezők
+
+[cols="1,1,1,1,1"]
+|===
+|Név |Típus |Kötelező?| Szerkeszthető?| Validáció
+|Értékelés |Szöveges input| I| I| 1-5 közötti szám
+|===
+
+==== A felületről elérhető műveletek
+
+[cols="1,1,1,1"]
+|===
+|Esemény |Leírás | Felület| Jogosultság
+|Értékelés hozzáadása |A rendszer hozzáadja a megadott értékelést.| Értékelési nézet| ADD_RATING
 |===
 
 link:../functional-models.adoc[Vissza]

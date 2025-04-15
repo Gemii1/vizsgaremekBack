@@ -4,12 +4,8 @@ link:functional-models/manage-trainers-functional-model.adoc[Edzők kezelése]
 
 link:functional-models/manage-clients-functional-model.adoc[Kliensek kezelése]
 
-Programok kezelése
+link:functional-models/manage-programs-functional-model.adoc[Programok kezelése]
 
-Blogok kezelése
-
-Értékelések
-
-Bejelentkezés
+link:functional-models/manage-blogs-functional-model.adoc[Blogok kezelése]
 
 link:system-plan.adoc[Vissza]
