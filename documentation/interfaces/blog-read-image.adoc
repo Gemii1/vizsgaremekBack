@@ -23,7 +23,7 @@
 |===
 
 == Leírás
-Ez a végpont lehetővé teszi a bloghoz tartozó kép letöltését az adatbázisban tárolt fájl alapján.
+Ez a végpont lehetővé teszi a bloghoz tartozó kép lekérdezését az adatbázisban tárolt fájl alapján.
 
 == Műveletek
 

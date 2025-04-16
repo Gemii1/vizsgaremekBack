@@ -6,10 +6,6 @@ link:technical-models/manage-clients-technical-model.adoc[Kliensek kezelése]
 
 link:technical-models/manage-blogs-technical-model.adoc[Blogok kezelése]
 
-Programok kezelése
-
-Értékelések
-
-Bejelentkezés
+link:technical-models/manage-programs-technical-model.adoc[Programok kezelése]
 
 link:system-plan.adoc[Vissza]
