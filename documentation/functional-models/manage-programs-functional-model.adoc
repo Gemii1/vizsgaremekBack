@@ -8,6 +8,8 @@ A rendszer lehetővé teszi a programok kezelését.
 
 === Használati eset diagram
 
+image::diagrams/program3.png[]
+
 === Használati esetek rövid leírása
 
 ==== Programok listázása

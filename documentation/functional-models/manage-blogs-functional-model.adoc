@@ -8,6 +8,8 @@ A rendszer lehetővé teszi a blogok kezelését.
 
 === Használati eset diagram
 
+image::diagrams/blog.png[]
+
 === Használati esetek rövid leírása
 
 === Blogok listázása

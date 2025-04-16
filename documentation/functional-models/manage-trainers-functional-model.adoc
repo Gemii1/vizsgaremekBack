@@ -8,6 +8,8 @@ A rendszer lehetővé teszi az edzők kezelését.
 
 === Használati eset diagram
 
+image::diagrams/trainerNew.png[]
+
 === Használati esetek rövid leírása
 
 ==== Edzők listázása
