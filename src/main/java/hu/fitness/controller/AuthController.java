@@ -95,15 +95,17 @@ public class AuthController {
     @PostMapping("/registerClient")
     @Operation(summary = "Register as a Client")
     public ResponseEntity<ClientRead> registerClient(@RequestBody @Valid ClientRegisterRequest request) {
-        return ResponseEntity.ok(authService.registerClient(request));
+        ClientRead response = authService.registerClient(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
     @CrossOrigin
     @PostMapping("/registerTrainer")
     @Operation(summary = "Register as a Trainer")
     public ResponseEntity<TrainerRead> registerTrainer(@RequestBody @Valid TrainerRegisterRequest request) {
-        return ResponseEntity.ok(authService.registerTrainer(request));
+        TrainerRead response = authService.registerTrainer(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
 
 
     private HttpHeaders getJWTHeader(PermissionCollector collector) {

@@ -8,7 +8,7 @@ A rendszer lehetővé teszi a kliensek kezelését.
 
 === Használati eset diagram
 
-image::diagrams/kliensUj.png[]
+image::diagrams/client.png[]
 
 === Használati esetek rövid leírása
 
@@ -123,9 +123,9 @@ image::diagrams/kliensUj.png[]
 |===
 |Használati eset| Jogosultság| Szerepkörök
 
-| Kliens listázása| CLIENT_LIST| Kliens, Edző
-| Kliens megtekintése| CLIENT_READ| Kliens
-| Kliens módosítása| CLIENT_PATCH| Kliens
+| Kliens listázása| CLIENT_LIST| Admin
+| Kliens megtekintése| CLIENT_READ| Admin
+| Kliens módosítása| CLIENT_PATCH| Kliens, Admin
 |===
 
 == Felületi terv
