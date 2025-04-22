@@ -126,7 +126,7 @@ public class TrainerService {
         trainers.sort(Comparator.comparing(Trainer::getRating).reversed());
         List<TrainerRead> bestRatedTrainers = new ArrayList<>();
         int i = 0;
-        while (i < trainers.size() && i < 5) {
+        while (i < trainers.size() && i < 4) {
             bestRatedTrainers.add(TrainerConverter.convertModelToRead(trainers.get(i)));
             i++;
         }
