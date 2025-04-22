@@ -29,7 +29,7 @@ insert into rating (id, trainer_id, score) values
 
 (22, 108, 5),
 (23, 108, 5),
-(24, 108, 4),
+(24, 108, 5),
 
 (25, 109, 4),
 (26, 109, 5),

@@ -3,15 +3,14 @@ package hu.fitness.domain;
 import hu.fitness.enumeration.ProgramStatus;
 import hu.fitness.enumeration.ProgramType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
